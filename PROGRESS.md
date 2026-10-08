@@ -7,7 +7,9 @@
 - 均衡补充评估每物体每任务 20 次；完整数据在 docs/validation/v1.1.0。
 - 所有失败计入分母、无重采样，源代码 SHA-256 与全部参数可查。
 - 统一碰撞几何、形状相关 grasp、多阶段预检、接触求解和受限预载控制改进。
-- 本地十项测试通过；包含六物体完整放置、峰值力上限及真实状态隔离检查。
+- 本地十二项测试通过；包含六物体完整放置、峰值力上限、真实状态隔离和锁定资产下载回归检查。
+- Panda 下载直接使用锁文件清单，避免 GitHub API 限流；缓存可续传、下载校验失败拒绝写入，瞬时网络错误有限重试。
+- 冻结核心代码已通过云端全套物理和证据检查：https://github.com/m13961023616-pixel/EE5110-SegC/actions/runs/37833272410 。
 - 新报告 docs/report/reliability_report_v1.1.0.pdf；新 lemon 演示和离线 ZIP 在 deliverables。
 - 本阶段分支 feature/baseline-reliability；challenging 功能尚未开始。
 
