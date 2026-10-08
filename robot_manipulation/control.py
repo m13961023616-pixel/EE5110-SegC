@@ -17,6 +17,17 @@ class Controller:
         for tick in range(1, count + 1):
             env.data.ctrl[env.gripper_actuator] = start + (target - start) * tick / count
             env.step()
+            if width == 0 and len(env.finger_contacts()) == 2:
+                # Stop closing on bilateral contact, then hold a compliant
+                # preload aperture; force remains limited by the actuator.
+                preload = min(env.config.gripper_force_limit,
+                                     max(env.config.grip_preload,
+                                         env.config.grip_load_margin * env.object_model.mass * 9.81 / 1.5))
+                opening = float(np.mean(env.data.qpos[env.finger_qpos]))
+                env.data.ctrl[env.gripper_actuator] = np.clip(
+                    (env.config.gripper_stiffness * opening - preload) /
+                    env.model.actuator_gainprm[env.gripper_actuator, 0], 0, 255)
+                break
         env.step_for(.4)
 
     def execute(self, trajectory, allow_finger_object=False):

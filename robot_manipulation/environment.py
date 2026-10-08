@@ -22,6 +22,8 @@ class Environment:
         root.find('compiler').set('meshdir', str(model_path.parent / 'assets'))
         root.find('option').set('timestep', str(config.timestep))
         root.find('option').set('gravity', '0 0 -9.81')
+        root.find('option').set('cone', 'elliptic')
+        root.find('option').set('impratio', str(config.contact_impratio))
         visual = ET.SubElement(root, 'visual')
         ET.SubElement(visual, 'global', offwidth='800', offheight='600')
         world = root.find('worldbody')
@@ -61,6 +63,11 @@ class Environment:
         self.arm_dofs = self.model.jnt_dofadr[self.arm_joints]
         self.arm_actuators = np.array([self.model.actuator(f'actuator{i}').id for i in range(1, 8)])
         self.gripper_actuator = self.model.actuator('actuator8').id
+        # Preserve 0..255 aperture mapping, with an explicit bounded grip force.
+        aid = self.gripper_actuator
+        self.model.actuator_gainprm[aid, 0] = .04 * config.gripper_stiffness / 255
+        self.model.actuator_biasprm[aid, 1] = -config.gripper_stiffness
+        self.model.actuator_forcerange[aid] = [-config.gripper_force_limit, config.gripper_force_limit]
         self.finger_joints = [self.model.joint(f'finger_joint{i}').id for i in (1, 2)]
         self.finger_qpos = self.model.jnt_qposadr[self.finger_joints]
         self.object_ids = {}
@@ -82,6 +89,7 @@ class Environment:
         self.floor_geom = self.model.geom('floor').id
         self.viewer = None
         self.recorder = None
+        self.max_gripper_force = 0.
         self.realtime = realtime
         if gui:
             from mujoco import viewer as mj_viewer
@@ -108,6 +116,7 @@ class Environment:
 
     def reset(self, rng, fixed=False, object_id=None):
         self.activate_object(object_id or self.object_id)
+        self.max_gripper_force = 0.
         mujoco.mj_resetData(self.model, self.data)
         if self.recorder:
             self.recorder.reset_time()
@@ -122,7 +131,8 @@ class Environment:
         yaw = 0 if fixed else rng.uniform(-np.pi, np.pi)
         start = self.object_qpos
         # Packaging rests upright on its narrow end; native metric scale is unchanged.
-        roll = np.pi / 2 if self.object_id in ('gelatin_box', 'pudding_box') else 0.
+        roll = (np.pi / 2 if self.object_id == 'gelatin_box' else
+                -np.pi / 2 if self.object_id == 'pudding_box' else 0.)
         rotation = np.array([[1, 0, 0], [0, np.cos(roll), -np.sin(roll)],
                              [0, np.sin(roll), np.cos(roll)]])
         bottom = (self.object_model.vertices @ rotation.T)[:, 2].min()
@@ -142,9 +152,10 @@ class Environment:
             raise RuntimeError('Object has not settled on the table')
         return self.object_pose()
 
-    def object_pose(self):
-        return transform(self.data.xmat[self.object_body].reshape(3, 3).copy(),
-                         self.data.xpos[self.object_body].copy())
+    def object_pose(self, data=None):
+        data = self.data if data is None else data
+        return transform(data.xmat[self.object_body].reshape(3, 3).copy(),
+                         data.xpos[self.object_body].copy())
 
     def site_pose(self, data=None):
         data = self.data if data is None else data
@@ -152,7 +163,11 @@ class Environment:
 
     def step(self):
         start = time.perf_counter()
+        self.data.qfrc_applied[self.arm_dofs] = (self.data.qfrc_bias[self.arm_dofs]
+                                               if self.config.gravity_compensation else 0.)
         mujoco.mj_step(self.model, self.data)
+        self.max_gripper_force = max(self.max_gripper_force,
+                                     abs(float(self.data.actuator_force[self.gripper_actuator])))
         if self.recorder:
             self.recorder.capture()
         if not np.all(np.isfinite(self.data.qpos)):
@@ -167,6 +182,23 @@ class Environment:
     def step_for(self, seconds):
         for _ in range(round(seconds / self.config.timestep)):
             self.step()
+
+    def collision_vertices(self, data=None):
+        """World vertices of the actual compiled collision geometry, not texture mesh."""
+        data = self.data if data is None else data
+        vertices = []
+        for g in self.object_geoms:
+            mesh = self.model.geom_dataid[g]
+            if self.model.geom_type[g] == mujoco.mjtGeom.mjGEOM_MESH:
+                start, count = self.model.mesh_vertadr[mesh], self.model.mesh_vertnum[mesh]
+                local = self.model.mesh_vert[start:start + count]
+            elif self.model.geom_type[g] == mujoco.mjtGeom.mjGEOM_BOX:
+                local = np.array([[x, y, z] for x in (-1, 1) for y in (-1, 1)
+                                  for z in (-1, 1)]) * self.model.geom_size[g]
+            else:
+                raise ValueError('Unsupported collision geometry')
+            vertices.append(local @ data.geom_xmat[g].reshape(3, 3).T + data.geom_xpos[g])
+        return np.vstack(vertices)
 
     def finger_contacts(self, data=None):
         data = self.data if data is None else data

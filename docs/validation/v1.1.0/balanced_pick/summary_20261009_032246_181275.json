@@ -1,0 +1,134 @@
+{
+  "python": "3.12.10",
+  "mujoco": "3.15.0",
+  "numpy": "2.5.3",
+  "seed": 20261101,
+  "randomize": true,
+  "scope": "YCB_known_object_baseline",
+  "code_version": "1.1.0",
+  "sampling": "balanced_shuffled_blocks",
+  "contact_model": {
+    "cone": "elliptic",
+    "object_condim": 6
+  },
+  "dataset": "ycb",
+  "object_pool": [
+    "gelatin_box",
+    "pudding_box",
+    "tomato_soup_can",
+    "lemon",
+    "strawberry",
+    "foam_brick"
+  ],
+  "task": "pick",
+  "config": {
+    "timestep": 0.002,
+    "table_top": 0.0,
+    "object_size": 0.04,
+    "object_mass": 0.05,
+    "spawn_x": [
+      0.4,
+      0.55
+    ],
+    "spawn_y": [
+      -0.12,
+      0.12
+    ],
+    "pregrasp_clearance": 0.14,
+    "lift_distance": 0.16,
+    "success_height": 0.08,
+    "hold_seconds": 1.0,
+    "position_tolerance": 0.002,
+    "rotation_tolerance": 0.025,
+    "tracking_tolerance": 0.012,
+    "tracking_rotation_tolerance": 0.1,
+    "max_joint_speed": 0.5,
+    "max_joint_acceleration": 2.0,
+    "place_xy": [
+      0.48,
+      0.22
+    ],
+    "place_tolerance": 0.055,
+    "place_clearance": 0.008,
+    "gripper_stiffness": 1000.0,
+    "gripper_force_limit": 40.0,
+    "contact_impratio": 10.0,
+    "grip_preload": 16.0,
+    "grip_load_margin": 4.0,
+    "gravity_compensation": true,
+    "home": [
+      0.0,
+      -0.4,
+      0.0,
+      -2.2,
+      0.0,
+      1.8,
+      0.785398
+    ],
+    "output_dir": "docs/validation/v1.1.0/balanced_pick"
+  },
+  "source_sha256": "f9d940f692e8a2ccfa124e90998d5f19a1094b3ad80119aac497046ad4af7a47",
+  "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+  "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+  "trials": 120,
+  "successes": 120,
+  "success_rate": 1.0,
+  "failures": {},
+  "success_rate_95pct_interval": [
+    0.9689797289440706,
+    1.0
+  ],
+  "per_object": {
+    "foam_brick": {
+      "trials": 20,
+      "successes": 20,
+      "success_rate": 1.0,
+      "lift_successes": 20,
+      "place_successes": 0,
+      "failures": {}
+    },
+    "gelatin_box": {
+      "trials": 20,
+      "successes": 20,
+      "success_rate": 1.0,
+      "lift_successes": 20,
+      "place_successes": 0,
+      "failures": {}
+    },
+    "lemon": {
+      "trials": 20,
+      "successes": 20,
+      "success_rate": 1.0,
+      "lift_successes": 20,
+      "place_successes": 0,
+      "failures": {}
+    },
+    "pudding_box": {
+      "trials": 20,
+      "successes": 20,
+      "success_rate": 1.0,
+      "lift_successes": 20,
+      "place_successes": 0,
+      "failures": {}
+    },
+    "strawberry": {
+      "trials": 20,
+      "successes": 20,
+      "success_rate": 1.0,
+      "lift_successes": 20,
+      "place_successes": 0,
+      "failures": {}
+    },
+    "tomato_soup_can": {
+      "trials": 20,
+      "successes": 20,
+      "success_rate": 1.0,
+      "lift_successes": 20,
+      "place_successes": 0,
+      "failures": {}
+    }
+  },
+  "mean_planning_time_s": 0.08537740166617974,
+  "mean_execution_time_s": 0.487290587499956,
+  "mean_total_time_s": 0.6662841091668573
+}

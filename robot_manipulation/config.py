@@ -25,5 +25,11 @@ class Config:
     place_xy: tuple = (0.48, 0.22)
     place_tolerance: float = 0.055
     place_clearance: float = 0.008
+    gripper_stiffness: float = 1000.
+    gripper_force_limit: float = 40.
+    contact_impratio: float = 10.
+    grip_preload: float = 16.
+    grip_load_margin: float = 4.
+    gravity_compensation: bool = True
     home: tuple = (0.0, -0.4, 0.0, -2.2, 0.0, 1.8, 0.785398)
     output_dir: Path = ROOT / 'outputs'

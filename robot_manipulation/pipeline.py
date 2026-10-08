@@ -33,7 +33,8 @@ def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, 
             try:
                 pregrasp = planner.plan(candidate.pregrasp)
                 # Check approach from predicted pregrasp before making any motion.
-                planner.plan(candidate.pose, cartesian=True, start_q=pregrasp.joints[-1])
+                approach = planner.plan(candidate.pose, cartesian=True, start_q=pregrasp.joints[-1])
+                planner.preview_task(candidate, approach, task)
                 chosen = (candidate, pregrasp)
                 result['selected_candidate'] = index
                 break
@@ -66,6 +67,7 @@ def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, 
         stage = 'GRASP_FAIL'
         controller.gripper(0)
         result['grasp_contacts'] = len(env.finger_contacts())
+        result['actual_grasp_aperture_m'] = float(np.sum(env.data.qpos[env.finger_qpos]))
         if result['grasp_contacts'] < 2:
             raise StageFailure(stage, 'Both fingers did not contact the object')
         execute('LIFT', candidate.lift, attached=True)
@@ -77,10 +79,13 @@ def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, 
         if task == 'place':
             stage = 'PLACE_FAIL'
             # Preserve current relative grasp, transport COM to the target area.
-            transfer = env.site_pose()
-            transfer[:2, 3] += np.asarray(env.config.place_xy) - env.object_pose()[:2, 3]
-            execute('TRANSFER', transfer, attached=True)
-            vertices = env.object_model.vertices @ env.object_pose()[:3, :3].T + env.object_pose()[:3, 3]
+            tick = time.perf_counter()
+            transfer, center, rejections = planner.plan_placement()
+            result['planning_time_s'] += time.perf_counter() - tick
+            result['planned_place_xy'] = center.tolist()
+            result['placement_rejections'] = rejections
+            execute('TRANSFER', attached=True, trajectory=transfer)
+            vertices = env.collision_vertices()
             lower = env.site_pose()
             lower[2, 3] -= vertices[:, 2].min() - env.config.table_top - env.config.place_clearance
             execute('LOWER', lower, attached=True)
@@ -103,5 +108,6 @@ def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, 
     except (RuntimeError, ValueError, np.linalg.LinAlgError) as exc:
         result['failure_stage'], result['reason'] = stage, f'{type(exc).__name__}: {exc}'
     result['total_time_s'] = time.perf_counter() - started
+    result['peak_gripper_force_n'] = env.max_gripper_force
     LOG.info('Trial %d %s: %s %s', trial_id, env.object_id, result['failure_stage'], result.get('reason', ''))
     return result

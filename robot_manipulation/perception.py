@@ -11,6 +11,7 @@ class ObjectState:
 
 
 def observe(env):
-    """Oracle pose: no camera, segmentation or estimated perception in v0."""
-    return ObjectState(env.object_id, env.object_pose(), env.object_model.dimensions,
-                       env.object_model.vertices)
+    """Oracle pose with known collision mesh; visual dimensions remain unscaled."""
+    pose = env.object_pose()
+    vertices = (env.collision_vertices() - pose[:3, 3]) @ pose[:3, :3]
+    return ObjectState(env.object_id, pose, env.object_model.dimensions, vertices)
