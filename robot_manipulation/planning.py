@@ -23,13 +23,18 @@ class Trajectory:
 
 
 class Planner:
-    def __init__(self, env):
+    def __init__(self, env, state=None):
         self.env = env
+        self._state = state
         self.scratch = mujoco.MjData(env.model)
         self.limits = env.model.jnt_range[env.arm_joints]
 
+    @property
+    def state(self):
+        return self.env.data if self._state is None else self._state
+
     def prepare(self):
-        self.scratch.qpos[:] = self.env.data.qpos
+        self.scratch.qpos[:] = self.state.qpos
         self.scratch.qvel[:] = 0
 
     def ik(self, target, seed):
@@ -75,13 +80,13 @@ class Planner:
 
     def validate(self, points, allow_finger_object=False, attached=False):
         env, data = self.env, self.scratch
-        initial_object = env.object_pose()
-        initial_site = env.site_pose()
+        initial_object = env.object_pose(self.state)
+        initial_site = env.site_pose(self.state)
         relative = np.linalg.inv(initial_site) @ initial_object
         for a, b in zip(points[:-1], points[1:]):
             samples = max(2, int(np.ceil(np.max(np.abs(b - a)) / .015)) + 1)
             for alpha in np.linspace(0, 1, samples):
-                data.qpos[:] = env.data.qpos
+                data.qpos[:] = self.state.qpos
                 data.qpos[env.arm_qpos] = (1 - alpha) * a + alpha * b
                 mujoco.mj_forward(env.model, data)
                 if attached:
@@ -105,7 +110,7 @@ class Planner:
     def plan(self, target, cartesian=False, allow_finger_object=False, attached=False, start_q=None):
         self.prepare()
         env = self.env
-        start_q = env.data.qpos[env.arm_qpos].copy() if start_q is None else np.asarray(start_q).copy()
+        start_q = self.state.qpos[env.arm_qpos].copy() if start_q is None else np.asarray(start_q).copy()
         points = [start_q]
         self.scratch.qpos[env.arm_qpos] = start_q
         mujoco.mj_forward(env.model, self.scratch)
@@ -126,3 +131,52 @@ class Planner:
                          np.sqrt(6 * np.max(np.abs(b - a)) / env.config.max_joint_acceleration))
                      for a, b in zip(points[:-1], points[1:])]
         return Trajectory(points, durations, target)
+
+    def plan_placement(self):
+        """Preflight transfer and lowering before moving, within the same target zone."""
+        env = self.env
+        site, obj = env.site_pose(self.state), env.object_pose(self.state)
+        relative = np.linalg.inv(site) @ obj
+        local = (env.collision_vertices(self.state) - obj[:3, 3]) @ obj[:3, :3]
+        rejected = []
+        for offset in ((0., 0.), (-.02, 0.), (0., -.02), (.02, 0.), (0., .02),
+                       (-.02, -.02), (.02, -.02), (-.02, .02), (.02, .02)):
+            target = site.copy()
+            center = np.asarray(env.config.place_xy) + offset
+            target[:2, 3] += center - obj[:2, 3]
+            try:
+                transfer = self.plan(target, True, True, True)
+                self.prepare()
+                self.scratch.qpos[env.arm_qpos] = transfer.joints[-1]
+                mujoco.mj_forward(env.model, self.scratch)
+                future_site = env.site_pose(self.scratch).copy()
+                future_object = future_site @ relative
+                world = local @ future_object[:3, :3].T + future_object[:3, 3]
+                lower = future_site.copy()
+                lower[2, 3] -= world[:, 2].min() - env.config.table_top - env.config.place_clearance
+                self.plan(lower, True, True, True, start_q=transfer.joints[-1])
+                return transfer, center, rejected
+            except StageFailure as exc:
+                rejected.append({'center': center.tolist(), 'stage': exc.stage, 'reason': str(exc)})
+        raise StageFailure('PLACE_PLANNING_FAIL', f'No feasible transfer/lower pair: {rejected}')
+
+    def preview_task(self, candidate, approach, task):
+        """Reject grasps with unreachable downstream motion, using isolated scratch data."""
+        env = self.env
+        state = mujoco.MjData(env.model)
+        state.qpos[:] = self.state.qpos
+        state.qpos[env.arm_qpos] = approach.joints[-1]
+        state.qpos[env.finger_qpos] = np.clip((candidate.width - .006) / 2 - .0015, 0, .04)
+        mujoco.mj_forward(env.model, state)
+        relative = np.linalg.inv(env.site_pose(state)) @ env.object_pose(state)
+        future = Planner(env, state=state)
+        lift = future.plan(candidate.lift, True, True, True)
+        if task == 'place':
+            state.qpos[env.arm_qpos] = lift.joints[-1]
+            mujoco.mj_forward(env.model, state)
+            pose = env.site_pose(state) @ relative
+            adr = env.object_qpos
+            state.qpos[adr:adr + 3] = pose[:3, 3]
+            mujoco.mju_mat2Quat(state.qpos[adr + 3:adr + 7], pose[:3, :3].ravel())
+            mujoco.mj_forward(env.model, state)
+            future.plan_placement()

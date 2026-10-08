@@ -24,8 +24,12 @@ jobs:
         run: python -m pip install -r requirements.txt
       - name: Download and verify pinned Panda assets
         run: python scripts/setup_assets.py
+      - name: Verify resumable locked asset downloads
+        run: python tests/test_asset_setup.py
       - name: Run failure and reset regression checks
         run: python tests/test_baseline.py
+      - name: Audit frozen source and 600-scene performance evidence
+        run: python scripts/check_reliability_evidence.py
       - name: Run fixed-cube physics smoke test
         run: python main.py --headless --dataset cube --task place --fixed --require-all-success
       - name: Download and verify pinned YCB assets

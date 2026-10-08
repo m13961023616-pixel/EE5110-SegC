@@ -3,18 +3,12 @@ from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
 from pathlib import Path
-import urllib.request
+from download import fetch
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / 'assets' / 'panda'
 LOCK = ROOT / 'assets' / 'panda.lock.json'
 REPO = 'google-deepmind/mujoco_menagerie'
-
-
-def fetch(url):
-    request = urllib.request.Request(url, headers={'User-Agent': 'EE5110-CA'})
-    with urllib.request.urlopen(request, timeout=60) as response:
-        return response.read()
 
 
 def main():
@@ -30,17 +24,24 @@ def main():
         commit = old['commit']
     else:
         commit = json.loads(fetch(f'https://api.github.com/repos/{REPO}/commits/main'))['sha']
-    tree = json.loads(fetch(f'https://api.github.com/repos/{REPO}/git/trees/{commit}?recursive=1'))
     prefix = 'franka_emika_panda/'
-    files = [item['path'] for item in tree['tree'] if item['type'] == 'blob'
-             and item['path'].startswith(prefix)
-             and item['path'].endswith(('.xml', '.obj', '.stl', 'LICENSE', 'README.md'))]
-    if not files or tree.get('truncated'):
-        raise RuntimeError('Incomplete upstream file listing; refusing partial asset setup.')
+    if old is not None:
+        files = [prefix + relative for relative in old['sha256']]
+    else:
+        tree = json.loads(fetch(f'https://api.github.com/repos/{REPO}/git/trees/{commit}?recursive=1'))
+        files = [item['path'] for item in tree['tree'] if item['type'] == 'blob'
+                 and item['path'].startswith(prefix)
+                 and item['path'].endswith(('.xml', '.obj', '.stl', 'LICENSE', 'README.md'))]
+        if not files or tree.get('truncated'):
+            raise RuntimeError('Incomplete upstream file listing; refusing partial asset setup.')
 
     def download(path):
         relative = path[len(prefix):]
         destination = DEST / relative
+        if old is not None and destination.exists():
+            digest = hashlib.sha256(destination.read_bytes()).hexdigest()
+            if digest == old['sha256'][relative]:
+                return relative, digest
         content = fetch(f'https://raw.githubusercontent.com/{REPO}/{commit}/{path}')
         digest = hashlib.sha256(content).hexdigest()
         if old is not None and digest != old['sha256'].get(relative):

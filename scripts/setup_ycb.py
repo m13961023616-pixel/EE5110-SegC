@@ -7,20 +7,14 @@ from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
 from pathlib import Path
-import urllib.request
 import xml.etree.ElementTree as ET
+from download import fetch
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / 'assets/ycb'
 LOCK = ROOT / 'assets/ycb.lock.json'
 REPO = 'elpis-lab/YCB_Dataset'
 OBJECTS = ('gelatin_box', 'pudding_box', 'tomato_soup_can', 'lemon', 'strawberry', 'foam_brick')
-
-
-def fetch(url):
-    request = urllib.request.Request(url, headers={'User-Agent': 'EE5110-YCB-baseline'})
-    with urllib.request.urlopen(request, timeout=60) as response:
-        return response.read()
 
 
 def main():

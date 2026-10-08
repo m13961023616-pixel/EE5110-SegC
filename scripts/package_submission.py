@@ -1,13 +1,19 @@
 """Build the offline submission ZIP using an explicit allowlist."""
 from pathlib import Path
 import zipfile
+import argparse
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    target = ROOT / 'deliverables/EE5110SegC_baseline_v1.0.0.zip'
-    required = [ROOT / 'docs/report/baseline_report.pdf', ROOT / 'deliverables/baseline_demo.mp4',
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--version', choices=['1.0.0', '1.1.0'], default='1.1.0')
+    version = parser.parse_args().version
+    target = ROOT / f'deliverables/EE5110SegC_baseline_v{version}.zip'
+    report = 'baseline_report.pdf' if version == '1.0.0' else 'reliability_report_v1.1.0.pdf'
+    video = 'baseline_demo.mp4' if version == '1.0.0' else 'reliability_demo_v1.1.0.mp4'
+    required = [ROOT / 'docs/report' / report, ROOT / 'deliverables' / video,
                 ROOT / 'assets/panda/panda.xml', ROOT / 'assets/ycb/ycb/foam_brick.xml']
     for path in required:
         if not path.is_file():
@@ -17,7 +23,7 @@ def main():
     for directory in ['robot_manipulation', 'scripts', 'tests', 'docs', 'assets']:
         files.extend(p for p in (ROOT / directory).rglob('*') if p.is_file()
                      and '__pycache__' not in p.parts and p.suffix != '.pyc')
-    files.append(ROOT / 'deliverables/baseline_demo.mp4')
+    files.append(ROOT / 'deliverables' / video)
     target.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(target, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
         for path in sorted(set(files)):

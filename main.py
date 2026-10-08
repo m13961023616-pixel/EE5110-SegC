@@ -5,6 +5,7 @@ import logging
 from pathlib import Path
 import platform
 import json
+import hashlib
 import mujoco
 import numpy as np
 from robot_manipulation.config import Config, ROOT
@@ -23,6 +24,7 @@ def main():
     parser.add_argument('--headless', action='store_true', help='Run without a GUI')
     parser.add_argument('--trials', type=int, default=1)
     parser.add_argument('--seed', type=int, default=42)
+    parser.add_argument('--balanced', action='store_true', help='Shuffle each object once per block for equal coverage')
     parser.add_argument('--dataset', choices=['cube', 'ycb'], default='ycb')
     parser.add_argument('--object', choices=YCB_OBJECTS, help='Use one YCB object instead of random selection')
     parser.add_argument('--task', choices=['pick', 'place'], default='pick')
@@ -44,9 +46,16 @@ def main():
     metadata = {'python': platform.python_version(), 'mujoco': mujoco.__version__,
                 'numpy': np.__version__, 'seed': args.seed, 'randomize': randomized,
                 'scope': 'YCB_known_object_baseline' if args.dataset == 'ycb' else 'primitive_cube_regression',
-                'code_version': '1.0.0',
+                'code_version': '1.1.0',
+                'sampling': 'balanced_shuffled_blocks' if args.balanced else 'iid_uniform',
+                'contact_model': {'cone': 'elliptic', 'object_condim': 6},
                 'dataset': args.dataset, 'object_pool': roster, 'task': args.task,
                 'config': {k: str(v) if isinstance(v, Path) else v for k, v in asdict(config).items()}}
+    digest = hashlib.sha256()
+    for path in [ROOT / 'main.py', *sorted((ROOT / 'robot_manipulation').glob('*.py'))]:
+        digest.update(path.relative_to(ROOT).as_posix().encode())
+        digest.update(path.read_bytes().replace(b'\r\n', b'\n'))
+    metadata['source_sha256'] = digest.hexdigest()
     manifest = ROOT / 'assets/panda/manifest.json'
     if manifest.exists():
         metadata['robot_model_commit'] = json.loads(manifest.read_text())['commit']
@@ -61,9 +70,15 @@ def main():
     controller = Controller(env, planner)
     rng = np.random.default_rng(args.seed)
     interrupted = False
+    block = []
     try:
         for trial_id in range(1, args.trials + 1):
-            object_id = roster[int(rng.integers(len(roster)))] if len(roster) > 1 else roster[0]
+            if args.balanced:
+                if not block:
+                    block = list(rng.permutation(roster))
+                object_id = str(block.pop())
+            else:
+                object_id = roster[int(rng.integers(len(roster)))] if len(roster) > 1 else roster[0]
             logger.append(trial(env, planner, controller, rng, trial_id, fixed=not randomized,
                                 object_id=object_id, task=args.task))
         if args.snapshot:

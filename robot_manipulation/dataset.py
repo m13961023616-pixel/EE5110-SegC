@@ -68,5 +68,5 @@ def append_ycb(root, world, model):
             geom.set('group', '2')
         else:
             geom.set('friction', '1.2 .01 .001')
-            geom.set('condim', '4')
+            geom.set('condim', '6')
     world.append(body)
