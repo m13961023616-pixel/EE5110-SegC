@@ -48,9 +48,10 @@ PyCharm Run Configuration：Script=main.py，Working directory=项目根目录�
 .\.venv\Scripts\python.exe scripts/benchmark_reliability.py
 # cube 仅用于回归，不替代公开数据集
 .\.venv\Scripts\python.exe main.py --headless --dataset cube --fixed --task place --require-all-success
-# 十项测试，包含六物体完整放置与力上限验证
+# 十二项测试，包含六物体完整放置、力上限和资产下载验证
 .\.venv\Scripts\python.exe tests/test_baseline.py
 .\.venv\Scripts\python.exe tests/test_dataset.py
+.\.venv\Scripts\python.exe tests/test_asset_setup.py
 # 可选真实仿真 MP4 录制，需要 OpenGL
 .\.venv\Scripts\python.exe -m pip install -r requirements-video.txt
 .\.venv\Scripts\python.exe main.py --headless --object foam_brick --fixed --task place --video outputs/demo.mp4
