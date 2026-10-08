@@ -2,6 +2,8 @@
 
 GitHub：[m13961023616-pixel/EE5110-SegC](https://github.com/m13961023616-pixel/EE5110-SegC)。
 
+[![Baseline checks](https://github.com/m13961023616-pixel/EE5110-SegC/actions/workflows/baseline.yml/badge.svg)](https://github.com/m13961023616-pixel/EE5110-SegC/actions/workflows/baseline.yml)
+
 当前版本：MuJoCo + Franka Panda + 单个 4 cm cube。Python 3.12。
 
 这是可运行的开发起点，**尚未完成课程要求的公开 3D 数据集 baseline**。

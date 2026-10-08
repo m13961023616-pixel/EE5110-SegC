@@ -38,5 +38,10 @@ place、多候选 grasp、障碍物路径搜索、RGB-D、估计感知、clutter
 ## 版本控制
 
 本地 Git 仓库已初始化，当前成果将作为第一个真实历史检查点。
-GitHub 仓库：用户已创建公开 `m13961023616-pixel/EE5110-SegC`，首次同步正在进行。
+GitHub 仓库：[m13961023616-pixel/EE5110-SegC](https://github.com/m13961023616-pixel/EE5110-SegC)，公开。
+首个阶段提交 `d61d77f` 已推送，main 已跟踪 origin/main。
+GitHub Actions 已在干净的 Windows / Python 3.12 环境完成依赖安装、锁定模型下载校验、
+4 项回归检查和固定 cube 抓取，所有步骤通过。
+[首次云端验证记录](https://github.com/m13961023616-pixel/EE5110-SegC/actions/runs/37819415123)。
+阶段版本标签 `v0.1.0` 对应首次已验证 baseline 提交。
 维护约定见 `CONTRIBUTING.md`，阶段记录见 `CHANGELOG.md`。
