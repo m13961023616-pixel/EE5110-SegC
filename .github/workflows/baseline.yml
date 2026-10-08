@@ -27,4 +27,10 @@ jobs:
       - name: Run failure and reset regression checks
         run: python tests/test_baseline.py
       - name: Run fixed-cube physics smoke test
-        run: python main.py --headless
+        run: python main.py --headless --dataset cube --task place --fixed --require-all-success
+      - name: Download and verify pinned YCB assets
+        run: python scripts/setup_ycb.py
+      - name: Run dataset integration checks
+        run: python tests/test_dataset.py
+      - name: Run real-mesh physics smoke test
+        run: python main.py --headless --object foam_brick --task place --fixed --require-all-success

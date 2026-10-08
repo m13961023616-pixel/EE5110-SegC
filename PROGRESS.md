@@ -1,5 +1,18 @@
 # 开发进度
 
+## 当前阶段：v1.0.0 基础要求已覆盖
+
+- 六种 YCB 真实物体，随机选择、位置和 yaw；自研网格抓取候选、IK/碰撞过滤。
+- 物理抓取及完整搬运、释放、退回、放置判定。
+- 本地八项回归/集成测试通过，固定 cube 和 YCB foam_brick 完整放置通过。
+- 正式实验：seed=20261009 抓取 33/60；seed=20261010 放置 26/60。
+- 证据：docs/validation/v1.0.0；英文报告：docs/report/baseline_report.pdf。
+- 视频与离线 ZIP 位于 deliverables，本阶段分支：feature/dataset-baseline。
+- 已知限制：oracle perception、单物体；包装盒/水果可能滑落，pudding_box 倾倒后可能无法夹持。
+- 基础功能完成；图像感知、复杂场景和扩展挑战不计为已完成。
+
+以下保留 v0.1.0 开发历史，未完成等描述仅适用于当时版本。
+
 日期：2026-10-09。阶段：primitive cube 的 oracle-perception 开发闭环。
 
 ## 已完成
