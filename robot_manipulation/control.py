@@ -10,8 +10,14 @@ class Controller:
 
     def gripper(self, width):
         # Official Panda tendon actuator: 0..255 maps to 0..0.08 m aperture.
-        self.env.data.ctrl[self.env.gripper_actuator] = np.clip(width / .08 * 255, 0, 255)
-        self.env.step_for(.8)
+        env = self.env
+        target = float(np.clip(width / .08 * 255, 0, 255))
+        start = float(env.data.ctrl[env.gripper_actuator])
+        count = round(.8 / env.config.timestep)
+        for tick in range(1, count + 1):
+            env.data.ctrl[env.gripper_actuator] = start + (target - start) * tick / count
+            env.step()
+        env.step_for(.4)
 
     def execute(self, trajectory, allow_finger_object=False):
         env = self.env

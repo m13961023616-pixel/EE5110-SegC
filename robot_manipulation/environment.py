@@ -6,11 +6,13 @@ import mujoco
 import numpy as np
 from .config import ROOT
 from .transforms import transform
+from .dataset import load_object, append_ycb
 
 
 class Environment:
-    def __init__(self, config, gui=False, realtime=True):
+    def __init__(self, config, gui=False, realtime=True, object_names=None):
         self.config = config
+        self.objects = {name: load_object(name, config) for name in (object_names or ['primitive_cube'])}
         model_path = ROOT / 'assets/panda/panda.xml'
         if not model_path.exists():
             raise FileNotFoundError('Run scripts/setup_assets.py before starting the simulation.')
@@ -29,12 +31,18 @@ class Environment:
                       pos=f'.5 0 {config.table_top - .04}', rgba='.55 .42 .30 1')
         ET.SubElement(world, 'camera', name='overview', pos='1.3 -1.3 1.1',
                       xyaxes='.707 .707 0 -.35 .35 .87')
-        body = ET.SubElement(world, 'body', name='object', pos='.48 0 .022')
-        ET.SubElement(body, 'freejoint', name='object_free')
-        half = config.object_size / 2
-        ET.SubElement(body, 'geom', name='object_geom', type='box',
-                      size=f'{half} {half} {half}', mass=str(config.object_mass),
-                      friction='1.2 .01 .001', condim='4', rgba='.95 .35 .12 1')
+        ET.SubElement(world, 'site', name='place_target', pos='.48 .22 .002',
+                      type='box', size='.085 .075 .001', rgba='.2 .7 .3 .35')
+        for name, object_model in self.objects.items():
+            if name == 'primitive_cube':
+                body = ET.SubElement(world, 'body', name='object', pos='.48 0 .022')
+                ET.SubElement(body, 'freejoint', name='object_free')
+                half = config.object_size / 2
+                ET.SubElement(body, 'geom', name='object_geom', type='box',
+                              size=f'{half} {half} {half}', mass=str(config.object_mass),
+                              friction='1.2 .01 .001', condim='4', rgba='.95 .35 .12 1')
+            else:
+                append_ycb(root, world, object_model)
         hand = root.find(".//body[@name='hand']")
         # Site at Panda fingertip pad centre, expressed in the hand frame.
         ET.SubElement(hand, 'site', name='grasp_site', pos='0 0 .1034',
@@ -55,15 +63,25 @@ class Environment:
         self.gripper_actuator = self.model.actuator('actuator8').id
         self.finger_joints = [self.model.joint(f'finger_joint{i}').id for i in (1, 2)]
         self.finger_qpos = self.model.jnt_qposadr[self.finger_joints]
-        self.object_body = self.model.body('object').id
-        self.object_geom = self.model.geom('object_geom').id
-        self.object_qpos = self.model.jnt_qposadr[self.model.joint('object_free').id]
+        self.object_ids = {}
+        for name in self.objects:
+            body_name = 'object' if name == 'primitive_cube' else f'object_{name}'
+            joint_name = 'object_free' if name == 'primitive_cube' else f'object_free_{name}'
+            bid = self.model.body(body_name).id
+            adr = self.model.jnt_qposadr[self.model.joint(joint_name).id]
+            geoms = np.flatnonzero(self.model.geom_bodyid == bid)
+            self.object_ids[name] = (bid, adr, geoms)
+        self._original_contype = self.model.geom_contype.copy()
+        self._original_conaffinity = self.model.geom_conaffinity.copy()
+        self._original_rgba = self.model.geom_rgba.copy()
+        self.activate_object(next(iter(self.objects)))
         self.site = self.model.site('grasp_site').id
         self.finger_bodies = {self.model.body(x).id for x in ('left_finger', 'right_finger')}
-        self.robot_bodies = set(range(1, self.object_body))
+        self.robot_bodies = set(range(1, min(x[0] for x in self.object_ids.values())))
         self.table_geom = self.model.geom('table').id
         self.floor_geom = self.model.geom('floor').id
         self.viewer = None
+        self.recorder = None
         self.realtime = realtime
         if gui:
             from mujoco import viewer as mj_viewer
@@ -73,8 +91,28 @@ class Environment:
             self.viewer.cam.azimuth = 135
             self.viewer.cam.elevation = -25
 
-    def reset(self, rng, fixed=False):
+    def activate_object(self, name):
+        self.object_id = name
+        self.object_model = self.objects[name]
+        self.object_body, self.object_qpos, geoms = self.object_ids[name]
+        self.object_geoms = {int(g) for g in geoms if self._original_contype[g] != 0}
+        self.object_geom = min(self.object_geoms)
+        for other, (body, _, indices) in self.object_ids.items():
+            active = other == name
+            self.model.body_gravcomp[body] = 0 if active else 1
+            self.model.geom_contype[indices] = self._original_contype[indices] if active else 0
+            self.model.geom_conaffinity[indices] = self._original_conaffinity[indices] if active else 0
+            self.model.geom_rgba[indices] = self._original_rgba[indices]
+            if not active:
+                self.model.geom_rgba[indices, 3] = 0
+
+    def reset(self, rng, fixed=False, object_id=None):
+        self.activate_object(object_id or self.object_id)
         mujoco.mj_resetData(self.model, self.data)
+        if self.recorder:
+            self.recorder.reset_time()
+        for _, adr, _ in self.object_ids.values():
+            self.data.qpos[adr:adr + 7] = [-5, -5, -5, 1, 0, 0, 0]
         self.data.qpos[self.arm_qpos] = self.config.home
         self.data.qpos[self.finger_qpos] = .04
         self.data.ctrl[self.arm_actuators] = self.config.home
@@ -83,10 +121,25 @@ class Environment:
         y = 0 if fixed else rng.uniform(*self.config.spawn_y)
         yaw = 0 if fixed else rng.uniform(-np.pi, np.pi)
         start = self.object_qpos
-        self.data.qpos[start:start + 7] = [x, y, self.config.table_top + self.config.object_size / 2 + .003,
-                                          np.cos(yaw / 2), 0, 0, np.sin(yaw / 2)]
+        # Packaging rests upright on its narrow end; native metric scale is unchanged.
+        roll = np.pi / 2 if self.object_id in ('gelatin_box', 'pudding_box') else 0.
+        rotation = np.array([[1, 0, 0], [0, np.cos(roll), -np.sin(roll)],
+                             [0, np.sin(roll), np.cos(roll)]])
+        bottom = (self.object_model.vertices @ rotation.T)[:, 2].min()
+        quaternion = [np.cos(yaw / 2) * np.cos(roll / 2),
+                      np.cos(yaw / 2) * np.sin(roll / 2),
+                      np.sin(yaw / 2) * np.sin(roll / 2),
+                      np.sin(yaw / 2) * np.cos(roll / 2)]
+        self.data.qpos[start:start + 7] = [x, y, self.config.table_top - bottom + .004, *quaternion]
         mujoco.mj_forward(self.model, self.data)
         self.step_for(.6)
+        dof = self.model.jnt_dofadr[self.model.body_jntadr[self.object_body]]
+        for _ in range(8):
+            if np.linalg.norm(self.data.qvel[dof:dof + 6]) < .05:
+                break
+            self.step_for(.2)
+        if np.linalg.norm(self.data.qvel[dof:dof + 6]) > .5:
+            raise RuntimeError('Object has not settled on the table')
         return self.object_pose()
 
     def object_pose(self):
@@ -100,6 +153,8 @@ class Environment:
     def step(self):
         start = time.perf_counter()
         mujoco.mj_step(self.model, self.data)
+        if self.recorder:
+            self.recorder.capture()
         if not np.all(np.isfinite(self.data.qpos)):
             raise RuntimeError('Non-finite simulation state')
         if self.viewer:
@@ -120,13 +175,15 @@ class Environment:
             if contact.dist > .001:
                 continue
             g1, g2 = int(contact.geom1), int(contact.geom2)
-            if self.object_geom in (g1, g2):
-                other = g2 if g1 == self.object_geom else g1
+            if g1 in self.object_geoms or g2 in self.object_geoms:
+                other = g2 if g1 in self.object_geoms else g1
                 body = int(self.model.geom_bodyid[other])
                 if body in self.finger_bodies:
                     touching.add(body)
         return touching
 
     def close(self):
+        if self.recorder:
+            self.recorder.close()
         if self.viewer:
             self.viewer.close()

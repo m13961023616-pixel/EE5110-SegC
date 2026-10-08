@@ -68,7 +68,7 @@ class Planner:
             other_geom = g2 if robot1 else g1
             if other_geom == env.floor_geom and robot_body == env.model.body('link0').id:
                 continue
-            if allow_finger_object and other_geom == env.object_geom and robot_body in env.finger_bodies:
+            if allow_finger_object and other_geom in env.object_geoms and robot_body in env.finger_bodies:
                 continue
             return f'forbidden contact: body {robot_body}, geom {other_geom}'
         return None
@@ -94,20 +94,22 @@ class Planner:
                     mujoco.mj_forward(env.model, data)
                     # Transported object may touch support at the start, but never penetrate it.
                     for contact in data.contact[:data.ncon]:
-                        if env.object_geom in (contact.geom1, contact.geom2) and contact.dist < -.001:
-                            other = contact.geom2 if contact.geom1 == env.object_geom else contact.geom1
+                        if (contact.geom1 in env.object_geoms or contact.geom2 in env.object_geoms) and contact.dist < -.001:
+                            other = contact.geom2 if contact.geom1 in env.object_geoms else contact.geom1
                             if int(env.model.geom_bodyid[other]) not in env.finger_bodies:
                                 raise StageFailure('COLLISION_FAIL', 'Transported object intersects environment')
                 reason = self.forbidden_contacts(data, allow_finger_object)
                 if reason:
                     raise StageFailure('COLLISION_FAIL', reason)
 
-    def plan(self, target, cartesian=False, allow_finger_object=False, attached=False):
+    def plan(self, target, cartesian=False, allow_finger_object=False, attached=False, start_q=None):
         self.prepare()
         env = self.env
-        start_q = env.data.qpos[env.arm_qpos].copy()
+        start_q = env.data.qpos[env.arm_qpos].copy() if start_q is None else np.asarray(start_q).copy()
         points = [start_q]
-        start_pose = env.site_pose()
+        self.scratch.qpos[env.arm_qpos] = start_q
+        mujoco.mj_forward(env.model, self.scratch)
+        start_pose = env.site_pose(self.scratch)
         if cartesian:
             count = max(2, int(np.ceil(np.linalg.norm(target[:3, 3] - start_pose[:3, 3]) / .006)))
             # Approach/lift preserve the current grasp orientation.

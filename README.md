@@ -1,159 +1,105 @@
-# EE5110-SegC — 第一阶段抓取系统
+# EE5110 Segment C：自主机器人抓取 baseline
 
-GitHub：[m13961023616-pixel/EE5110-SegC](https://github.com/m13961023616-pixel/EE5110-SegC)。
+[GitHub 项目](https://github.com/m13961023616-pixel/EE5110-SegC) · [持续集成](https://github.com/m13961023616-pixel/EE5110-SegC/actions/workflows/baseline.yml)
 
-[![Baseline checks](https://github.com/m13961023616-pixel/EE5110-SegC/actions/workflows/baseline.yml/badge.svg)](https://github.com/m13961023616-pixel/EE5110-SegC/actions/workflows/baseline.yml)
+**v1.0.0 基础功能已完成。** Python 3.12、MuJoCo、Franka Panda、六种真实 YCB 网格物体。
+随机选择物体和桌面 x/y/yaw，自研抓取候选及过滤，物理接触抓取、完整 pick-and-place 和随机评估。
 
-当前版本：MuJoCo + Franka Panda + 单个 4 cm cube。Python 3.12。
+正式实验：抓取 **33/60（55%）**；独立完整放置 **26/60（43.3%）**。
+包装盒/水果仍可能滑落，pudding_box 本次无成功。基础功能完成不代表高成功率或扩展挑战完成。
 
-这是可运行的开发起点，**尚未完成课程要求的公开 3D 数据集 baseline**。
-当前先验证 oracle perception 下的 manipulation backbone：
+## 基础要求对应
 
-```text
-重置场景 → 读取真实物体位姿 → 生成 top grasp → IK
-→ 检查路径碰撞 → 执行 approach → 物理闭爪 → lift
-→ 持续检查物体高度和双侧接触 → 保存实验结果
-```
+| 要求 | 实现与证据 |
+|---|---|
+| 仿真机器人工作站 | Panda 七轴机械臂、双指夹爪、桌面和放置区 |
+| 公开 3D 数据集、随机物体和摆放 | 六种真实 YCB 模型；随机物体/x/y/yaw，固定种子复现 |
+| 开发 grasp pose algorithm | 网格投影、四种方向、开口筛选、评分、IK 与碰撞过滤 |
+| grasp 或 pick-and-place | 实际接触抓取、抬升保持、搬运、降低、松爪、退回与判定 |
+| 多次随机评估 | 两组各 60 次，JSONL/CSV/JSON、分物体、失败阶段、95% Wilson 区间 |
+| 报告、介绍视频、源码运行说明 | docs/report/baseline_report.pdf、deliverables 视频和离线 ZIP、本 README |
 
-## 在 PyCharm 中开始
+## Windows / PyCharm 运行
 
-1. 打开项目目录 `F:\NUS\Semester I\EE5110\Segment C\CA`。
-2. Settings → Project → Python Interpreter → Add Interpreter → Existing environment。
-3. 选择项目目录中的 `.venv\Scripts\python.exe`。
-4. 打开 `main.py`，直接 Run。默认打开 MuJoCo 窗口，完成一次固定 cube 抓取。
-5. 如希望完成后保留窗口，在 Run Configuration 的 Parameters 填入 `--keep-open`。
-6. Working directory 设置为本项目 CA 目录；运行输出保存在 `outputs/`。
-
-项目路径包含空格，在 PowerShell 使用绝对可执行文件路径时，前面加 `&`。
-以下命令在 PyCharm Terminal 的 CA 目录执行：
+在项目目录打开 PyCharm，选择 `.venv/Scripts/python.exe`。已有环境直接运行 `main.py`，默认 GUI 随机 YCB 抓取一次。
+新环境在项目根目录 PowerShell 执行：
 
 ```powershell
-# 一次可视化抓取，并保留窗口
-.\.venv\Scripts\python.exe main.py --keep-open
-
-# 10 次随机位置/朝向，无界面运行
-.\.venv\Scripts\python.exe main.py --headless --randomize --trials 10 --seed 42
-
-# 一次固定抓取，保存最终场景 PNG
-.\.venv\Scripts\python.exe main.py --headless --snapshot
-
-# 失败检测与 reset 回归检查
-.\.venv\Scripts\python.exe tests\test_baseline.py
-```
-
-直接 Run 默认按物理时间显示动作；`--fast` 取消 GUI 中的实时等待。
-`--headless` 总是不做实时等待，但仍使用同样的物理步长。
-`--randomize` 随机 x、y 和 yaw；不指定时始终是固定姿态。
-`--trials N` 控制次数，`--seed` 控制 NumPy 随机序列。
-GUI 的关闭操作会中断运行并保留已经完成的 trial 日志。
-
-## 环境和模型
-
-本机已经建立 `.venv`，安装 MuJoCo 3.15.0、NumPy 2.5.3。
-`requirements.txt` 固定本次验证的两个直接依赖版本。
-没有修改系统 Python 的包环境。模型已经下载到 `assets/panda/`。
-
-若需重建：
-
-```powershell
-python -m venv .venv
+py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe scripts\setup_assets.py
+.\.venv\Scripts\python.exe scripts/setup_assets.py
+.\.venv\Scripts\python.exe scripts/setup_ycb.py
+.\.venv\Scripts\python.exe main.py --object foam_brick --fixed --task place --keep-open
 ```
 
-模型使用 Google DeepMind MuJoCo Menagerie 的 Franka Emika Panda。
-原始 XML、网格、README、许可证保持在模型目录中；自定义场景在内存中生成。
-`assets/panda/manifest.json` 记录下载的 commit 和每个文件的 SHA-256；
-重新运行准备脚本会校验文件完整性，已有 manifest 时使用相同 commit。
-仓库中的 `assets/panda.lock.json` 固定模型 commit 和 SHA-256，克隆后使用同一版本。
-只有在没有锁定信息和本地 manifest 的新目录中才会解析上游 main commit。
+下载脚本固定 commit 并校验 SHA-256，完整缓存不重复下载。仅源码安装首次需要网络。
+模型目录 assets/panda 和 assets/ycb 不上传 Git；离线交付 ZIP 包含模型及上游许可证。
+PyCharm Run Configuration：Script=main.py，Working directory=项目根目录，Parameters 按下面示例设置。
 
-- [MuJoCo Python 接口](https://mujoco.readthedocs.io/en/latest/python.html)
-- [Panda 模型及许可](https://github.com/google-deepmind/mujoco_menagerie/tree/main/franka_emika_panda)
+```powershell
+# 正式随机评估；所有失败保留
+.\.venv\Scripts\python.exe main.py --headless --trials 60 --seed 20261009
+.\.venv\Scripts\python.exe main.py --headless --trials 60 --seed 20261010 --task place
+# cube 仅用于回归，不替代公开数据集
+.\.venv\Scripts\python.exe main.py --headless --dataset cube --fixed --task place --require-all-success
+# 八项测试
+.\.venv\Scripts\python.exe tests/test_baseline.py
+.\.venv\Scripts\python.exe tests/test_dataset.py
+# 可选真实仿真 MP4 录制，需要 OpenGL
+.\.venv\Scripts\python.exe -m pip install -r requirements-video.txt
+.\.venv\Scripts\python.exe main.py --headless --object foam_brick --fixed --task place --video outputs/demo.mp4
+```
 
-## 代码阅读顺序
+`--fast` 加速 GUI，`--snapshot` 保存最终 PNG，`--output 路径` 指定日志目录。
+YCB 默认随机摆放，`--fixed` 固定调试；cube 需 `--randomize` 才随机。
+普通评估允许失败，正常结束返回 0，真实结果以 summary 为准；`--require-all-success` 任一次失败返回 1。
+中断返回 130，并保留已完成 trial。
 
-| 文件 | 职责 | 建议观察内容 |
-| --- | --- | --- |
-| `main.py` | 组织一次 trial 和多次实验 | `trial()` 中各阶段、异常和结果 |
-| `robot_manipulation/config.py` | 集中配置参数 | 尺寸、工作区、高度阈值、速度限制 |
-| `robot_manipulation/environment.py` | 构建和重置物理场景 | robot/object ID、`reset()`、接触信息 |
-| `robot_manipulation/perception.py` | 从仿真读取物体状态 | `ObjectState`；当前没有相机 |
-| `robot_manipulation/transforms.py` | 坐标变换和 SO(3) 误差 | `T_A_B` 的定义和米制单位 |
-| `robot_manipulation/grasp.py` | 规则 top grasp | pregrasp、grasp、lift 的 4×4 pose |
-| `robot_manipulation/planning.py` | IK 和路径检查 | `ik()` 与 `plan()` 是不同步骤 |
-| `robot_manipulation/control.py` | 执行轨迹、夹爪控制 | `data.ctrl`；执行时不设置物体位置 |
-| `robot_manipulation/evaluation.py` | 成功判定、实验记录 | 高度保持和双侧接触比例 |
+## 算法和判定
 
-PyCharm 可先在 `trial()`、`Planner.ik()`、`Controller.execute()` 设置断点。
-查看物体 pose、目标 pose、joint configuration 和 `failure_stage`。
-调试时先用固定 cube；随机实验用于稳定性统计。
+reset → oracle perception → mesh candidates → feasible pregrasp/approach → close → lift → hold。
+place 模式继续 transfer → lower → open → retreat → verify place。
+pose 统一 T_A_B（B 到 A），IK 为带关节限制的 damped least squares。
+关节插值与 Cartesian waypoints 做离散碰撞检查；smoothstep 关节目标和渐进夹爪目标驱动官方 actuator。
+执行不瞬移、不 weld；scratch planning 的相对抓取变换只用于预测搬运碰撞。
 
-## 坐标和物理约定
+抓取成功：1 秒保持中物体中心始终比初始高至少 8 cm，至少 95% 样本有双侧夹爪接触。
+放置还需：目标中心距离小于 5.5 cm、桌面接触、夹爪释放、线速度小于 0.02 m/s。
+全部失败进入分母，不重采样隐藏失败。
 
-- 米、秒、弧度；世界 +z 向上，机器人 base 与 world 对齐。
-- `T_A_B` 是 B 坐标系在 A 中的 pose，将 B 中的点变换到 A。
-- 抓取 frame 的 +z 指向下方，+y 是夹爪闭合方向。
-- `grasp_site` 位于 Panda 指尖接触垫中心，在 hand frame 的 z=0.1034 m。
-- cube 平放，仅随机 x/y/yaw；夹爪对称性允许 yaw 相差 pi 的等效抓取。
-- 桌面高度为 0 m，Panda base 位于同一高度；此为简化工作台布局。
-- 物体 0.05 kg；夹爪接触摩擦系数 1.5，cube 为 1.2。当前值偏有利于抓取，后续需要扫描。
-- reset 可以设置初始 qpos；**执行时只使用关节/夹爪 actuator 命令**。
-  未用 weld、粘附约束或物体位置瞬移实现抓取。
-- lift 路径检查中的 attached-object pose 是 scratch 数据上的碰撞预测。
-  它不会改变真实仿真物体，实际 lift 仍由摩擦接触决定。
+## 适用范围与限制
 
-## 规划器范围
+- 感知使用仿真真实位姿，尚无图像分割、RGB-D 位姿估计或 learned grasping。
+- 单物体；包装盒直立初始化后自然静置；随机 x/y/yaw，不覆盖任意 roll/pitch 或杂乱堆叠。
+- 保持 YCB 原始尺寸、纹理和声明质量；CoACD 凸分解碰撞、包围盒近似惯量、显式未标定摩擦参数。
+- 结构化规划拒绝阻挡路径，不搜索绕障；碰撞是离散采样，无连续保证。
+- 包装盒/水果可能滑落；pudding_box 倾倒后可能超出夹爪开口。失败明确记录。
+- 视频是固定 foam_brick 成功展示，不能代替完整随机统计。
 
-IK 采用 MuJoCo Jacobian + 阻尼最小二乘，检查位置和旋转误差以及关节范围。
-IK 在 scratch `MjData` 上运算，不移动正在运行的机器人。
+## 代码导览与交付
 
-当前场景无障碍物，规划采用 home→pregrasp 的关节插值，以及 approach/lift 的笛卡尔路点。
-通过关节空间采样检查整条候选路径，再用 cubic smoothstep 生成命令。
-名义关节速度上限为 0.5 rad/s，名义加速度上限为 2 rad/s²。
-执行阶段继续检查非预期接触和最终位姿误差。
+| 文件 | 职责 |
+|---|---|
+| main.py | PyCharm/CLI 入口和实验循环 |
+| robot_manipulation/dataset.py、environment.py | 数据集、场景、reset、物理状态与接触 |
+| perception.py、grasp.py | 真实位姿观测、网格抓取候选 |
+| planning.py、control.py | IK、路径校验、actuator 执行 |
+| pipeline.py、evaluation.py | 完整任务、结果判定、统计 |
+| config.py | 集中配置；长度 m、角度 rad |
+| docs/validation/v1.0.0 | 120 次正式随机实验的全部证据 |
+| docs/report/baseline_report.pdf | 英文报告：需求、算法、结果与局限 |
+| scripts/build_report.py | 从正式实验重建 PDF，需 reportlab |
+| scripts/package_submission.py | 生成含源码、模型、报告、视频的离线 ZIP |
+| PROGRESS.md、CHANGELOG.md | 进度、验证与版本记录 |
 
-这是结构化基线规划器，**不是 RRT/MoveIt，也不会绕过障碍物**。
-采样碰撞检查不是连续碰撞保证；没有完整的力矩、载荷和接触动力学规划。
-加入 clutter 时，需要替换或扩展路径搜索与候选 grasp 过滤，不能直接沿用当前路径。
+本地交付：`deliverables/EE5110SegC_baseline_v1.0.0.zip`、`deliverables/baseline_demo.mp4`。
+ZIP 排除 .git、.venv、.idea、凭据、课程原始文件和临时输出。
+报告没有虚构团队成员；实际成员身份和最终提交信息需自行补充。
+GitHub 按完整阶段维护分支、PR、验证和标签，避免小功能频繁发布。
 
-## 成功判定与日志
+## 归属与许可
 
-闭爪后先要求两个 finger body 都接触 cube。lift 后保持 1 秒：
-
-1. 整个保持期间物体中心高度均超过初始高度 + 0.08 m。
-2. 至少 95% 的物理采样步中两个夹爪都接触物体。
-
-两个条件同时满足才是 SUCCESS。成功指抓取并抬升，当前不执行 place。
-
-每次运行生成带时间戳的两个文件，不覆盖旧实验：
-
-- `outputs/trials_*.jsonl`：一行一个 trial；spawn/grasp pose、成功状态、失败阶段、时间和高度等。
-- `outputs/summary_*.json`：成功率、失败统计、seed、配置、依赖版本和机器人模型 commit。
-- `--snapshot` 额外保存最终场景 PNG，需要本机 OpenGL 支持；保存失败会给出提示。
-
-失败阶段包括 `SPAWN_FAIL`、`GRASP_GENERATION_FAIL`、`IK_FAIL`、`PLANNING_FAIL`、
-`COLLISION_FAIL`、`EXECUTION_FAIL`、`GRASP_FAIL`、`SLIP_FAIL`。
-预期的 trial 失败会记录原因并继续下一次 reset；启动配置/模型错误直接报错。
-全部 trial 成功时程序退出码为 0；任一失败为 1；中断为 130。
-
-## 当前验收与下一阶段
-
-第一阶段已完成：场景、机器人、oracle pose、top grasp、IK、路径检查、物理抓取、lift 判定和日志。
-最终检查包含 seed=42 的 10 次随机 cube trial 和 4 个失败检测/reset 回归检查。
-具体结果与限制见 `PROGRESS.md`；10 次同类 cube 成功不能推导为一般物体成功率。
-精选实验日志和汇总保存在 `docs/validation/v0.1.0/`。
-
-![实际仿真抓取结果](docs/images/cube_lift.png)
-
-下一阶段首先加入公开 3D 物体数据集：随机选择和加载物体，处理尺寸、质量、碰撞网格，
-生成多个候选抓取，再评估多物体结果和失败分布。之后确定一个有技术深度的挑战，
-设计改进和对照实验。RGB-D/估计感知、place、clutter、失败恢复尚未实现。
-
-## 外接硬盘权限
-
-本次通过获准的操作在 F 盘创建文件和运行仿真。
-这不说明该盘已经支持 Windows 沙盒的全部保护能力；应用之前仍给出不支持沙盒控制的提示。
-后续 Codex 命令可能继续需要额外授权。PyCharm 应直接使用本项目 `.venv` 解释器。
-
-开发与版本控制流程见 `CONTRIBUTING.md`，阶段记录见 `CHANGELOG.md`。
+[YCB Object and Model Set](https://ycb-benchmarks.s3.amazonaws.com/index.html)：数据 CC BY 4.0。
+[elpis-lab/YCB_Dataset](https://github.com/elpis-lab/YCB_Dataset)：转换 MIT，固定版本见 assets/ycb.lock.json。
+[MuJoCo Menagerie Panda](https://github.com/google-deepmind/mujoco_menagerie/tree/main/franka_emika_panda)：
+版本及校验见 assets/panda.lock.json，上游许可证随模型下载并包含于离线 ZIP。
