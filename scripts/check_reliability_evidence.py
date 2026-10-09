@@ -1,8 +1,10 @@
 """Audit frozen-source results, all failures, unchanged criteria and 90% gates."""
 from collections import Counter
 import hashlib
+import argparse
 import json
 from pathlib import Path
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 GROUPS = [('iid_pick', 'pick', 20261011, 180, False),
@@ -12,10 +14,22 @@ GROUPS = [('iid_pick', 'pick', 20261011, 180, False),
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--source-ref', help='Audit historical evidence against an explicit Git revision')
+    args = parser.parse_args()
     digest = hashlib.sha256()
-    for path in [ROOT / 'main.py', *sorted((ROOT / 'robot_manipulation').glob('*.py'))]:
-        digest.update(path.relative_to(ROOT).as_posix().encode())
-        digest.update(path.read_bytes().replace(b'\r\n', b'\n'))
+    if args.source_ref:
+        command = ['git', '-c', 'safe.directory=' + ROOT.as_posix(), '-C', str(ROOT)]
+        listing = subprocess.check_output(command + ['ls-tree', '-r', '--name-only', args.source_ref, 'robot_manipulation/']).decode().splitlines()
+        paths = ['main.py', *sorted(p for p in listing if p.endswith('.py'))]
+        for path in paths:
+            digest.update(path.encode())
+            digest.update(subprocess.check_output(command + ['show', args.source_ref + ':' + path]).replace(b'\r\n', b'\n'))
+        print('Historical source revision:', args.source_ref)
+    else:
+        for path in [ROOT / 'main.py', *sorted((ROOT / 'robot_manipulation').glob('*.py'))]:
+            digest.update(path.relative_to(ROOT).as_posix().encode())
+            digest.update(path.read_bytes().replace(b'\r\n', b'\n'))
     pooled = {}
     total = 0
     for group, task, seed, count, balanced in GROUPS:

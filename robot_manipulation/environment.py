@@ -10,7 +10,7 @@ from .dataset import load_object, append_ycb
 
 
 class Environment:
-    def __init__(self, config, gui=False, realtime=True, object_names=None):
+    def __init__(self, config, gui=False, realtime=True, object_names=None, obstacles=()):
         self.config = config
         self.objects = {name: load_object(name, config) for name in (object_names or ['primitive_cube'])}
         model_path = ROOT / 'assets/panda/panda.xml'
@@ -27,6 +27,12 @@ class Environment:
         visual = ET.SubElement(root, 'visual')
         ET.SubElement(visual, 'global', offwidth='800', offheight='600')
         world = root.find('worldbody')
+        self.obstacles = tuple(obstacles)
+        for index, obstacle in enumerate(self.obstacles):
+            ET.SubElement(world, 'geom', name=f'obstacle_{index}', type='box',
+                          pos=' '.join(map(str, obstacle['center'])),
+                          size=' '.join(map(str, obstacle['half_size'])),
+                          rgba='.28 .42 .62 1', friction='1.2 .01 .001')
         ET.SubElement(world, 'geom', name='floor', type='plane', size='2 2 .1',
                       pos='0 0 -.081', rgba='.17 .20 .24 1')
         ET.SubElement(world, 'geom', name='table', type='box', size='.30 .35 .04',

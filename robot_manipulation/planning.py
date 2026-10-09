@@ -145,7 +145,7 @@ class Planner:
             center = np.asarray(env.config.place_xy) + offset
             target[:2, 3] += center - obj[:2, 3]
             try:
-                transfer = self.plan(target, True, True, True)
+                transfer = self.plan_transfer(target)
                 self.prepare()
                 self.scratch.qpos[env.arm_qpos] = transfer.joints[-1]
                 mujoco.mj_forward(env.model, self.scratch)
@@ -160,6 +160,12 @@ class Planner:
                 rejected.append({'center': center.tolist(), 'stage': exc.stage, 'reason': str(exc)})
         raise StageFailure('PLACE_PLANNING_FAIL', f'No feasible transfer/lower pair: {rejected}')
 
+    def plan_transfer(self, target):
+        return self.plan(target, True, True, True)
+
+    def spawn(self, state):
+        return Planner(self.env, state=state)
+
     def preview_task(self, candidate, approach, task):
         """Reject grasps with unreachable downstream motion, using isolated scratch data."""
         env = self.env
@@ -169,7 +175,7 @@ class Planner:
         state.qpos[env.finger_qpos] = np.clip((candidate.width - .006) / 2 - .0015, 0, .04)
         mujoco.mj_forward(env.model, state)
         relative = np.linalg.inv(env.site_pose(state)) @ env.object_pose(state)
-        future = Planner(env, state=state)
+        future = self.spawn(state)
         lift = future.plan(candidate.lift, True, True, True)
         if task == 'place':
             state.qpos[env.arm_qpos] = lift.joints[-1]
