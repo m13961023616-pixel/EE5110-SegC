@@ -79,7 +79,7 @@ def main():
     scenes = []
     while len(scenes) < args.trials:
         scenes.extend(str(x) for x in rng.permutation(roster))
-    metadata = {'code_version': '1.3.0', 'scope': 'known_pose_single_object_static_barrier',
+    metadata = {'code_version': '1.4.0', 'scope': 'known_pose_single_object_static_barrier',
                 'source_sha256': source_hash(), 'python': platform.python_version(),
                 'mujoco': mujoco.__version__, 'numpy': np.__version__,
                 'seed': args.seed, 'sampling': 'paired_balanced_scene_seeds',

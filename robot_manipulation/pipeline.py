@@ -10,7 +10,7 @@ from .evaluation import verify_lift, verify_place
 LOG = logging.getLogger('baseline')
 
 
-def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, task='pick', candidate_generator=generate_candidates):
+def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, task='pick', candidate_generator=generate_candidates, observer=observe):
     started = time.perf_counter()
     result = {'trial_id': trial_id, 'object_id': object_id or env.object_id, 'task': task,
               'success': False, 'lift_success': False, 'place_success': False,
@@ -18,8 +18,11 @@ def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, 
     stage = 'SPAWN_FAIL'
     try:
         env.reset(rng, fixed, object_id)
-        state = observe(env)
-        result.update(spawn_pose=state.pose.tolist(), dimensions_m=state.dimensions.tolist(), mass_kg=env.object_model.mass)
+        initial_pose = env.object_pose()
+        result['spawn_pose'] = initial_pose.tolist()
+        stage = 'PERCEPTION_FAIL'
+        state = observer(env)
+        result.update(estimated_pose=state.pose.tolist(), dimensions_m=state.dimensions.tolist(), mass_kg=env.object_model.mass)
         stage = 'GRASP_GENERATION_FAIL'
         candidates = candidate_generator(state, env.config)
         result['candidate_count'] = len(candidates)
@@ -72,7 +75,7 @@ def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, 
             raise StageFailure(stage, 'Both fingers did not contact the object')
         execute('LIFT', candidate.lift, attached=True)
         stage = 'SLIP_FAIL'
-        result.update(verify_lift(env, state.pose[2, 3]))
+        result.update(verify_lift(env, initial_pose[2, 3]))
         result['lift_success'] = result['lift_success'] and result['bilateral_contact_fraction'] >= .95
         if not result['lift_success']:
             raise StageFailure(stage, 'Object did not maintain a stable lift')

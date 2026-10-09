@@ -2,6 +2,47 @@
 
 [GitHub 项目](https://github.com/m13961023616-pixel/EE5110-SegC) · [持续集成](https://github.com/m13961023616-pixel/EE5110-SegC/actions/workflows/baseline.yml)
 
+## v1.4.0：透明外观代理与合成深度感知
+
+新增 `sensing_main.py`，使用三种公开YCB盒状物体作为透明外观代理。
+感知由显式合成射线传感器产生观测，再用已知盒形模型拟合 T_world_object；
+抓取候选使用估计姿态，有效返回不足时记录PERCEPTION_FAIL，不回退到真值。
+
+```powershell
+# PyCharm GUI：三物体随机摆放，双视角融合
+.\.venv\Scripts\python.exe sensing_main.py --trials 3
+# 受损单帧对照与四组完整复现
+.\.venv\Scripts\python.exe sensing_main.py --headless --mode single --dropout .98 --trials 3
+.\.venv\Scripts\python.exe scripts/benchmark_sensing.py
+.\.venv\Scripts\python.exe scripts/check_sensing_evidence.py
+.\.venv\Scripts\python.exe tests/test_depth_sensing.py
+# 历史障碍物结果对应其精确版本
+.\.venv\Scripts\python.exe scripts/check_obstacle_reliability.py --source-ref v1.3.0
+```
+
+冻结新种子20261501，每组60次、每物体20次，四组共240次完全配对：
+
+| 条件 | 完整放置 | 95% Wilson区间 |
+|---|---:|---:|
+| clean_single | 42/60（70.0%） | 57.5%–80.1% |
+| damaged_single | 0/60（0.0%） | 0.0%–6.0% |
+| temporal | 41/60（68.3%） | 55.8%–78.7% |
+| multiview | 59/60（98.3%） | 91.1%–99.7% |
+
+干净单视角也有遮挡偏差，因此不是oracle性能上界。透明受损单帧与融合使用同一随机观测流的首帧；
+时间融合64帧使用一个视角，双视角融合64帧交替两个视角。
+98%为人为设置的独立前景深度缺失率，叠加0.5 mm z噪声。
+光学alpha为0.25，去除印刷纹理，质量、摩擦、接触、力上限和物理成功判据均不变。
+融合名义串行采集预算为64/30=2.13秒，单帧为0.033秒；仿真采集期间不推进物理时间。
+
+**范围：** 这是透明外观YCB代理和合成传感器缺失实验，不是真实玻璃数据集或折射仿真。
+已知物体类别、盒形、upright roll与理想标定；仅处理高度12–120 mm的工作区点。
+估计器不读取真值，但碰撞规划、持物关系和放置仍使用仿真几何/状态；尚非端到端纯视觉系统。
+独立随机缺失对时间融合较乐观；永久缺失、强相关误差、折射、反光、clutter、未知物体未验证。
+
+23项本地检查通过；实际透明代理视频、三页报告与离线包在v1.4.0发布页。
+完整失败、估计姿态/误差、帧数/视角数和物理记录在 `docs/validation/v1.4.0`。
+
 ## v1.3.0：障碍物可靠性改进
 
 `challenge_main.py` 默认使用新的 `robust` 方法。原普通 baseline 入口仍是 `main.py`。
@@ -16,7 +57,7 @@
 # 精确旧版与新版配对实验，需要Git克隆和v1.2.0标签
 .\.venv\Scripts\python.exe scripts/benchmark_obstacle_reliability.py
 # 当前版本证据审计；离线ZIP使用--offline（旧源码只核对记录指纹）
-.\.venv\Scripts\python.exe scripts/check_obstacle_reliability.py
+.\.venv\Scripts\python.exe scripts/check_obstacle_reliability.py --source-ref v1.3.0
 .\.venv\Scripts\python.exe tests/test_robust_obstacles.py
 # 历史证据严格对其原Git版本审计
 .\.venv\Scripts\python.exe scripts/check_obstacle_evidence.py --source-ref v1.2.0

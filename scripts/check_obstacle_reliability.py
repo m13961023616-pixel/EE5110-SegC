@@ -13,13 +13,13 @@ from challenge_main import source_hash
 from benchmark_obstacle_reliability import CASES
 
 
-def reference_hash():
+def reference_hash(ref='v1.2.0'):
     command = ['git', '-c', 'safe.directory=' + ROOT.as_posix(), '-C', str(ROOT)]
-    files = subprocess.check_output(command + ['ls-tree', '-r', '--name-only', 'v1.2.0', 'robot_manipulation/']).decode().splitlines()
+    files = subprocess.check_output(command + ['ls-tree', '-r', '--name-only', ref, 'robot_manipulation/']).decode().splitlines()
     digest = hashlib.sha256()
     for name in ['main.py', 'challenge_main.py', *sorted(f for f in files if f.endswith('.py'))]:
         digest.update(name.encode())
-        digest.update(subprocess.check_output(command + ['show', 'v1.2.0:' + name]).replace(b'\r\n', b'\n'))
+        digest.update(subprocess.check_output(command + ['show', ref + ':' + name]).replace(b'\r\n', b'\n'))
     return digest.hexdigest()
 
 
@@ -27,11 +27,18 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--folder', type=Path, default=ROOT / 'docs/validation/v1.3.0')
     parser.add_argument('--offline', action='store_true', help='Check archived reference hash from the protocol, without Git')
+    parser.add_argument('--source-ref', help='Verify newer historical engine from an explicit Git tag')
     args = parser.parse_args()
     expected_reference = '52e5e463644bcb02cbd7e06b6dd9bff0a1abf129cf5b187aaa5cf0c6d558ac6a'
     if not args.offline:
         assert reference_hash() == expected_reference
     old_hash, new_hash = expected_reference, source_hash()
+    if args.source_ref:
+        if args.offline:
+            assert args.source_ref == 'v1.3.0'
+            new_hash = 'c4a073d6575907dbdce80060d58365dbd8dddf785f3b8ce44e95dfd52a56c4a1'
+        else:
+            new_hash = reference_hash(args.source_ref)
     pairs = {}
     control = None
     provenance = None
