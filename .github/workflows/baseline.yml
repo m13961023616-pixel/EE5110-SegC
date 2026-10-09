@@ -55,3 +55,5 @@ jobs:
         run: python tests/test_active_sensing.py
       - name: Check feedback and physical-scene recovery
         run: python tests/test_recovery.py
+      - name: Check simultaneous clutter and transparent target transport
+        run: python tests/test_clutter.py

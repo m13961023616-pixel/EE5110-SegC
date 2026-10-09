@@ -31,6 +31,8 @@ def episode(env, planner, controller, rng, trial_id, object_id, observer_factory
                        candidate_generator=symmetric_candidates, observer=observer,
                        reset_scene=index == 0, candidate_start=skip)
         result['sensing'] = observer.metrics
+        if hasattr(env, 'scene_metrics'):
+            result['scene_metrics'] = env.scene_metrics()
         attempts.append(result)
         if result['success'] or index + 1 == maximum_attempts:
             break
