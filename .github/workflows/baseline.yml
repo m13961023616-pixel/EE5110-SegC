@@ -57,3 +57,5 @@ jobs:
         run: python tests/test_recovery.py
       - name: Check simultaneous clutter and transparent target transport
         run: python tests/test_clutter.py
+      - name: Audit frozen clutter episodes and physical scene gates
+        run: python scripts/check_v2_evidence.py
