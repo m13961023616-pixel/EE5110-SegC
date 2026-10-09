@@ -50,4 +50,12 @@ jobs:
       - name: Check synthetic transparent depth sensing
         run: python tests/test_depth_sensing.py
       - name: Audit transparent sensing comparisons
-        run: python scripts/check_sensing_evidence.py
+        run: python scripts/check_sensing_evidence.py --source-ref v1.4.0
+      - name: Check bounded active observations
+        run: python tests/test_active_sensing.py
+      - name: Check feedback and physical-scene recovery
+        run: python tests/test_recovery.py
+      - name: Check simultaneous clutter and transparent target transport
+        run: python tests/test_clutter.py
+      - name: Audit frozen clutter episodes and physical scene gates
+        run: python scripts/check_v2_evidence.py

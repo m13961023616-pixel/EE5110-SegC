@@ -10,14 +10,15 @@ from .evaluation import verify_lift, verify_place
 LOG = logging.getLogger('baseline')
 
 
-def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, task='pick', candidate_generator=generate_candidates, observer=observe):
+def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, task='pick', candidate_generator=generate_candidates, observer=observe, reset_scene=True, candidate_start=0):
     started = time.perf_counter()
     result = {'trial_id': trial_id, 'object_id': object_id or env.object_id, 'task': task,
               'success': False, 'lift_success': False, 'place_success': False,
-              'failure_stage': 'SPAWN_FAIL', 'planning_time_s': 0., 'execution_time_s': 0.}
+              'failure_stage': 'SPAWN_FAIL', 'planning_time_s': 0., 'execution_time_s': 0., 'executed_stages': []}
     stage = 'SPAWN_FAIL'
     try:
-        env.reset(rng, fixed, object_id)
+        if reset_scene:
+            env.reset(rng, fixed, object_id)
         initial_pose = env.object_pose()
         result['spawn_pose'] = initial_pose.tolist()
         stage = 'PERCEPTION_FAIL'
@@ -33,6 +34,8 @@ def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, 
         tick = time.perf_counter()
         chosen = None
         for index, candidate in enumerate(candidates):
+            if index < candidate_start:
+                continue
             try:
                 pregrasp = planner.plan(candidate.pregrasp)
                 # Check approach from predicted pregrasp before making any motion.
@@ -52,6 +55,7 @@ def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, 
 
         def execute(name, target=None, cartesian=True, attached=False, trajectory=None, allow_contact=False):
             nonlocal stage
+            result['executed_stages'].append(name)
             LOG.info('Trial %d %s: %s', trial_id, env.object_id, name)
             if env.recorder:
                 env.recorder.status = name

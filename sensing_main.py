@@ -45,7 +45,7 @@ def main():
     roster=[a.object] if a.object else list(OBJECTS)
     random=np.random.default_rng(a.seed); scenes=[]
     while len(scenes)<a.trials: scenes.extend(random.permutation(roster))
-    log=Logger(a.output, {'code_version':'1.4.0', 'scope':'synthetic_depth_dropout_known_upright_YCB_boxes',
+    log=Logger(a.output, {'code_version':'2.0.0', 'scope':'synthetic_depth_dropout_known_upright_YCB_boxes',
         'source_sha256':source_hash(), 'seed':a.seed,'mode':a.mode,'sensor':asdict(sensor),
         'config':{k:str(v) if isinstance(v,Path) else v for k,v in asdict(config).items()},
         'object_pool':roster, 'python':platform.python_version(),'mujoco':mujoco.__version__,'numpy':np.__version__,
