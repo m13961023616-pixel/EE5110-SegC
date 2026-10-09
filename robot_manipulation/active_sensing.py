@@ -84,6 +84,8 @@ class ActiveObserver:
         for index in range(cfg.maximum_frames):
             # Add a viewpoint after each batch, rather than repeatedly measuring occlusion.
             view = min(index // cfg.batch_frames, cfg.maximum_views-1) if self.policy == 'active' else index % cfg.maximum_views
+            if self.policy == 'active' and index >= cfg.batch_frames * cfg.maximum_views:
+                view = index % cfg.maximum_views
             while len(surfaces) <= view:
                 surface = capture_view(env, cfg.resolution, len(surfaces), self.instance_mask)
                 surfaces.append(surface)

@@ -53,3 +53,5 @@ jobs:
         run: python scripts/check_sensing_evidence.py --source-ref v1.4.0
       - name: Check bounded active observations
         run: python tests/test_active_sensing.py
+      - name: Check feedback and physical-scene recovery
+        run: python tests/test_recovery.py

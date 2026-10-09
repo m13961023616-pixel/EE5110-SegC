@@ -6,6 +6,7 @@
 
 验收：透明外观目标在物理clutter、干扰项和复杂障碍中完成夹取与放置，见 `docs/V2_ROADMAP.md`。
 阶段1主动感知已通过四项检查：`python tests/test_active_sensing.py`。
+阶段2接触反馈与有限恢复已通过两项检查：`python tests/test_recovery.py`。
 当前发布版本仍为v1.4.0；新阶段完成后统一通过PR发布。
 
 ## v1.4.0：透明外观代理与合成深度感知
