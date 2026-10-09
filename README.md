@@ -2,6 +2,12 @@
 
 [GitHub 项目](https://github.com/m13961023616-pixel/EE5110-SegC) · [持续集成](https://github.com/m13961023616-pixel/EE5110-SegC/actions/workflows/baseline.yml)
 
+## v2.0开发路线
+
+验收：透明外观目标在物理clutter、干扰项和复杂障碍中完成夹取与放置，见 `docs/V2_ROADMAP.md`。
+阶段1主动感知已通过四项检查：`python tests/test_active_sensing.py`。
+当前发布版本仍为v1.4.0；新阶段完成后统一通过PR发布。
+
 ## v1.4.0：透明外观代理与合成深度感知
 
 新增 `sensing_main.py`，使用三种公开YCB盒状物体作为透明外观代理。

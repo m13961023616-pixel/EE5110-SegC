@@ -2,6 +2,9 @@
 from pathlib import Path
 import sys
 import json
+import argparse
+import hashlib
+import subprocess
 from collections import Counter
 import numpy as np
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
@@ -10,13 +13,24 @@ from benchmark_sensing import CASES
 
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--source-ref')
+    args=parser.parse_args()
+    expected=source_hash()
+    if args.source_ref:
+        command=['git','-c','safe.directory='+ROOT.as_posix(),'-C',str(ROOT)]
+        listing=subprocess.check_output(command+['ls-tree','-r','--name-only',args.source_ref,'robot_manipulation/']).decode().splitlines()
+        h=hashlib.sha256()
+        for name in ['sensing_main.py',*sorted(p for p in listing if p.endswith('.py'))]:
+            h.update(name.encode());h.update(subprocess.check_output(command+['show',args.source_ref+':'+name]).replace(b'\r\n',b'\n'))
+        expected=h.hexdigest()
     reference=None;summary={};provenance=None
     for name,(mode,dropout,views) in CASES.items():
         folder=ROOT/'docs/validation/v1.4.0'/name
         logs=list(folder.glob('trials_*.jsonl'));summaries=list(folder.glob('summary_*.json'))
         assert len(logs)==len(summaries)==1
         rows=[json.loads(l) for l in logs[0].read_text().splitlines()];s=json.loads(summaries[0].read_text())
-        assert s['source_sha256']==source_hash() and s['code_version']=='1.4.0'
+        assert s['source_sha256']==expected and s['code_version']=='1.4.0'
         assert s['seed']==20261501 and len(rows)==s['trials']==60
         assert s['mode']==mode and s['sensor']['dropout']==dropout and s['sensor']['views']==views
         assert s['sensor']['frames']==64 and s['sensor']['noise_m']==.0005
