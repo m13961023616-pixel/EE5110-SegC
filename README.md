@@ -2,7 +2,57 @@
 
 [GitHub 项目](https://github.com/m13961023616-pixel/EE5110-SegC) · [持续集成](https://github.com/m13961023616-pixel/EE5110-SegC/actions/workflows/baseline.yml)
 
-**v1.1.0：基础功能及 90% 性能目标已完成。** Python 3.12、MuJoCo、Franka Panda、六种真实 YCB 网格物体。
+## v1.2.0：实体障碍物搬运挑战
+
+新增 `challenge_main.py`，在抓取区和放置区之间加入会真实碰撞的挡板。
+对比原 Cartesian 直线搬运、关节空间 RRT-Connect、保持抓取姿态的净空路径 + RRT fallback。
+普通 `main.py` 仍运行无遮挡 baseline；旧版本源码与成果通过标签保留。
+
+冻结参数后，用新种子在六种 YCB 物体上做六组配对实验，每组 60 次、每物体 10 次：
+
+| 条件 | 原直线 | RRT | 净空 + RRT |
+|---|---:|---:|---:|
+| 无挡板、同一挑战工作区 | 55/60（91.7%） | 未测 | 未测 |
+| 22 cm 挡板 | 0/60 | 50/60（83.3%） | **54/60（90.0%）** |
+| 28 cm 挡板 | 未测 | 41/60（68.3%） | **44/60（73.3%）** |
+
+全部 360 次结果和失败在 `docs/validation/v1.2.0`；新报告为 `docs/report/obstacle_report_v1.2.0.pdf`。
+22 cm 下净空方法相对 RRT 恢复 5 个失败场景、退化 1 个；28 cm 下恢复 3 个、退化 0 个。
+22 cm 净空方法整体 95% Wilson 区间为 79.9%-95.3%，不声称总体真实成功率已被证明至少 90%。
+其中 foam_brick 仅 7/10，六物体均达到 90% 的说法不适用于这个新挑战。
+
+```powershell
+# PyCharm / GUI：实际抓取、越障、释放
+.\.venv\Scripts\python.exe challenge_main.py --fixed --object foam_brick --trials 1
+# 原直线对照；0 成功也是合法实验结果，记录在 summary
+.\.venv\Scripts\python.exe challenge_main.py --headless --planner direct --trials 60
+# 完整六组配对复现（约数分钟，取决于机器）
+.\.venv\Scripts\python.exe scripts/benchmark_obstacles.py
+# 审计当前挑战与旧版本历史证据
+.\.venv\Scripts\python.exe scripts/check_obstacle_evidence.py
+.\.venv\Scripts\python.exe scripts/check_reliability_evidence.py --source-ref v1.1.0
+.\.venv\Scripts\python.exe tests/test_obstacle_planning.py
+# 可选录制；先安装 requirements-video.txt
+.\.venv\Scripts\python.exe scripts/record_obstacle_demo.py
+```
+
+挡板宽 0.24 m、厚 0.016 m，中心 x/y=(0.485, 0.145) m；可用 `--height 0.28` 增加高度。
+挑战使用 y∈[-0.10, 0.06] m 的 spawn 范围、放置中心 (0.48, 0.30) m，为挡板后留出空间。
+所有对照使用相同物体序列、独立场景种子、相同目标与控制参数；因此不把 v1.1.0 的旧成功率直接当作配对对照。
+原抬升/保持/释放/放置阈值未放宽，额外要求实际物体与挡板没有超过 1 mm 的穿透。
+RRT 最多 180 次外层迭代，路径采样和实际执行都检查碰撞；时间参数保留关节速度与加速度限制。
+
+范围仍是已知姿态、单个刚体和静态挡板。没有完成多物体 clutter、视觉感知、动态障碍或恢复。
+关节采样间隔 0.015 rad、物理接触每 2 ms 检查，不是连续无碰撞保证；预检持物关系为近似刚体关系。
+历史源码审计需要 Git 克隆及 v1.1.0 标签；离线 ZIP 中可直接运行当前挑战及其证据审计，不包含 Git 历史。
+净空方法相对 RRT 有额外运动开销；更高挡板的不可行路径和真实执行失败均保留。
+参考原论文：[Kuffner & LaValle, RRT-Connect, ICRA 2000](https://www.clear.rice.edu/comp450/papers/kuffner_lavalle_00.pdf)。
+
+![实体挡板后的物理放置](docs/images/obstacle_place_v1.2.0.png)
+
+## v1.1.0 历史 baseline 性能
+
+**v1.1.0：基础功能及 90% 性能目标已完成。** 以下统计来自该标签的冻结源码。Python 3.12、MuJoCo、Franka Panda、六种真实 YCB 网格物体。
 随机选择物体和桌面 x/y/yaw，自研抓取候选及过滤，物理接触抓取、完整 pick-and-place 和随机评估。
 
 冻结参数后用新种子独立评估：抓取 **178/180（98.9%）**；完整放置 **175/180（97.2%）**。

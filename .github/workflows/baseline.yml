@@ -16,6 +16,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
@@ -29,7 +30,7 @@ jobs:
       - name: Run failure and reset regression checks
         run: python tests/test_baseline.py
       - name: Audit frozen source and 600-scene performance evidence
-        run: python scripts/check_reliability_evidence.py
+        run: python scripts/check_reliability_evidence.py --source-ref v1.1.0
       - name: Run fixed-cube physics smoke test
         run: python main.py --headless --dataset cube --task place --fixed --require-all-success
       - name: Download and verify pinned YCB assets
@@ -38,3 +39,7 @@ jobs:
         run: python tests/test_dataset.py
       - name: Run real-mesh physics smoke test
         run: python main.py --headless --object foam_brick --task place --fixed --require-all-success
+      - name: Check obstacle search and physical transport
+        run: python tests/test_obstacle_planning.py
+      - name: Audit paired obstacle experiment evidence
+        run: python scripts/check_obstacle_evidence.py
