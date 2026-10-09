@@ -1,0 +1,123 @@
+{
+  "code_version": "1.4.0",
+  "scope": "synthetic_depth_dropout_known_upright_YCB_boxes",
+  "source_sha256": "2ccaff59654439d3fcd0a09b09ce675149bb990500d1e7bddb05cdf2ed6f7e5e",
+  "seed": 20261501,
+  "mode": "fusion",
+  "sensor": {
+    "dropout": 0.98,
+    "noise_m": 0.0005,
+    "frames": 64,
+    "views": 1,
+    "resolution": 96,
+    "minimum_points": 24
+  },
+  "config": {
+    "timestep": 0.002,
+    "table_top": 0.0,
+    "object_size": 0.04,
+    "object_mass": 0.05,
+    "spawn_x": [
+      0.4,
+      0.55
+    ],
+    "spawn_y": [
+      -0.12,
+      0.12
+    ],
+    "pregrasp_clearance": 0.14,
+    "lift_distance": 0.16,
+    "success_height": 0.08,
+    "hold_seconds": 1.0,
+    "position_tolerance": 0.002,
+    "rotation_tolerance": 0.025,
+    "tracking_tolerance": 0.012,
+    "tracking_rotation_tolerance": 0.1,
+    "max_joint_speed": 0.5,
+    "max_joint_acceleration": 2.0,
+    "place_xy": [
+      0.48,
+      0.22
+    ],
+    "place_tolerance": 0.055,
+    "place_clearance": 0.008,
+    "gripper_stiffness": 1000.0,
+    "gripper_force_limit": 40.0,
+    "contact_impratio": 10.0,
+    "grip_preload": 16.0,
+    "grip_load_margin": 4.0,
+    "gravity_compensation": true,
+    "home": [
+      0.0,
+      -0.4,
+      0.0,
+      -2.2,
+      0.0,
+      1.8,
+      0.785398
+    ],
+    "output_dir": "docs/validation/v1.4.0/temporal"
+  },
+  "object_pool": [
+    "foam_brick",
+    "gelatin_box",
+    "pudding_box"
+  ],
+  "python": "3.12.10",
+  "mujoco": "3.15.0",
+  "numpy": "2.5.3",
+  "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+  "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+  "trials": 60,
+  "successes": 41,
+  "success_rate": 0.6833333333333333,
+  "failures": {
+    "PERCEPTION_FAIL": 8,
+    "PLANNING_FAIL": 9,
+    "PLACE_FAIL": 1,
+    "GRASP_FAIL": 1
+  },
+  "success_rate_95pct_interval": [
+    0.5576599505698345,
+    0.7869429415882567
+  ],
+  "per_object": {
+    "foam_brick": {
+      "trials": 20,
+      "successes": 10,
+      "success_rate": 0.5,
+      "lift_successes": 10,
+      "place_successes": 10,
+      "failures": {
+        "PLANNING_FAIL": 7,
+        "PERCEPTION_FAIL": 3
+      }
+    },
+    "gelatin_box": {
+      "trials": 20,
+      "successes": 16,
+      "success_rate": 0.8,
+      "lift_successes": 16,
+      "place_successes": 16,
+      "failures": {
+        "PERCEPTION_FAIL": 4
+      }
+    },
+    "pudding_box": {
+      "trials": 20,
+      "successes": 15,
+      "success_rate": 0.75,
+      "lift_successes": 16,
+      "place_successes": 15,
+      "failures": {
+        "PLANNING_FAIL": 2,
+        "PERCEPTION_FAIL": 1,
+        "PLACE_FAIL": 1,
+        "GRASP_FAIL": 1
+      }
+    }
+  },
+  "mean_planning_time_s": 0.25426616833330323,
+  "mean_execution_time_s": 0.7456799649999084,
+  "mean_total_time_s": 1.1531104566667787
+}
