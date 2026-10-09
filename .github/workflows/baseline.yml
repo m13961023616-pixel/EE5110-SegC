@@ -42,4 +42,8 @@ jobs:
       - name: Check obstacle search and physical transport
         run: python tests/test_obstacle_planning.py
       - name: Audit paired obstacle experiment evidence
-        run: python scripts/check_obstacle_evidence.py
+        run: python scripts/check_obstacle_evidence.py --source-ref v1.2.0
+      - name: Check obstacle reliability regressions
+        run: python tests/test_robust_obstacles.py
+      - name: Audit exact-version obstacle reliability comparisons
+        run: python scripts/check_obstacle_reliability.py

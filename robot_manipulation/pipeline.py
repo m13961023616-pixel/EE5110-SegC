@@ -10,7 +10,7 @@ from .evaluation import verify_lift, verify_place
 LOG = logging.getLogger('baseline')
 
 
-def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, task='pick'):
+def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, task='pick', candidate_generator=generate_candidates):
     started = time.perf_counter()
     result = {'trial_id': trial_id, 'object_id': object_id or env.object_id, 'task': task,
               'success': False, 'lift_success': False, 'place_success': False,
@@ -21,7 +21,7 @@ def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, 
         state = observe(env)
         result.update(spawn_pose=state.pose.tolist(), dimensions_m=state.dimensions.tolist(), mass_kg=env.object_model.mass)
         stage = 'GRASP_GENERATION_FAIL'
-        candidates = generate_candidates(state, env.config)
+        candidates = candidate_generator(state, env.config)
         result['candidate_count'] = len(candidates)
         if not candidates:
             raise StageFailure(stage, 'No candidate fits the gripper width')

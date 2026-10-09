@@ -14,6 +14,8 @@ from robot_manipulation.environment import Environment
 from robot_manipulation.control import Controller
 from robot_manipulation.planning import Planner
 from robot_manipulation.obstacle_planning import ObstaclePlanner
+from robot_manipulation.robust_obstacles import RobustObstaclePlanner, symmetric_candidates
+from robot_manipulation.grasp import generate_candidates
 from robot_manipulation.pipeline import trial
 from robot_manipulation.evaluation import Logger
 
@@ -52,7 +54,7 @@ def source_hash():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--planner', choices=['direct', 'rrt', 'clearance_rrt'], default='clearance_rrt')
+    parser.add_argument('--planner', choices=['direct', 'rrt', 'clearance_rrt', 'robust'], default='robust')
     parser.add_argument('--scene', choices=['clear', 'barrier'], default='barrier')
     parser.add_argument('--height', type=float, default=.22, help='Barrier top above table, metres')
     parser.add_argument('--trials', type=int, default=6)
@@ -77,7 +79,7 @@ def main():
     scenes = []
     while len(scenes) < args.trials:
         scenes.extend(str(x) for x in rng.permutation(roster))
-    metadata = {'code_version': '1.2.0', 'scope': 'known_pose_single_object_static_barrier',
+    metadata = {'code_version': '1.3.0', 'scope': 'known_pose_single_object_static_barrier',
                 'source_sha256': source_hash(), 'python': platform.python_version(),
                 'mujoco': mujoco.__version__, 'numpy': np.__version__,
                 'seed': args.seed, 'sampling': 'paired_balanced_scene_seeds',
@@ -98,9 +100,12 @@ def main():
     try:
         for index, object_id in enumerate(scenes[:args.trials], 1):
             scene_seed, planner_seed = args.seed + 1000 + index, args.seed + 100000 + index
-            planner = Planner(env) if args.planner == 'direct' else ObstaclePlanner(env, mode=args.planner, seed=planner_seed)
+            planner = (Planner(env) if args.planner == 'direct' else
+                       RobustObstaclePlanner(env, seed=planner_seed) if args.planner == 'robust' else
+                       ObstaclePlanner(env, mode=args.planner, seed=planner_seed))
             result = trial(env, planner, Controller(env, planner), np.random.default_rng(scene_seed),
-                           index, fixed=args.fixed, object_id=object_id, task='place')
+                           index, fixed=args.fixed, object_id=object_id, task='place',
+                           candidate_generator=symmetric_candidates if args.planner == 'robust' else generate_candidates)
             result.update(scene_seed=scene_seed, planner_seed=planner_seed,
                           barrier_contact_steps=env.barrier_contact_steps,
                           max_barrier_penetration_m=env.max_barrier_penetration,

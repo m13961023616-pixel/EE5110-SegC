@@ -46,7 +46,7 @@ def main():
     metadata = {'python': platform.python_version(), 'mujoco': mujoco.__version__,
                 'numpy': np.__version__, 'seed': args.seed, 'randomize': randomized,
                 'scope': 'YCB_known_object_baseline' if args.dataset == 'ycb' else 'primitive_cube_regression',
-                'code_version': '1.2.0',
+                'code_version': '1.3.0',
                 'sampling': 'balanced_shuffled_blocks' if args.balanced else 'iid_uniform',
                 'contact_model': {'cone': 'elliptic', 'object_condim': 6},
                 'dataset': args.dataset, 'object_pool': roster, 'task': args.task,

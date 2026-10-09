@@ -2,6 +2,49 @@
 
 [GitHub 项目](https://github.com/m13961023616-pixel/EE5110-SegC) · [持续集成](https://github.com/m13961023616-pixel/EE5110-SegC/actions/workflows/baseline.yml)
 
+## v1.3.0：障碍物可靠性改进
+
+`challenge_main.py` 默认使用新的 `robust` 方法。原普通 baseline 入口仍是 `main.py`。
+针对“末端 IK 收敛但前臂/手腕碰挡板”增加静态碰撞过滤和最多九个局部 IK 种子；
+双指夹爪增加180°等价朝向候选，保留原抓取点和接近轴。
+保留净空通道并增加两侧备用通道；放置点优先向桌面内侧偏移25 mm，仍处于原55 mm目标容差内。
+场景、物体尺度/质量、摩擦、力上限、IK精度、RRT迭代上限和物理成功判据均未放宽。
+
+```powershell
+# GUI / PyCharm：重放已恢复的28 cm前臂碰撞场景
+.\.venv\Scripts\python.exe challenge_main.py --height .28 --object foam_brick --seed 20261307 --trials 1
+# 精确旧版与新版配对实验，需要Git克隆和v1.2.0标签
+.\.venv\Scripts\python.exe scripts/benchmark_obstacle_reliability.py
+# 当前版本证据审计；离线ZIP使用--offline（旧源码只核对记录指纹）
+.\.venv\Scripts\python.exe scripts/check_obstacle_reliability.py
+.\.venv\Scripts\python.exe tests/test_robust_obstacles.py
+# 历史证据严格对其原Git版本审计
+.\.venv\Scripts\python.exe scripts/check_obstacle_evidence.py --source-ref v1.2.0
+# 可选录制新版演示，需要requirements-video.txt
+.\.venv\Scripts\python.exe scripts/record_obstacle_demo.py --version 1.3.0
+```
+
+开发重放使用过去16个高挡板失败场景，恢复12个；这些场景不当作新的随机成功率。
+正式评估使用新种子20261401，对22/28 cm两种高度各运行旧版、新版120次，共480次。
+对照从Git标签直接导出完整v1.2.0源代码，运行时的机器人和YCB资产与新版完全一致。
+全部失败、分物体统计、配对恢复/退化、规划耗时与两个源指纹在 `docs/validation/v1.3.0`。
+
+| 挡板高度 | 精确 v1.2.0 对照 | v1.3.0 robust |
+|---|---:|---:|
+| 22 cm | 107/120（89.2%） | **112/120（93.3%）** |
+| 28 cm | 93/120（77.5%） | **108/120（90.0%）** |
+
+22 cm 恢复9个失败、退化4个原成功场景；28 cm 恢复18个失败、退化3个原成功场景。
+新版95% Wilson区间分别为87.4%-96.6%、83.3%-94.2%；90%为本实验点估计，并非总体下限保证。
+新版平均规划耗时分别为5.70/8.92秒，对照为1.00/0.97秒；并行评估下的机器墙钟时间仅供参考。
+六物体每条件20次，部分物体仅16/20，全部失败保留。
+
+本阶段范围仍为已知姿态、单刚体、静态挡板；无物理重抓或失败场景重采样。
+十九项本地检查通过；新增前臂碰撞物理恢复和robust预检状态隔离检查。
+固定foam_brick在28 cm挡板后仍有拒绝情况，并不保证每个工作区姿态都可行。
+
+以下各节为先前版本结果；不同种子的统计不混为配对提升。
+
 ## v1.2.0：实体障碍物搬运挑战
 
 新增 `challenge_main.py`，在抓取区和放置区之间加入会真实碰撞的挡板。
@@ -29,11 +72,11 @@
 # 完整六组配对复现（约数分钟，取决于机器）
 .\.venv\Scripts\python.exe scripts/benchmark_obstacles.py
 # 审计当前挑战与旧版本历史证据
-.\.venv\Scripts\python.exe scripts/check_obstacle_evidence.py
+.\.venv\Scripts\python.exe scripts/check_obstacle_evidence.py --source-ref v1.2.0
 .\.venv\Scripts\python.exe scripts/check_reliability_evidence.py --source-ref v1.1.0
 .\.venv\Scripts\python.exe tests/test_obstacle_planning.py
 # 可选录制；先安装 requirements-video.txt
-.\.venv\Scripts\python.exe scripts/record_obstacle_demo.py
+.\.venv\Scripts\python.exe scripts/record_obstacle_demo.py --version 1.2.0
 ```
 
 挡板宽 0.24 m、厚 0.016 m，中心 x/y=(0.485, 0.145) m；可用 `--height 0.28` 增加高度。
