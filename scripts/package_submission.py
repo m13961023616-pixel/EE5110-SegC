@@ -8,13 +8,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--version', choices=['1.0.0', '1.1.0', '1.2.0'], default='1.2.0')
+    parser.add_argument('--version', choices=['1.0.0', '1.1.0', '1.2.0', '1.3.0'], default='1.3.0')
     version = parser.parse_args().version
     target = ROOT / f'deliverables/EE5110SegC_baseline_v{version}.zip'
     report, video = {
         '1.0.0': ('baseline_report.pdf', 'baseline_demo.mp4'),
         '1.1.0': ('reliability_report_v1.1.0.pdf', 'reliability_demo_v1.1.0.mp4'),
         '1.2.0': ('obstacle_report_v1.2.0.pdf', 'obstacle_demo_v1.2.0.mp4'),
+        '1.3.0': ('obstacle_reliability_v1.3.0.pdf', 'obstacle_demo_v1.3.0.mp4'),
     }[version]
     required = [ROOT / 'docs/report' / report, ROOT / 'deliverables' / video,
                 ROOT / 'assets/panda/panda.xml', ROOT / 'assets/ycb/ycb/foam_brick.xml']

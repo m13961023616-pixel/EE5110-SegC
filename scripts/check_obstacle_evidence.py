@@ -4,6 +4,8 @@ from collections import Counter
 import json
 from pathlib import Path
 import sys
+import hashlib
+import subprocess
 import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -14,7 +16,18 @@ from benchmark_obstacles import CASES
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--folder', type=Path, default=ROOT / 'docs/validation/v1.2.0')
+    parser.add_argument('--source-ref', help='Audit archived results against their explicit Git version')
     args = parser.parse_args()
+    expected_hash = source_hash()
+    if args.source_ref:
+        command = ['git', '-c', 'safe.directory=' + ROOT.as_posix(), '-C', str(ROOT)]
+        listing = subprocess.check_output(command + ['ls-tree', '-r', '--name-only', args.source_ref, 'robot_manipulation/']).decode().splitlines()
+        digest = hashlib.sha256()
+        for name in ['main.py', 'challenge_main.py', *sorted(p for p in listing if p.endswith('.py'))]:
+            digest.update(name.encode())
+            digest.update(subprocess.check_output(command + ['show', args.source_ref + ':' + name]).replace(b'\r\n', b'\n'))
+        expected_hash = digest.hexdigest()
+        print('Historical challenge revision:', args.source_ref)
     reference = None
     for name, (scene, planner, height) in CASES.items():
         folder = args.folder / name
@@ -22,7 +35,7 @@ def main():
         assert len(summaries) == len(logs) == 1
         summary = json.loads(summaries[0].read_text())
         rows = [json.loads(line) for line in logs[0].read_text().splitlines()]
-        assert summary['source_sha256'] == source_hash(), 'Current challenge source differs from frozen evidence'
+        assert summary['source_sha256'] == expected_hash, 'Challenge source differs from frozen evidence'
         assert summary['seed'] == 20261301 and summary['trials'] == len(rows) == 60
         assert summary['planner'] == planner and summary['scene'] == scene
         assert summary['successes'] == sum(r['success'] for r in rows)
