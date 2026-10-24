@@ -1,0 +1,7 @@
+soft_adaptive 1/6: SUCCESS
+soft_adaptive 2/6: SUCCESS
+soft_adaptive 3/6: SUCCESS
+soft_adaptive 4/6: SUCCESS
+soft_adaptive 5/6: SUCCESS
+soft_adaptive 6/6: SUCCESS
+6/6; outputs\exploration_frozen_20261026\soft_adaptive\trials_20261025_022326_154857.jsonl

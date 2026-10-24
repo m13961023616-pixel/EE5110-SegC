@@ -1,0 +1,2 @@
+trial_id,object_id,success,failure_stage,lift_success,place_success,candidate_count,planning_time_s,execution_time_s,total_time_s,reason
+1,foam_brick,False,PLANNING_FAIL,False,False,2,0.04354109999985667,0.0,2.015357199998107,All candidate approaches rejected

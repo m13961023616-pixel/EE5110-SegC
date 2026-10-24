@@ -18,11 +18,13 @@
 
 ## 仓库内容
 
-纳入 Python 源码、依赖版本、文档、测试、模型来源与锁定信息、精选实验证据。
-`.venv/`、`.idea/`、下载的机器人网格、全部日常输出和本地工具不纳入 Git。
+纳入 Python 源码、依赖版本、文档、测试、模型来源与锁定信息、冻结实验证据。
+按用户明确要求，当前完整交付分支还纳入模型/纹理及许可证、交付视频/ZIP、分段剪辑素材和原始实验/录制输出。
+`.venv/`、`.idea/`、本机工具、凭据、缓存和临时解压副本不纳入 Git。
 课程 PDF 与原始附件也不属于这个代码仓库。
 
-模型通过 `scripts/setup_assets.py` 重新下载；`assets/panda.lock.json` 固定模型 commit 和校验和。
+模型已包含在完整分支；`scripts/setup_assets.py`、`scripts/setup_ycb.py` 可验证并在缺失时重新下载。
+`assets/panda.lock.json`、`assets/ycb.lock.json` 固定来源 commit 和校验和；不要规范化已锁定模型的换行。
 实际下载的许可证保留在 `assets/panda/LICENSE`；项目公开不改变第三方模型许可。
 
 协作时保留已经工作的代码和用户本地改动；提交前检查 Git diff。

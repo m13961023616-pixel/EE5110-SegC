@@ -1,0 +1,144 @@
+{
+  "code_version": "2.1.0",
+  "scope": "known_box_transparent_proxy_ideal_instance_mask_physical_clutter",
+  "grasp_strategy": "local",
+  "maximum_additional_candidates": 16,
+  "source_sha256": "0f386f1f87282a2e9485fc9254487ca93a4f58c04f614627816926a1300005b9",
+  "seed": 20261608,
+  "mode": "active",
+  "scene": "dense",
+  "obstacles": [
+    {
+      "center": [
+        0.485,
+        0.145,
+        0.11
+      ],
+      "half_size": [
+        0.12,
+        0.008,
+        0.11
+      ]
+    },
+    {
+      "center": [
+        0.34,
+        0.215,
+        0.09
+      ],
+      "half_size": [
+        0.018,
+        0.052,
+        0.09
+      ]
+    },
+    {
+      "center": [
+        0.64,
+        0.205,
+        0.09
+      ],
+      "half_size": [
+        0.018,
+        0.055,
+        0.09
+      ]
+    }
+  ],
+  "sensor": {
+    "dropout": 0.98,
+    "permanent_dropout": 0.1,
+    "noise_m": 0.0005,
+    "resolution": 96,
+    "batch_frames": 8,
+    "minimum_frames": 16,
+    "maximum_frames": 64,
+    "maximum_views": 3,
+    "minimum_unique_points": 48,
+    "position_stability_m": 0.003,
+    "yaw_stability_rad": 0.08,
+    "extent_error_m": 0.006
+  },
+  "object_pool": [
+    "foam_brick"
+  ],
+  "distractor_count": 5,
+  "config": {
+    "timestep": 0.002,
+    "table_top": 0.0,
+    "object_size": 0.04,
+    "object_mass": 0.05,
+    "spawn_x": [
+      0.43,
+      0.52
+    ],
+    "spawn_y": [
+      -0.105,
+      -0.065
+    ],
+    "pregrasp_clearance": 0.14,
+    "lift_distance": 0.16,
+    "success_height": 0.08,
+    "hold_seconds": 1.0,
+    "position_tolerance": 0.002,
+    "rotation_tolerance": 0.025,
+    "tracking_tolerance": 0.012,
+    "tracking_rotation_tolerance": 0.1,
+    "max_joint_speed": 0.5,
+    "max_joint_acceleration": 2.0,
+    "place_xy": [
+      0.48,
+      0.3
+    ],
+    "place_tolerance": 0.055,
+    "place_clearance": 0.008,
+    "gripper_stiffness": 1000.0,
+    "gripper_force_limit": 40.0,
+    "contact_impratio": 10.0,
+    "grip_preload": 16.0,
+    "grip_load_margin": 4.0,
+    "gravity_compensation": true,
+    "home": [
+      0.0,
+      -0.4,
+      0.0,
+      -2.2,
+      0.0,
+      1.8,
+      0.785398
+    ],
+    "output_dir": "outputs\\local_dense_development"
+  },
+  "maximum_attempts": 1,
+  "distractor_displacement_limit_m": 0.02,
+  "python": "3.12.15",
+  "numpy": "2.5.3",
+  "mujoco": "3.15.0",
+  "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+  "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+  "trials": 1,
+  "successes": 0,
+  "success_rate": 0.0,
+  "failures": {
+    "PLANNING_FAIL": 1
+  },
+  "success_rate_95pct_interval": [
+    0.0,
+    0.7934567085261071
+  ],
+  "per_object": {
+    "foam_brick": {
+      "trials": 1,
+      "successes": 0,
+      "success_rate": 0.0,
+      "lift_successes": 0,
+      "place_successes": 0,
+      "failures": {
+        "PLANNING_FAIL": 1
+      }
+    }
+  },
+  "mean_planning_time_s": 0.6174000000028173,
+  "mean_execution_time_s": 0.0,
+  "mean_total_time_s": 0.8632662000018172
+}

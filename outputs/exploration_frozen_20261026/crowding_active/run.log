@@ -1,0 +1,7 @@
+crowding_active 1/6: PLANNING_FAIL
+crowding_active 2/6: PLACE_FAIL
+crowding_active 3/6: PLACE_FAIL
+crowding_active 4/6: SUCCESS
+crowding_active 5/6: SUCCESS
+crowding_active 6/6: SUCCESS
+3/6; outputs\exploration_frozen_20261026\crowding_active\trials_20261025_022206_292017.jsonl

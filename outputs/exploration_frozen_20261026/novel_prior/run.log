@@ -1,0 +1,13 @@
+novel_prior 1/12: SUCCESS
+novel_prior 2/12: SUCCESS
+novel_prior 3/12: SUCCESS
+novel_prior 4/12: SUCCESS
+novel_prior 5/12: SLIP_DETECTED
+novel_prior 6/12: SUCCESS
+novel_prior 7/12: SUCCESS
+novel_prior 8/12: SUCCESS
+novel_prior 9/12: SUCCESS
+novel_prior 10/12: SUCCESS
+novel_prior 11/12: SUCCESS
+novel_prior 12/12: SUCCESS
+11/12; outputs\exploration_frozen_20261026\novel_prior\trials_20261025_022326_495964.jsonl

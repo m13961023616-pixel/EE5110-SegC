@@ -1,0 +1,176 @@
+{
+  "success": true,
+  "failure_stage": "SUCCESS",
+  "executed_stages": [
+    "PRE_GRASP",
+    "APPROACH",
+    "LIFT",
+    "TRANSFER",
+    "LOWER",
+    "RETREAT"
+  ],
+  "candidate_rejections": [],
+  "estimated_pose": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.4821889401591636
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      -0.08540752742292022
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.018707089857142385
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "candidate_count": 24,
+  "selected_candidate": 0,
+  "closing_contacts": 2,
+  "min_hold_height_m": 0.1771253131670555,
+  "bilateral_contact_fraction": 1.0,
+  "place_distance_m": 0.001156034064257146,
+  "final_speed_m_s": 2.3939914706158127e-05,
+  "released": true,
+  "table_contact": true,
+  "sensing": {
+    "source": "simulation_geometry_material_or_control_study",
+    "used_frames": 0
+  },
+  "first_attempt_success": true,
+  "attempts": [
+    {
+      "success": true,
+      "failure_stage": "SUCCESS",
+      "executed_stages": [
+        "PRE_GRASP",
+        "APPROACH",
+        "LIFT",
+        "TRANSFER",
+        "LOWER",
+        "RETREAT"
+      ],
+      "candidate_rejections": [],
+      "estimated_pose": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.4821889401591636
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.08540752742292022
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.018707089857142385
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "candidate_count": 24,
+      "selected_candidate": 0,
+      "closing_contacts": 2,
+      "min_hold_height_m": 0.1771253131670555,
+      "bilateral_contact_fraction": 1.0,
+      "place_distance_m": 0.001156034064257146,
+      "final_speed_m_s": 2.3939914706158127e-05,
+      "released": true,
+      "table_contact": true,
+      "sensing": {
+        "source": "simulation_geometry_material_or_control_study",
+        "used_frames": 0
+      }
+    }
+  ],
+  "recovery_actions": [],
+  "attempt_count": 1,
+  "reset_count": 1,
+  "initial_qpos": [
+    -7.399992681207679e-13,
+    -0.4000000000000091,
+    -9.488264494014899e-13,
+    -2.2000000000000015,
+    -6.784520720154882e-13,
+    1.8000000000000014,
+    0.7853979999999966,
+    0.04000000013599729,
+    0.04000000076113209,
+    -5.0,
+    -5.0,
+    -5.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.03581307926711167,
+    -0.047242837044350665,
+    -0.0071909850424876805,
+    0.03582935796021109,
+    -0.047248894305325854,
+    -0.007402568815429376,
+    0.040346834619175424,
+    -0.11903973251594312,
+    -0.0071908618404235725,
+    0.04035338984028761,
+    -0.11904313163354467,
+    -0.007405276584198972,
+    -0.03597410324101837,
+    -0.0517729779732834,
+    -0.007175916582010193,
+    -0.03596711597614568,
+    -0.051777657692064806,
+    -0.007387176674640461,
+    -0.03145063902010373,
+    -0.12356166602310385,
+    -0.007190557815396248,
+    -0.031439548041523054,
+    -0.12357327108014081,
+    -0.007399901467476953
+  ],
+  "initial_center": [
+    0.4821889401591636,
+    -0.08540752742292022,
+    0.018707089857142385
+  ],
+  "reference_height_m": 0.018707089857142385,
+  "object_kind": "soft",
+  "asset_seed": 1,
+  "material": {
+    "mass_kg": 0.05,
+    "friction": 1.2,
+    "delay_steps": 0
+  },
+  "physical_model": "Saint_Venant_Kirchhoff_trilinear_flex",
+  "max_edge_strain": 0.058848868325414694,
+  "max_finger_normal_force_n": 1.9709977477233451,
+  "peak_actuator_force_n": 4.000421921247618,
+  "controller": {
+    "feedback_adjustments": 8015,
+    "contact_loss_stops": 0,
+    "injected_partial_closures": 0
+  },
+  "hinge_excursion_rad": 0.0,
+  "total_time_s": 26.94325260000187
+}

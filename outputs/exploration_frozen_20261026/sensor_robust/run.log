@@ -1,0 +1,13 @@
+sensor_robust 1/12: SLIP_DETECTED
+sensor_robust 2/12: SUCCESS
+sensor_robust 3/12: SUCCESS
+sensor_robust 4/12: SUCCESS
+sensor_robust 5/12: SLIP_DETECTED
+sensor_robust 6/12: SUCCESS
+sensor_robust 7/12: SUCCESS
+sensor_robust 8/12: SUCCESS
+sensor_robust 9/12: SLIP_DETECTED
+sensor_robust 10/12: SUCCESS
+sensor_robust 11/12: SUCCESS
+sensor_robust 12/12: SUCCESS
+9/12; outputs\exploration_frozen_20261026\sensor_robust\trials_20261025_022551_849882.jsonl

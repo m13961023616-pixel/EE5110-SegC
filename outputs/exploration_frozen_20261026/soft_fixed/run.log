@@ -1,0 +1,7 @@
+soft_fixed 1/6: SUCCESS
+soft_fixed 2/6: SUCCESS
+soft_fixed 3/6: SLIP_DETECTED
+soft_fixed 4/6: SLIP_DETECTED
+soft_fixed 5/6: SLIP_DETECTED
+soft_fixed 6/6: SLIP_DETECTED
+2/6; outputs\exploration_frozen_20261026\soft_fixed\trials_20261025_022240_335053.jsonl

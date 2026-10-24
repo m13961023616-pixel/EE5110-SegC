@@ -1,0 +1,276 @@
+{
+  "success": true,
+  "failure_stage": "SUCCESS",
+  "executed_stages": [
+    "PRE_GRASP",
+    "APPROACH",
+    "LIFT",
+    "TRANSFER",
+    "LOWER",
+    "RETREAT"
+  ],
+  "candidate_rejections": [],
+  "estimated_pose": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.4309953159322061
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.00013550044446344078
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.018701908486901272
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "candidate_count": 24,
+  "selected_candidate": 0,
+  "closing_contacts": 2,
+  "min_hold_height_m": 0.17734197437219995,
+  "bilateral_contact_fraction": 1.0,
+  "place_distance_m": 0.00042529931137185573,
+  "final_speed_m_s": 1.7233846201854375e-06,
+  "released": true,
+  "table_contact": true,
+  "sensing": {
+    "source": "simulation_geometry_material_or_control_study",
+    "used_frames": 0
+  },
+  "first_attempt_success": true,
+  "attempts": [
+    {
+      "success": true,
+      "failure_stage": "SUCCESS",
+      "executed_stages": [
+        "PRE_GRASP",
+        "APPROACH",
+        "LIFT",
+        "TRANSFER",
+        "LOWER",
+        "RETREAT"
+      ],
+      "candidate_rejections": [],
+      "estimated_pose": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.4309953159322061
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.00013550044446344078
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.018701908486901272
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "candidate_count": 24,
+      "selected_candidate": 0,
+      "closing_contacts": 2,
+      "min_hold_height_m": 0.17734197437219995,
+      "bilateral_contact_fraction": 1.0,
+      "place_distance_m": 0.00042529931137185573,
+      "final_speed_m_s": 1.7233846201854375e-06,
+      "released": true,
+      "table_contact": true,
+      "sensing": {
+        "source": "simulation_geometry_material_or_control_study",
+        "used_frames": 0
+      }
+    }
+  ],
+  "recovery_actions": [],
+  "attempt_count": 1,
+  "reset_count": 1,
+  "initial_qpos": [
+    1.489008383133033e-13,
+    -0.3999999999999882,
+    -1.0092599424033392e-13,
+    -2.2000000000000024,
+    7.840912565005029e-13,
+    1.799999999999999,
+    0.7853980000000165,
+    0.04000000625178379,
+    0.04000000620702239,
+    -5.0,
+    -5.0,
+    -5.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    -0.016946644812512277,
+    0.03942605202022176,
+    -0.007188971110069068,
+    -0.016931535727786055,
+    0.039420032712761816,
+    -0.007411217786776587,
+    -0.009719540101210365,
+    -0.031928918088205534,
+    -0.0071909293275534475,
+    -0.009714275851208678,
+    -0.031933905864432593,
+    -0.0074161761443260555,
+    -0.08829307881445321,
+    0.03220318039093752,
+    -0.007175674129218316,
+    -0.08828786994981899,
+    0.03219905257736588,
+    -0.007399020425929202,
+    -0.08107780457959585,
+    -0.03914397661952095,
+    -0.007190195719325679,
+    -0.0810667253352995,
+    -0.0391575355322976,
+    -0.007412579319705113
+  ],
+  "initial_center": [
+    0.4309953159322061,
+    0.00013550044446344078,
+    0.018701908486901272
+  ],
+  "reference_height_m": 0.018701908486901272,
+  "object_kind": "soft",
+  "asset_seed": 300044,
+  "material": {
+    "mass_kg": 0.05,
+    "friction": 1.2,
+    "delay_steps": 0
+  },
+  "physical_model": "Saint_Venant_Kirchhoff_trilinear_flex",
+  "max_edge_strain": 0.0449711029915153,
+  "max_finger_normal_force_n": 1.8721397790971588,
+  "peak_actuator_force_n": 3.994796952271292,
+  "controller": {
+    "feedback_adjustments": 13438,
+    "contact_loss_stops": 0,
+    "injected_partial_closures": 0
+  },
+  "hinge_excursion_rad": 0.0,
+  "total_time_s": 90.62408590000268,
+  "pairing_state": [
+    1.489008383133033e-13,
+    -0.3999999999999882,
+    -1.0092599424033392e-13,
+    -2.2000000000000024,
+    7.840912565005029e-13,
+    1.799999999999999,
+    0.7853980000000165,
+    0.04000000625178379,
+    0.04000000620702239,
+    -5.0,
+    -5.0,
+    -5.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    -0.016946644812512277,
+    0.03942605202022176,
+    -0.007188971110069068,
+    -0.016931535727786055,
+    0.039420032712761816,
+    -0.007411217786776587,
+    -0.009719540101210365,
+    -0.031928918088205534,
+    -0.0071909293275534475,
+    -0.009714275851208678,
+    -0.031933905864432593,
+    -0.0074161761443260555,
+    -0.08829307881445321,
+    0.03220318039093752,
+    -0.007175674129218316,
+    -0.08828786994981899,
+    0.03219905257736588,
+    -0.007399020425929202,
+    -0.08107780457959585,
+    -0.03914397661952095,
+    -0.007190195719325679,
+    -0.0810667253352995,
+    -0.0391575355322976,
+    -0.007412579319705113
+  ],
+  "young_modulus_pa": 52249.11826143754,
+  "flex_vertices": 27,
+  "elastic_node_dofs": 24,
+  "trial_id": 1,
+  "scene_seed": 1044,
+  "sensor_seed": 100044,
+  "object_robot_welds": 0,
+  "observation_scope": "simulation_geometry_to_isolate_mechanics",
+  "collision_map_scope": "simulator_geometry",
+  "config": {
+    "timestep": 0.001,
+    "table_top": 0.0,
+    "object_size": 0.04,
+    "object_mass": 0.05,
+    "spawn_x": [
+      0.43,
+      0.51
+    ],
+    "spawn_y": [
+      -0.09,
+      0.015
+    ],
+    "pregrasp_clearance": 0.14,
+    "lift_distance": 0.16,
+    "success_height": 0.08,
+    "hold_seconds": 1.0,
+    "position_tolerance": 0.002,
+    "rotation_tolerance": 0.025,
+    "tracking_tolerance": 0.012,
+    "tracking_rotation_tolerance": 0.1,
+    "max_joint_speed": 0.5,
+    "max_joint_acceleration": 2.0,
+    "place_xy": [
+      0.48,
+      0.22
+    ],
+    "place_tolerance": 0.055,
+    "place_clearance": 0.008,
+    "gripper_stiffness": 1000.0,
+    "gripper_force_limit": 40.0,
+    "contact_impratio": 10.0,
+    "grip_preload": 4.0,
+    "grip_load_margin": 4.0,
+    "gravity_compensation": true,
+    "home": [
+      0.0,
+      -0.4,
+      0.0,
+      -2.2,
+      0.0,
+      1.8,
+      0.785398
+    ]
+  },
+  "case": "soft_adaptive",
+  "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+  "development_demonstration": true,
+  "excluded_from_frozen_evaluation": true
+}

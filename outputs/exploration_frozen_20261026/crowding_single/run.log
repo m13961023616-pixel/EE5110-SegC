@@ -1,0 +1,7 @@
+crowding_single 1/6: PLANNING_FAIL
+crowding_single 2/6: SUCCESS
+crowding_single 3/6: SUCCESS
+crowding_single 4/6: SUCCESS
+crowding_single 5/6: SUCCESS
+crowding_single 6/6: SUCCESS
+5/6; outputs\exploration_frozen_20261026\crowding_single\trials_20261025_022206_291018.jsonl

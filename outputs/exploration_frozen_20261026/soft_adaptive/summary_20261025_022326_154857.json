@@ -1,0 +1,38 @@
+{
+  "version": "3.0.0",
+  "case": "soft_adaptive",
+  "case_definition": {
+    "topic": "deformable",
+    "kind": "soft",
+    "adaptive": true,
+    "trials": 6
+  },
+  "seed": 20261026,
+  "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+  "trials": 6,
+  "successes": 6,
+  "first_successes": 6,
+  "success_rate_95pct_interval": [
+    0.6096569663469354,
+    0.9999999999999999
+  ],
+  "failures": {},
+  "mean_total_time_s": 22.63418331666738,
+  "gates": {
+    "lift_m": 0.08,
+    "hold_s": 1.0,
+    "bilateral_fraction": 0.95,
+    "place_m": 0.055,
+    "speed_m_s": 0.02,
+    "actuator_force_n": 40.0,
+    "soft_edge_strain": 0.4,
+    "neighbor_displacement_m": 0.02,
+    "target_penetration_m": 0.001,
+    "unsafe_contact_steps": 0
+  },
+  "python": "3.12.15",
+  "mujoco": "3.15.0",
+  "numpy": "2.5.3",
+  "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+  "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106"
+}

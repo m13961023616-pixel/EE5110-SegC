@@ -1,0 +1,13 @@
+force_adaptive 1/12: SUCCESS
+force_adaptive 2/12: SUCCESS
+force_adaptive 3/12: SUCCESS
+force_adaptive 4/12: SUCCESS
+force_adaptive 5/12: SUCCESS
+force_adaptive 6/12: SUCCESS
+force_adaptive 7/12: SUCCESS
+force_adaptive 8/12: SUCCESS
+force_adaptive 9/12: SUCCESS
+force_adaptive 10/12: SUCCESS
+force_adaptive 11/12: SUCCESS
+force_adaptive 12/12: SUCCESS
+12/12; outputs\exploration_frozen_20261026\force_adaptive\trials_20261025_022429_157455.jsonl

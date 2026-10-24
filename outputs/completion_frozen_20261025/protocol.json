@@ -1,0 +1,42 @@
+{
+  "version": "2.1.0",
+  "seed": 20261025,
+  "source_sha256": "0f386f1f87282a2e9485fc9254487ca93a4f58c04f614627816926a1300005b9",
+  "design": "paired_candidate_strategy_ablation",
+  "mode": "active",
+  "cases": {
+    "baseline_clutter": {
+      "scene": "clutter",
+      "grasps": "baseline",
+      "trials": 60
+    },
+    "local_clutter": {
+      "scene": "clutter",
+      "grasps": "local",
+      "trials": 60
+    },
+    "baseline_dense": {
+      "scene": "dense",
+      "grasps": "baseline",
+      "trials": 30
+    },
+    "local_dense": {
+      "scene": "dense",
+      "grasps": "local",
+      "trials": 30
+    }
+  },
+  "development_seed": 20261601,
+  "success_gates": {
+    "lift_m": 0.08,
+    "hold_s": 1.0,
+    "bilateral_fraction": 0.95,
+    "place_m": 0.055,
+    "speed_m_s": 0.02,
+    "force_n": 40.0,
+    "neighbor_m": 0.02,
+    "target_penetration_m": 0.001,
+    "unsafe_contact_steps": 0
+  },
+  "completed": true
+}

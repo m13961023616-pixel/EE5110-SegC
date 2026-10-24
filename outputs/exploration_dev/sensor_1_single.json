@@ -1,0 +1,246 @@
+{
+  "success": false,
+  "failure_stage": "SLIP_DETECTED",
+  "executed_stages": [
+    "PRE_GRASP",
+    "APPROACH",
+    "LIFT",
+    "TRANSFER"
+  ],
+  "candidate_rejections": [],
+  "estimated_pose": [
+    [
+      0.03470675947518185,
+      -0.9993975389437038,
+      0.0,
+      0.47819103661335705
+    ],
+    [
+      0.9993975389437038,
+      0.03470675947518185,
+      0.0,
+      -0.0903702105587625
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.019927258126434057
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "candidate_count": 24,
+  "selected_candidate": 0,
+  "closing_contacts": 2,
+  "min_hold_height_m": 0.17389453756749715,
+  "bilateral_contact_fraction": 1.0,
+  "reason": "Bilateral physical contact lost for 60 ms",
+  "sensing": {
+    "source": "unmasked_range_points",
+    "segmentation": "voxel_foreground_connected_components",
+    "template": "none",
+    "used_frames": 1,
+    "used_views": 1,
+    "physical_capture_advances_time": false,
+    "corruption": {
+      "resolution": 80,
+      "dropout": 0.35,
+      "noise_m": 0.001,
+      "stripe_fraction": 0.22,
+      "outlier_fraction": 0.04,
+      "calibration_bias_m": 0.002,
+      "frames_per_view": 8
+    },
+    "calibration_bias_m": [
+      -0.0006918921411332977,
+      -0.0016449596748827843,
+      -0.000812343558771151
+    ],
+    "returns_per_frame": [
+      3297
+    ],
+    "estimated_pose": [
+      [
+        0.03470675947518185,
+        -0.9993975389437038,
+        0.0,
+        0.47819103661335705
+      ],
+      [
+        0.9993975389437038,
+        0.03470675947518185,
+        0.0,
+        -0.0903702105587625
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.019927258126434057
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "measured_dimensions_m": [
+      0.06679746363060285,
+      0.03872286446308207,
+      0.040468490315824696
+    ]
+  },
+  "first_attempt_success": false,
+  "attempts": [
+    {
+      "success": false,
+      "failure_stage": "SLIP_DETECTED",
+      "executed_stages": [
+        "PRE_GRASP",
+        "APPROACH",
+        "LIFT",
+        "TRANSFER"
+      ],
+      "candidate_rejections": [],
+      "estimated_pose": [
+        [
+          0.03470675947518185,
+          -0.9993975389437038,
+          0.0,
+          0.47819103661335705
+        ],
+        [
+          0.9993975389437038,
+          0.03470675947518185,
+          0.0,
+          -0.0903702105587625
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.019927258126434057
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "candidate_count": 24,
+      "selected_candidate": 0,
+      "closing_contacts": 2,
+      "min_hold_height_m": 0.17389453756749715,
+      "bilateral_contact_fraction": 1.0,
+      "reason": "Bilateral physical contact lost for 60 ms",
+      "sensing": {
+        "source": "unmasked_range_points",
+        "segmentation": "voxel_foreground_connected_components",
+        "template": "none",
+        "used_frames": 1,
+        "used_views": 1,
+        "physical_capture_advances_time": false,
+        "corruption": {
+          "resolution": 80,
+          "dropout": 0.35,
+          "noise_m": 0.001,
+          "stripe_fraction": 0.22,
+          "outlier_fraction": 0.04,
+          "calibration_bias_m": 0.002,
+          "frames_per_view": 8
+        },
+        "calibration_bias_m": [
+          -0.0006918921411332977,
+          -0.0016449596748827843,
+          -0.000812343558771151
+        ],
+        "returns_per_frame": [
+          3297
+        ],
+        "estimated_pose": [
+          [
+            0.03470675947518185,
+            -0.9993975389437038,
+            0.0,
+            0.47819103661335705
+          ],
+          [
+            0.9993975389437038,
+            0.03470675947518185,
+            0.0,
+            -0.0903702105587625
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.019927258126434057
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "measured_dimensions_m": [
+          0.06679746363060285,
+          0.03872286446308207,
+          0.040468490315824696
+        ]
+      }
+    }
+  ],
+  "recovery_actions": [],
+  "attempt_count": 1,
+  "reset_count": 1,
+  "initial_qpos": [
+    6.375385621530392e-16,
+    -0.4,
+    1.5240722279506718e-15,
+    -2.2,
+    -1.011360382890348e-15,
+    1.8,
+    0.7853979999999995,
+    0.04000001055187663,
+    0.040000010555370724,
+    0.4821681644496333,
+    -0.0854055870414742,
+    0.01947812307796615,
+    0.06288328191631158,
+    0.0003484578341213578,
+    2.1955626203490384e-05,
+    -0.9980208269122047
+  ],
+  "initial_center": [
+    0.4778280711991418,
+    -0.08595468804216326,
+    0.018931333984982993
+  ],
+  "reference_height_m": 0.018931333984982993,
+  "object_kind": "novel",
+  "asset_seed": 1,
+  "material": {
+    "mass_kg": 0.06,
+    "friction": 1.2,
+    "delay_steps": 0
+  },
+  "physical_model": "rigid_procedural",
+  "max_edge_strain": 0.0,
+  "max_finger_normal_force_n": 1.7304219222312471,
+  "peak_actuator_force_n": 3.636597632179619,
+  "controller": {
+    "feedback_adjustments": 0,
+    "contact_loss_stops": 1,
+    "injected_partial_closures": 0
+  },
+  "hinge_excursion_rad": 0.0,
+  "total_time_s": 0.9469393999970634
+}

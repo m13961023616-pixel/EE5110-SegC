@@ -1,0 +1,13 @@
+sensor_single 1/12: PERCEPTION_FAIL
+sensor_single 2/12: PERCEPTION_FAIL
+sensor_single 3/12: SUCCESS
+sensor_single 4/12: SUCCESS
+sensor_single 5/12: SUCCESS
+sensor_single 6/12: SUCCESS
+sensor_single 7/12: PERCEPTION_FAIL
+sensor_single 8/12: PERCEPTION_FAIL
+sensor_single 9/12: PERCEPTION_FAIL
+sensor_single 10/12: SUCCESS
+sensor_single 11/12: PERCEPTION_FAIL
+sensor_single 12/12: SUCCESS
+6/12; outputs\exploration_frozen_20261026\sensor_single\trials_20261025_022543_419965.jsonl

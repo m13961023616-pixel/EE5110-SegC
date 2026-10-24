@@ -1,0 +1,466 @@
+[
+  {
+    "target": [
+      [
+        0.03915111848407723,
+        0.9992333010470806,
+        0.0,
+        0.4669300011935208
+      ],
+      [
+        0.9992333010470806,
+        -0.03915111848407723,
+        0.0,
+        -0.06775745263206098
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        0.06393174239275445
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "seeds": [
+      {
+        "seed_joint": null,
+        "delta": 0,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0007276953790672718
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0006944642023623119
+          ]
+        ]
+      },
+      {
+        "seed_joint": 2,
+        "delta": 0.7,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0008170104555169434
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0007959251753402063
+          ]
+        ]
+      },
+      {
+        "seed_joint": 2,
+        "delta": -0.7,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0007866526557983287
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0007543627637637738
+          ]
+        ]
+      },
+      {
+        "seed_joint": 2,
+        "delta": 1.4,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_0",
+            "object_tomato_soup_can",
+            -0.0005432346448653219
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_0",
+            "object_tomato_soup_can",
+            -0.0005360778694406461
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0012812444376028402
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0012536872810154065
+          ]
+        ]
+      },
+      {
+        "seed_joint": 2,
+        "delta": -1.4,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0008161948493629848
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0007842462185960583
+          ]
+        ]
+      },
+      {
+        "seed_joint": 0,
+        "delta": 0.7,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0008042275429632643
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0007716903447431959
+          ]
+        ]
+      },
+      {
+        "seed_joint": 0,
+        "delta": -0.7,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0007939520766690597
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0007619954329401551
+          ]
+        ]
+      },
+      {
+        "seed_joint": 4,
+        "delta": 0.7,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0008699632710850141
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0008325272534961465
+          ]
+        ]
+      },
+      {
+        "seed_joint": 4,
+        "delta": -0.7,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.000696507730142451
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0006663472267757226
+          ]
+        ]
+      }
+    ],
+    "preview": false
+  },
+  {
+    "target": [
+      [
+        -0.03915111848407723,
+        -0.9992333010470806,
+        0.0,
+        0.4670853353786667
+      ],
+      [
+        -0.9992333010470806,
+        0.03915111848407723,
+        0.0,
+        -0.06777514708705709
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        0.06372939210987864
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "seeds": [
+      {
+        "seed_joint": null,
+        "delta": 0,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.00088284731327136
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0009350130867850769
+          ]
+        ]
+      },
+      {
+        "seed_joint": 2,
+        "delta": 0.7,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0009414180892157308
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0009920272216145255
+          ]
+        ]
+      },
+      {
+        "seed_joint": 2,
+        "delta": -0.7,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0009381793792070587
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.000989042487102855
+          ]
+        ]
+      },
+      {
+        "seed_joint": 2,
+        "delta": 1.4,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0009119096627400756
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0009639167177114046
+          ]
+        ]
+      },
+      {
+        "seed_joint": 2,
+        "delta": -1.4,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_0",
+            "object_tomato_soup_can",
+            -0.0005953495479548475
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_0",
+            "object_tomato_soup_can",
+            -0.0005558580052248521
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_0",
+            "object_tomato_soup_can",
+            -0.0006649109731162714
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_0",
+            "object_tomato_soup_can",
+            -0.0006808117413713554
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0013114448158781597
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0013889362289783277
+          ]
+        ]
+      },
+      {
+        "seed_joint": 0,
+        "delta": 0.7,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0009414861977318293
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0009923109850890769
+          ]
+        ]
+      },
+      {
+        "seed_joint": 0,
+        "delta": -0.7,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0009449517062589349
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0009952450415612888
+          ]
+        ]
+      },
+      {
+        "seed_joint": 4,
+        "delta": 0.7,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0009090195138758756
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0009669245808491818
+          ]
+        ]
+      },
+      {
+        "seed_joint": 4,
+        "delta": -0.7,
+        "contacts": [
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0009763062070122434
+          ],
+          [
+            "",
+            "hand",
+            "tomato_soup_can_collision_geom_1",
+            "object_tomato_soup_can",
+            -0.0010243013112096447
+          ]
+        ]
+      }
+    ],
+    "preview": false
+  }
+]

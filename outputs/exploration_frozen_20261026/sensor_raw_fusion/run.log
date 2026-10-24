@@ -1,0 +1,13 @@
+sensor_raw_fusion 1/12: PLANNING_FAIL
+sensor_raw_fusion 2/12: PLANNING_FAIL
+sensor_raw_fusion 3/12: PLANNING_FAIL
+sensor_raw_fusion 4/12: PLANNING_FAIL
+sensor_raw_fusion 5/12: PLANNING_FAIL
+sensor_raw_fusion 6/12: PLANNING_FAIL
+sensor_raw_fusion 7/12: PLANNING_FAIL
+sensor_raw_fusion 8/12: SUCCESS
+sensor_raw_fusion 9/12: PLANNING_FAIL
+sensor_raw_fusion 10/12: PLANNING_FAIL
+sensor_raw_fusion 11/12: PLANNING_FAIL
+sensor_raw_fusion 12/12: PLANNING_FAIL
+1/12; outputs\exploration_frozen_20261026\sensor_raw_fusion\trials_20261025_022544_237539.jsonl

@@ -1,0 +1,2 @@
+trial_id,object_id,success,failure_stage,lift_success,place_success,candidate_count,planning_time_s,execution_time_s,total_time_s,reason
+1,foam_brick,True,SUCCESS,True,True,1,0.24025760000222363,20.636403899996367,24.909425199999532,

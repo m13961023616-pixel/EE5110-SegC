@@ -1,6 +1,6 @@
 # Third-party assets and provenance
 
-The project uses the third-party assets below. Their original notices are retained in the offline submission. Public availability of this project does not transfer ownership of these assets to the project team.
+The project uses the third-party assets below. Their original notices are retained in the offline submission and the complete delivery branch, which now also contains the pinned models and textures at the user's request. Public availability of this project does not transfer ownership of these assets to the project team.
 
 | Asset | Source and revision | Notice / attribution |
 |---|---|---|

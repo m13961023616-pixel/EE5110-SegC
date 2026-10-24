@@ -1,0 +1,13 @@
+novel_points 1/12: SUCCESS
+novel_points 2/12: SUCCESS
+novel_points 3/12: SUCCESS
+novel_points 4/12: SUCCESS
+novel_points 5/12: SLIP_DETECTED
+novel_points 6/12: SUCCESS
+novel_points 7/12: SUCCESS
+novel_points 8/12: SUCCESS
+novel_points 9/12: SUCCESS
+novel_points 10/12: SUCCESS
+novel_points 11/12: SUCCESS
+novel_points 12/12: SUCCESS
+11/12; outputs\exploration_frozen_20261026\novel_points\trials_20261025_022342_746500.jsonl

@@ -11,3 +11,9 @@
 *.csv text eol=lf
 requirements*.txt text eol=lf
 .gitignore text eol=lf
+
+# Preserve locked third-party files and delivered manifests byte for byte.
+assets/panda/** -text
+assets/ycb/** -text
+deliverables/** -text
+outputs/** -text

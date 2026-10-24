@@ -1,0 +1,146 @@
+{
+  "trial_id": 1,
+  "object_id": "foam_brick",
+  "task": "place",
+  "success": false,
+  "lift_success": false,
+  "place_success": false,
+  "failure_stage": "PLANNING_FAIL",
+  "planning_time_s": 0.41475670000363607,
+  "execution_time_s": 0.0,
+  "executed_stages": [],
+  "spawn_pose": [
+    [
+      -0.9988543012728808,
+      0.04767784996412591,
+      -0.004111867151002558,
+      0.46460936477262826
+    ],
+    [
+      -0.04767670616638339,
+      -0.9988627485616757,
+      -0.0003757990727636469,
+      -0.06676823213194258
+    ],
+    [
+      -0.004125108215978756,
+      -0.00017932823829077568,
+      0.9999914756254643,
+      0.02532016579825742
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "estimated_pose": [
+    [
+      0.9992333010470806,
+      0.039151118484077166,
+      0.0,
+      0.4667389678151577
+    ],
+    [
+      -0.039151118484077166,
+      0.9992333010470806,
+      0.0,
+      -0.06805900671331051
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.025595802156752594
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "dimensions_m": [
+    0.051945486,
+    0.07752357700000001,
+    0.051169528000000006
+  ],
+  "mass_kg": 0.028,
+  "candidate_count": 14,
+  "candidate_rejections": [
+    {
+      "index": 0,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    },
+    {
+      "index": 1,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    },
+    {
+      "index": 2,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    },
+    {
+      "index": 3,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    },
+    {
+      "index": 4,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    },
+    {
+      "index": 5,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    },
+    {
+      "index": 6,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    },
+    {
+      "index": 7,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    },
+    {
+      "index": 8,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    },
+    {
+      "index": 9,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    },
+    {
+      "index": 10,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    },
+    {
+      "index": 11,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    },
+    {
+      "index": 12,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    },
+    {
+      "index": 13,
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds fail convergence or static collision checks"
+    }
+  ],
+  "reason": "All candidate approaches rejected",
+  "total_time_s": 0.6240649999963352,
+  "peak_gripper_force_n": 1.0718181897573231e-09
+}

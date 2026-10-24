@@ -1,0 +1,141 @@
+{
+  "generated_at": "2026-10-25T03:20:31.982650",
+  "scope": "development_demonstrations_excluded_from_formal_studies",
+  "clips": [
+    {
+      "file": "01_baseline/01_workcell.mp4",
+      "label": "01 工作台与机械臂",
+      "duration_s": 8.0,
+      "playback_rate": 1.0,
+      "source": "outputs/editing_materials/generated/workcell.mp4",
+      "removed_intro_s": 0,
+      "sha256": "59f39336688f2d5ff79abefe55da2a7e941163b1ec6fd9c2a12f6e14552407ac"
+    },
+    {
+      "file": "01_baseline/02_random_YCB_objects.mp4",
+      "label": "02 六种公开 YCB 物体随机摆放",
+      "duration_s": 18.0,
+      "playback_rate": 1.0,
+      "source": "outputs/editing_materials/generated/random_objects.mp4",
+      "removed_intro_s": 0,
+      "sha256": "7deef4bd52f153968a6786886cc6c36b3d052212743ce3ca23b7bd8fd89aac2d"
+    },
+    {
+      "file": "01_baseline/03_grasp_candidates.mp4",
+      "label": "03 算法生成的抓取候选",
+      "duration_s": 12.0,
+      "playback_rate": 1.0,
+      "source": "outputs/editing_materials/generated/candidates.mp4",
+      "removed_intro_s": 0,
+      "sha256": "6496ebc4b4450a44fc9392a709a3806e6f18bebdc3bb6614f62b21173ea3e182"
+    },
+    {
+      "file": "01_baseline/04_pick_and_place.mp4",
+      "label": "04 物理抓取、提升、搬运与放置",
+      "duration_s": 40.75,
+      "playback_rate": 1.0,
+      "source": "outputs/editing_materials/generated/pick_place.mp4",
+      "removed_intro_s": 2,
+      "sha256": "e3c29d65b293701c7d56f355f3ff9620244f38577057fc51cda156166874e0ae"
+    },
+    {
+      "file": "01_baseline/05_randomized_trials.mp4",
+      "label": "05 六次平衡随机试验（保留失败）",
+      "duration_s": 237.3,
+      "playback_rate": 1.0,
+      "source": "outputs/editing_materials/generated/random_trials.mp4",
+      "removed_intro_s": 2,
+      "sha256": "4b46c2008c9f20fbb3bd0332b715b1ae7cd40f57099f36cb1c4698c573762e04"
+    },
+    {
+      "file": "02_explorations/01_crowding_occlusion.mp4",
+      "label": "拓展 01 密集遮挡",
+      "duration_s": 51.5,
+      "playback_rate": 1.0,
+      "source": "outputs/exploration_demo/crowding_single.mp4",
+      "removed_intro_s": 2,
+      "sha256": "bc2519657846285b0b0114e33364f2d4919cc9534d8e030fa52ca4a33d865bcb"
+    },
+    {
+      "file": "02_explorations/02_deformable.mp4",
+      "label": "拓展 02 真正可变形物体",
+      "duration_s": 40.3,
+      "playback_rate": 1.0,
+      "source": "outputs/exploration_demo/soft_adaptive.mp4",
+      "removed_intro_s": 2,
+      "sha256": "4e3a61d9dd1ecfe80411da415e8af14d0f1cf2b3079c0e40cc419758ea443077"
+    },
+    {
+      "file": "02_explorations/03_articulated.mp4",
+      "label": "拓展 03 可动铰接物体",
+      "duration_s": 39.8,
+      "playback_rate": 1.0,
+      "source": "outputs/exploration_demo/articulated.mp4",
+      "removed_intro_s": 2,
+      "sha256": "5c9ddf07751920e36eaaa028cdeebdf70ee82cd6b97a6091a391c32c3a606633"
+    },
+    {
+      "file": "02_explorations/04_unseen_shapes.mp4",
+      "label": "拓展 04 未见不规则形状",
+      "duration_s": 39.85,
+      "playback_rate": 1.0,
+      "source": "outputs/exploration_demo/novel_points.mp4",
+      "removed_intro_s": 2,
+      "sha256": "1c0f16e1d957b56dd2b2e4102e217e2b68a8826109b67aaa282503d985d75480"
+    },
+    {
+      "file": "02_explorations/05_force_feedback.mp4",
+      "label": "拓展 05 力/接触反馈",
+      "duration_s": 42.1,
+      "playback_rate": 1.0,
+      "source": "outputs/exploration_demo/force_adaptive.mp4",
+      "removed_intro_s": 2,
+      "sha256": "5bf992640c4c39baf6cd992c41cc8d28dc9a071bd6f98f0684c46f226377befe"
+    },
+    {
+      "file": "02_explorations/06_failure_recovery.mp4",
+      "label": "拓展 06 故障检测与同场景重抓",
+      "duration_s": 60.9,
+      "playback_rate": 1.0,
+      "source": "outputs/exploration_demo/recovery_retry.mp4",
+      "removed_intro_s": 2,
+      "sha256": "dda3fa610dd51d18cd268b4c230912881c0eb17b978d46efc798fdfc7b528c83"
+    },
+    {
+      "file": "02_explorations/07_robust_sensing.mp4",
+      "label": "拓展 07 相关深度误差与稳健融合",
+      "duration_s": 41.9,
+      "playback_rate": 1.0,
+      "source": "outputs/exploration_demo/sensor_robust.mp4",
+      "removed_intro_s": 2,
+      "sha256": "56060e2f94e351f28a5b3be410c6143893913118db9dc967959312d6c4d45065"
+    },
+    {
+      "file": "03_comparisons/01_rejected_grasps.mp4",
+      "label": "对比：原候选被安全拒绝（机械臂不运动）",
+      "duration_s": 3.95,
+      "playback_rate": 1.0,
+      "source": "outputs/completion_demo_v21/baseline_failure.mp4",
+      "removed_intro_s": 2,
+      "sha256": "17b5698b85057d6777a5219d1afe8ea0e932b80783bad17f0371cba0b82d37d8"
+    },
+    {
+      "file": "03_comparisons/02_improved_grasps.mp4",
+      "label": "对比：同一场景改进候选后完成抓放",
+      "duration_s": 48.3,
+      "playback_rate": 1.0,
+      "source": "outputs/completion_demo_v21/local_recovery.mp4",
+      "removed_intro_s": 2,
+      "sha256": "1eb529affe5f6d35a1d7399eb248744db78194ec1f2407107bb34cb72a9dcc82"
+    },
+    {
+      "file": "03_comparisons/03_five_distractors.mp4",
+      "label": "对比：五个动态干扰物中的完整抓放",
+      "duration_s": 51.7,
+      "playback_rate": 1.0,
+      "source": "outputs/completion_demo_v21/dense_release.mp4",
+      "removed_intro_s": 2,
+      "sha256": "05d31fdd031dd73aa5e328d98ec3d339956c4fb7c99843d7221b71fecc4576ed"
+    }
+  ]
+}

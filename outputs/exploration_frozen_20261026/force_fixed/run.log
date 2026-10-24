@@ -1,0 +1,13 @@
+force_fixed 1/12: SUCCESS
+force_fixed 2/12: SUCCESS
+force_fixed 3/12: SUCCESS
+force_fixed 4/12: SUCCESS
+force_fixed 5/12: SUCCESS
+force_fixed 6/12: SLIP_DETECTED
+force_fixed 7/12: SUCCESS
+force_fixed 8/12: SUCCESS
+force_fixed 9/12: SUCCESS
+force_fixed 10/12: SLIP_DETECTED
+force_fixed 11/12: SUCCESS
+force_fixed 12/12: SUCCESS
+10/12; outputs\exploration_frozen_20261026\force_fixed\trials_20261025_022413_197525.jsonl

@@ -15,8 +15,11 @@ IK、路径规划、控制和任务结果验证职责分开，所有 pose 采用
 公开数据集随机选物体是正式课程 baseline 要求；primitive cube 是开发检查点。
 保留 failure_stage 和实验配置，报告结果时明确实验适用范围。
 
-不提交 `.venv`、`.idea`、凭据、原始课程附件和下载的机器人网格。
-模型版本固定在 assets/panda.lock.json；实验日志只精选必要证据纳入 docs/validation。
+不提交 `.venv`、`.idea`、凭据、原始课程附件、本机工具、缓存和临时解压副本。
+按用户 2026-10-25 明确要求，分支现在纳入模型/纹理及原许可证、完整交付视频/ZIP、剪辑素材和原始实验/录制输出。
+模型版本固定在 assets/panda.lock.json / assets/ycb.lock.json；冻结证据位于 docs/validation。
+assets/panda、assets/ycb、deliverables 和 outputs 使用字节保留属性，不能改变换行而破坏锁文件/素材哈希。
+提交文件变更前先暂存，再运行 scripts/build_file_inventory.py 更新 PROJECT_FILES.json，并暂存索引；CI 会校验完整分支的实际文件内容。
 
 F 盘 Git 操作可能需要 `-c safe.directory=F:/NUS/Semester I/EE5110/Segment C/CA`。
 使用具体项目路径例外，不设置全局 `safe.directory=*`。
