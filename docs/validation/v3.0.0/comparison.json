@@ -1,0 +1,751 @@
+{
+  "version": "3.0.0",
+  "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+  "seed": 20261026,
+  "episodes": 126,
+  "groups": {
+    "crowding_single": {
+      "version": "3.0.0",
+      "case": "crowding_single",
+      "case_definition": {
+        "topic": "crowding",
+        "kind": "crowding",
+        "sensing": "single",
+        "trials": 6
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 6,
+      "successes": 5,
+      "first_successes": 5,
+      "success_rate_95pct_interval": [
+        0.43649056343635395,
+        0.9699474141282697
+      ],
+      "failures": {
+        "PLANNING_FAIL": 1
+      },
+      "mean_total_time_s": 13.04021991666741,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.0,
+      "failure_trials": [
+        1
+      ],
+      "mean_max_normal_force_n": 0.0,
+      "mean_hinge_excursion_rad": 0.0
+    },
+    "crowding_active": {
+      "version": "3.0.0",
+      "case": "crowding_active",
+      "case_definition": {
+        "topic": "crowding",
+        "kind": "crowding",
+        "sensing": "active",
+        "trials": 6
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 6,
+      "successes": 3,
+      "first_successes": 3,
+      "success_rate_95pct_interval": [
+        0.18761280689940868,
+        0.8123871931005913
+      ],
+      "failures": {
+        "PLANNING_FAIL": 1,
+        "PLACE_FAIL": 2
+      },
+      "mean_total_time_s": 12.994583700001385,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.0,
+      "failure_trials": [
+        1,
+        2,
+        3
+      ],
+      "mean_max_normal_force_n": 0.0,
+      "mean_hinge_excursion_rad": 0.0
+    },
+    "articulated": {
+      "version": "3.0.0",
+      "case": "articulated",
+      "case_definition": {
+        "topic": "articulated",
+        "kind": "articulated",
+        "adaptive": true,
+        "trials": 6
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 6,
+      "successes": 6,
+      "first_successes": 6,
+      "success_rate_95pct_interval": [
+        0.6096569663469354,
+        0.9999999999999999
+      ],
+      "failures": {},
+      "mean_total_time_s": 5.432776000000255,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.0,
+      "failure_trials": [],
+      "mean_max_normal_force_n": 5.009834851469394,
+      "mean_hinge_excursion_rad": 0.12367858223061824
+    },
+    "soft_fixed": {
+      "version": "3.0.0",
+      "case": "soft_fixed",
+      "case_definition": {
+        "topic": "deformable",
+        "kind": "soft",
+        "trials": 6
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 6,
+      "successes": 2,
+      "first_successes": 2,
+      "success_rate_95pct_interval": [
+        0.09676933255921683,
+        0.7000116786584712
+      ],
+      "failures": {
+        "SLIP_DETECTED": 4
+      },
+      "mean_total_time_s": 10.16638785000032,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.03668376398830355,
+      "failure_trials": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "mean_max_normal_force_n": 1.2478339346811351,
+      "mean_hinge_excursion_rad": 0.0
+    },
+    "soft_adaptive": {
+      "version": "3.0.0",
+      "case": "soft_adaptive",
+      "case_definition": {
+        "topic": "deformable",
+        "kind": "soft",
+        "adaptive": true,
+        "trials": 6
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 6,
+      "successes": 6,
+      "first_successes": 6,
+      "success_rate_95pct_interval": [
+        0.6096569663469354,
+        0.9999999999999999
+      ],
+      "failures": {},
+      "mean_total_time_s": 22.63418331666738,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.04903995288571348,
+      "failure_trials": [],
+      "mean_max_normal_force_n": 1.7727124323191532,
+      "mean_hinge_excursion_rad": 0.0
+    },
+    "novel_prior": {
+      "version": "3.0.0",
+      "case": "novel_prior",
+      "case_definition": {
+        "topic": "novel",
+        "kind": "novel",
+        "sensing": "robust",
+        "nominal_box": true,
+        "trials": 12
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 12,
+      "successes": 11,
+      "first_successes": 11,
+      "success_rate_95pct_interval": [
+        0.6461140782014047,
+        0.9851352905492264
+      ],
+      "failures": {
+        "SLIP_DETECTED": 1
+      },
+      "mean_total_time_s": 3.7079057666657413,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.0,
+      "failure_trials": [
+        5
+      ],
+      "mean_max_normal_force_n": 3.7689650927525316,
+      "mean_hinge_excursion_rad": 0.0
+    },
+    "novel_points": {
+      "version": "3.0.0",
+      "case": "novel_points",
+      "case_definition": {
+        "topic": "novel",
+        "kind": "novel",
+        "sensing": "robust",
+        "trials": 12
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 12,
+      "successes": 11,
+      "first_successes": 11,
+      "success_rate_95pct_interval": [
+        0.6461140782014047,
+        0.9851352905492264
+      ],
+      "failures": {
+        "SLIP_DETECTED": 1
+      },
+      "mean_total_time_s": 3.6879561333328943,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.0,
+      "failure_trials": [
+        5
+      ],
+      "mean_max_normal_force_n": 4.099978170231786,
+      "mean_hinge_excursion_rad": 0.0
+    },
+    "force_fixed": {
+      "version": "3.0.0",
+      "case": "force_fixed",
+      "case_definition": {
+        "topic": "force",
+        "kind": "rigid",
+        "domain": true,
+        "trials": 12
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 12,
+      "successes": 10,
+      "first_successes": 10,
+      "success_rate_95pct_interval": [
+        0.5519636426153274,
+        0.9530358523851776
+      ],
+      "failures": {
+        "SLIP_DETECTED": 2
+      },
+      "mean_total_time_s": 5.0614284749990475,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.0,
+      "failure_trials": [
+        6,
+        10
+      ],
+      "mean_max_normal_force_n": 3.1647794449178708,
+      "mean_hinge_excursion_rad": 0.0
+    },
+    "force_adaptive": {
+      "version": "3.0.0",
+      "case": "force_adaptive",
+      "case_definition": {
+        "topic": "force",
+        "kind": "rigid",
+        "domain": true,
+        "adaptive": true,
+        "trials": 12
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 12,
+      "successes": 12,
+      "first_successes": 12,
+      "success_rate_95pct_interval": [
+        0.7574992425007574,
+        1.0
+      ],
+      "failures": {},
+      "mean_total_time_s": 6.069350249998631,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.0,
+      "failure_trials": [],
+      "mean_max_normal_force_n": 5.02747765081569,
+      "mean_hinge_excursion_rad": 0.0
+    },
+    "recovery_single": {
+      "version": "3.0.0",
+      "case": "recovery_single",
+      "case_definition": {
+        "topic": "recovery",
+        "kind": "rigid",
+        "fault": true,
+        "trials": 6
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 6,
+      "successes": 0,
+      "first_successes": 0,
+      "success_rate_95pct_interval": [
+        0.0,
+        0.3903430336530645
+      ],
+      "failures": {
+        "GRASP_FAIL": 6
+      },
+      "mean_total_time_s": 0.46879761666665826,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.0,
+      "failure_trials": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "mean_max_normal_force_n": 0.0,
+      "mean_hinge_excursion_rad": 0.0
+    },
+    "recovery_retry": {
+      "version": "3.0.0",
+      "case": "recovery_retry",
+      "case_definition": {
+        "topic": "recovery",
+        "kind": "rigid",
+        "fault": true,
+        "recovery": true,
+        "trials": 6
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 6,
+      "successes": 6,
+      "first_successes": 0,
+      "success_rate_95pct_interval": [
+        0.6096569663469354,
+        0.9999999999999999
+      ],
+      "failures": {},
+      "mean_total_time_s": 6.456399316666648,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.0,
+      "failure_trials": [],
+      "mean_max_normal_force_n": 2.446210019737054,
+      "mean_hinge_excursion_rad": 0.0
+    },
+    "sensor_single": {
+      "version": "3.0.0",
+      "case": "sensor_single",
+      "case_definition": {
+        "topic": "sensing",
+        "kind": "novel",
+        "sensing": "single",
+        "adverse": true,
+        "trials": 12
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 12,
+      "successes": 6,
+      "first_successes": 6,
+      "success_rate_95pct_interval": [
+        0.2537781703934222,
+        0.7462218296065778
+      ],
+      "failures": {
+        "PERCEPTION_FAIL": 6
+      },
+      "mean_total_time_s": 1.8434590750002826,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.0,
+      "failure_trials": [
+        1,
+        2,
+        7,
+        8,
+        9,
+        11
+      ],
+      "mean_max_normal_force_n": 1.7350644852164927,
+      "mean_hinge_excursion_rad": 0.0
+    },
+    "sensor_raw_fusion": {
+      "version": "3.0.0",
+      "case": "sensor_raw_fusion",
+      "case_definition": {
+        "topic": "sensing",
+        "kind": "novel",
+        "sensing": "raw_fusion",
+        "adverse": true,
+        "trials": 12
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 12,
+      "successes": 1,
+      "first_successes": 1,
+      "success_rate_95pct_interval": [
+        0.014864709450773478,
+        0.35388592179859524
+      ],
+      "failures": {
+        "PLANNING_FAIL": 11
+      },
+      "mean_total_time_s": 0.4437432333337104,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.0,
+      "failure_trials": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12
+      ],
+      "mean_max_normal_force_n": 0.8322201433915791,
+      "mean_hinge_excursion_rad": 0.0
+    },
+    "sensor_robust": {
+      "version": "3.0.0",
+      "case": "sensor_robust",
+      "case_definition": {
+        "topic": "sensing",
+        "kind": "novel",
+        "sensing": "robust",
+        "adverse": true,
+        "trials": 12
+      },
+      "seed": 20261026,
+      "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+      "trials": 12,
+      "successes": 9,
+      "first_successes": 9,
+      "success_rate_95pct_interval": [
+        0.46768966087934005,
+        0.9110599603710386
+      ],
+      "failures": {
+        "SLIP_DETECTED": 3
+      },
+      "mean_total_time_s": 2.6395530666674554,
+      "gates": {
+        "lift_m": 0.08,
+        "hold_s": 1.0,
+        "bilateral_fraction": 0.95,
+        "place_m": 0.055,
+        "speed_m_s": 0.02,
+        "actuator_force_n": 40.0,
+        "soft_edge_strain": 0.4,
+        "neighbor_displacement_m": 0.02,
+        "target_penetration_m": 0.001,
+        "unsafe_contact_steps": 0
+      },
+      "python": "3.12.15",
+      "mujoco": "3.15.0",
+      "numpy": "2.5.3",
+      "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+      "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106",
+      "mean_max_strain": 0.0,
+      "failure_trials": [
+        1,
+        5,
+        9
+      ],
+      "mean_max_normal_force_n": 5.383455837001512,
+      "mean_hinge_excursion_rad": 0.0
+    }
+  },
+  "paired": {
+    "crowding_single__crowding_active": {
+      "recovered": [],
+      "regressed": [
+        2,
+        3
+      ],
+      "exact_mcnemar_p": 0.5
+    },
+    "soft_fixed__soft_adaptive": {
+      "recovered": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "regressed": [],
+      "exact_mcnemar_p": 0.125
+    },
+    "novel_prior__novel_points": {
+      "recovered": [],
+      "regressed": [],
+      "exact_mcnemar_p": 1.0
+    },
+    "force_fixed__force_adaptive": {
+      "recovered": [
+        6,
+        10
+      ],
+      "regressed": [],
+      "exact_mcnemar_p": 0.5
+    },
+    "recovery_single__recovery_retry": {
+      "recovered": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "regressed": [],
+      "exact_mcnemar_p": 0.03125
+    },
+    "sensor_single__sensor_raw_fusion": {
+      "recovered": [
+        8
+      ],
+      "regressed": [
+        3,
+        4,
+        5,
+        6,
+        10,
+        12
+      ],
+      "exact_mcnemar_p": 0.125
+    },
+    "sensor_raw_fusion__sensor_robust": {
+      "recovered": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        10,
+        11,
+        12
+      ],
+      "regressed": [],
+      "exact_mcnemar_p": 0.0078125
+    }
+  },
+  "provenance": {
+    "python": "3.12.15",
+    "mujoco": "3.15.0",
+    "numpy": "2.5.3",
+    "robot_model_commit": "0059d4335f8156206f63a35662313385f7ad6d74",
+    "dataset_commit": "9e8c6488a2ff673d9aa48a91492fb89423c1b106"
+  },
+  "scope": "bounded_independent_topic_screening_not_arbitrary_real_world_manipulation"
+}

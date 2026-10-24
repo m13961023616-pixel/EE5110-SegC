@@ -12,8 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--archive', type=Path, default=ROOT / 'deliverables/EE5110SegC_submission_v2.1.0.zip')
-    parser.add_argument('--extract-to', type=Path, default=ROOT / 'outputs/submission_verification')
+    parser.add_argument('--archive', type=Path, default=ROOT / 'deliverables/EE5110SegC_submission_v3.0.0.zip')
+    parser.add_argument('--extract-to', type=Path, default=ROOT / 'outputs/submission_verification_v3')
     args = parser.parse_args()
     destination = args.extract_to.resolve()
     if destination.exists() and any(destination.iterdir()):
@@ -44,6 +44,14 @@ def main():
         ['clutter_main.py', '--headless', '--scene', 'dense', '--object', 'foam_brick',
          '--seed', '45', '--trials', '1', '--require-all-success', '--output', 'outputs/isolated_smoke'],
     ]
+    if (destination / 'exploration_main.py').is_file():
+        commands.extend([
+            ['scripts/check_exploration_evidence.py'],
+            ['exploration_main.py', '--case', 'soft_adaptive', '--seed', '43', '--trials', '1',
+             '--require-all-success', '--output', 'outputs/isolated_soft'],
+            ['exploration_main.py', '--case', 'recovery_retry', '--seed', '43', '--trials', '1',
+             '--require-all-success', '--output', 'outputs/isolated_recovery'],
+        ])
     for command in commands:
         subprocess.run([sys.executable, *command], cwd=destination, check=True)
     print(f'Verified CRC, {len(manifest)} SHA-256 hashes, isolated evidence and physical release: {args.archive}')

@@ -1,0 +1,224 @@
+{
+  "success": true,
+  "failure_stage": "SUCCESS",
+  "executed_stages": [
+    "PRE_GRASP",
+    "APPROACH",
+    "LIFT",
+    "TRANSFER",
+    "LOWER",
+    "RETREAT"
+  ],
+  "candidate_rejections": [],
+  "estimated_pose": [
+    [
+      -0.18358505949436726,
+      -0.9830038280344837,
+      4.49047858718402e-11,
+      0.43256505016543884
+    ],
+    [
+      0.9830038280344837,
+      -0.18358505949436726,
+      -3.046543227388541e-11,
+      0.007069779601724134
+    ],
+    [
+      3.8191484333818284e-11,
+      3.8548578212564866e-11,
+      0.9999999999999996,
+      0.019892244579881913
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "candidate_count": 24,
+  "selected_candidate": 0,
+  "closing_contacts": 2,
+  "min_hold_height_m": 0.17942497021497267,
+  "bilateral_contact_fraction": 1.0,
+  "place_distance_m": 0.000478862757422715,
+  "final_speed_m_s": 8.39761724945944e-15,
+  "released": true,
+  "table_contact": true,
+  "sensing": {
+    "source": "simulation_geometry_material_or_control_study",
+    "used_frames": 0
+  },
+  "first_attempt_success": true,
+  "attempts": [
+    {
+      "success": true,
+      "failure_stage": "SUCCESS",
+      "executed_stages": [
+        "PRE_GRASP",
+        "APPROACH",
+        "LIFT",
+        "TRANSFER",
+        "LOWER",
+        "RETREAT"
+      ],
+      "candidate_rejections": [],
+      "estimated_pose": [
+        [
+          -0.18358505949436726,
+          -0.9830038280344837,
+          4.49047858718402e-11,
+          0.43256505016543884
+        ],
+        [
+          0.9830038280344837,
+          -0.18358505949436726,
+          -3.046543227388541e-11,
+          0.007069779601724134
+        ],
+        [
+          3.8191484333818284e-11,
+          3.8548578212564866e-11,
+          0.9999999999999996,
+          0.019892244579881913
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "candidate_count": 24,
+      "selected_candidate": 0,
+      "closing_contacts": 2,
+      "min_hold_height_m": 0.17942497021497267,
+      "bilateral_contact_fraction": 1.0,
+      "place_distance_m": 0.000478862757422715,
+      "final_speed_m_s": 8.39761724945944e-15,
+      "released": true,
+      "table_contact": true,
+      "sensing": {
+        "source": "simulation_geometry_material_or_control_study",
+        "used_frames": 0
+      }
+    }
+  ],
+  "recovery_actions": [],
+  "attempt_count": 1,
+  "reset_count": 1,
+  "initial_qpos": [
+    6.375385621530392e-16,
+    -0.4,
+    1.5240722279506718e-15,
+    -2.2,
+    -1.011360382890348e-15,
+    1.8,
+    0.7853979999999995,
+    0.04000001055187663,
+    0.040000010555370724,
+    0.4325650501653819,
+    0.007069779601762787,
+    0.019892244579875512,
+    0.638911159906302,
+    2.6718365844701328e-11,
+    2.5990163510572546e-12,
+    0.7692805273417386
+  ],
+  "initial_center": [
+    0.4325650501654388,
+    0.007069779601724133,
+    0.019892244579881913
+  ],
+  "reference_height_m": 0.019892244579881913,
+  "object_kind": "rigid",
+  "asset_seed": 300044,
+  "material": {
+    "mass_kg": 0.082102982163301,
+    "friction": 0.7721571816804871,
+    "delay_steps": 3
+  },
+  "physical_model": "rigid_procedural",
+  "max_edge_strain": 0.0,
+  "max_finger_normal_force_n": 5.010342827083843,
+  "peak_actuator_force_n": 10.00519870381493,
+  "controller": {
+    "feedback_adjustments": 6307,
+    "contact_loss_stops": 0,
+    "injected_partial_closures": 0
+  },
+  "hinge_excursion_rad": 0.0,
+  "total_time_s": 24.825650500002666,
+  "pairing_state": [
+    6.375385621530392e-16,
+    -0.4,
+    1.5240722279506718e-15,
+    -2.2,
+    -1.011360382890348e-15,
+    1.8,
+    0.7853979999999995,
+    0.04000001055187663,
+    0.040000010555370724,
+    0.4325650501653819,
+    0.007069779601762787,
+    0.019892244579875512,
+    0.638911159906302,
+    2.6718365844701328e-11,
+    2.5990163510572546e-12,
+    0.7692805273417386
+  ],
+  "trial_id": 1,
+  "scene_seed": 1044,
+  "sensor_seed": 100044,
+  "object_robot_welds": 0,
+  "observation_scope": "simulation_geometry_to_isolate_mechanics",
+  "collision_map_scope": "simulator_geometry",
+  "config": {
+    "timestep": 0.002,
+    "table_top": 0.0,
+    "object_size": 0.04,
+    "object_mass": 0.05,
+    "spawn_x": [
+      0.43,
+      0.51
+    ],
+    "spawn_y": [
+      -0.09,
+      0.015
+    ],
+    "pregrasp_clearance": 0.14,
+    "lift_distance": 0.16,
+    "success_height": 0.08,
+    "hold_seconds": 1.0,
+    "position_tolerance": 0.002,
+    "rotation_tolerance": 0.025,
+    "tracking_tolerance": 0.012,
+    "tracking_rotation_tolerance": 0.1,
+    "max_joint_speed": 0.5,
+    "max_joint_acceleration": 2.0,
+    "place_xy": [
+      0.48,
+      0.22
+    ],
+    "place_tolerance": 0.055,
+    "place_clearance": 0.008,
+    "gripper_stiffness": 1000.0,
+    "gripper_force_limit": 40.0,
+    "contact_impratio": 10.0,
+    "grip_preload": 4.0,
+    "grip_load_margin": 4.0,
+    "gravity_compensation": true,
+    "home": [
+      0.0,
+      -0.4,
+      0.0,
+      -2.2,
+      0.0,
+      1.8,
+      0.785398
+    ]
+  },
+  "case": "force_adaptive",
+  "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+  "excluded_from_frozen_evaluation": true
+}

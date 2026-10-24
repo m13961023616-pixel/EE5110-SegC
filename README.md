@@ -1,5 +1,23 @@
 # EE5110 Segment C：自主机器人抓取与杂乱场景
 
+## v3.0.0：全部具体拓展方向
+
+新入口 `exploration_main.py` 已覆盖密集遮挡、真正的弹性软体及被动铰接物、未见不规则形状、力/接触反馈、实际夹爪故障恢复、相关深度误差和随机化物理。逐项运行、假设及交付入口见 [拓展交付指南](docs/EXPLORATION_HANDOVER.md)。v2.1 引擎和证据保留原状。
+
+```powershell
+.\.venv\Scripts\python.exe exploration_main.py --case soft_adaptive --trials 1 --seed 43
+.\.venv\Scripts\python.exe exploration_main.py --case recovery_retry --trials 1 --seed 43
+.\.venv\Scripts\python.exe scripts/check_exploration_evidence.py
+```
+
+14 组、126 次新物理实验：软体固定/反馈 2/6→6/6，铰接 6/6，未见形状先验/点云均 11/12，力控制 10/12→12/12，受控故障单次/重试 0/6→6/6，受损感知单帧/直接融合/稳健融合 6/12、1/12、9/12。密集遮挡主动策略由 5/6 退化至 3/6，完整失败保留。49 项测试通过；各方向独立，样本小，七个配对比较经多重校正后均未达到 0.05，不声称通用成功率或实机能力。
+
+- [英文拓展报告](output/pdf/exploration_report_v3.0.0.pdf)；[完整实验与失败记录](docs/validation/v3.0.0/README.md)。
+- 本地视频：`deliverables/explorations_v3.0.0.mp4`，七个开发例子，物理片段标明 2 倍速，不计入正式分母。
+- 本地提交包：`deliverables/EE5110SegC_submission_v3.0.0.zip`，含新旧报告、源码、模型/许可证、证据和文件哈希。`scripts/verify_submission.py` 在独立解压目录复核并执行物理释放与恢复。
+
+每个方向都有明确边界：被动铰接不等于主动开盖，点云抓取估计不等于全流程无仿真状态，受控故障恢复不等于任意自然失败恢复，合成深度误差不等于真实玻璃光学。姓名、学号及实际个人贡献由小组如实填写。
+
 [GitHub 项目](https://github.com/m13961023616-pixel/EE5110-SegC) · [持续集成](https://github.com/m13961023616-pixel/EE5110-SegC/actions/workflows/baseline.yml)
 
 当前续作请先阅读[最终运行与交付说明](docs/FINAL_HANDOVER.md)。原有接口和历史基线说明保留在[交接文档](docs/HANDOVER_v2.0.0.md)，对应 v2.0.0；以下历史结果均保留原版本范围。

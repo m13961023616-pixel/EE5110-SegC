@@ -1,0 +1,148 @@
+{
+  "version": "3.0.0",
+  "seed": 20261026,
+  "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+  "development_seeds": [
+    1,
+    2,
+    3,
+    43,
+    1044
+  ],
+  "cases": {
+    "crowding_single": {
+      "topic": "crowding",
+      "kind": "crowding",
+      "sensing": "single",
+      "trials": 6
+    },
+    "crowding_active": {
+      "topic": "crowding",
+      "kind": "crowding",
+      "sensing": "active",
+      "trials": 6
+    },
+    "articulated": {
+      "topic": "articulated",
+      "kind": "articulated",
+      "adaptive": true,
+      "trials": 6
+    },
+    "soft_fixed": {
+      "topic": "deformable",
+      "kind": "soft",
+      "trials": 6
+    },
+    "soft_adaptive": {
+      "topic": "deformable",
+      "kind": "soft",
+      "adaptive": true,
+      "trials": 6
+    },
+    "novel_prior": {
+      "topic": "novel",
+      "kind": "novel",
+      "sensing": "robust",
+      "nominal_box": true,
+      "trials": 12
+    },
+    "novel_points": {
+      "topic": "novel",
+      "kind": "novel",
+      "sensing": "robust",
+      "trials": 12
+    },
+    "force_fixed": {
+      "topic": "force",
+      "kind": "rigid",
+      "domain": true,
+      "trials": 12
+    },
+    "force_adaptive": {
+      "topic": "force",
+      "kind": "rigid",
+      "domain": true,
+      "adaptive": true,
+      "trials": 12
+    },
+    "recovery_single": {
+      "topic": "recovery",
+      "kind": "rigid",
+      "fault": true,
+      "trials": 6
+    },
+    "recovery_retry": {
+      "topic": "recovery",
+      "kind": "rigid",
+      "fault": true,
+      "recovery": true,
+      "trials": 6
+    },
+    "sensor_single": {
+      "topic": "sensing",
+      "kind": "novel",
+      "sensing": "single",
+      "adverse": true,
+      "trials": 12
+    },
+    "sensor_raw_fusion": {
+      "topic": "sensing",
+      "kind": "novel",
+      "sensing": "raw_fusion",
+      "adverse": true,
+      "trials": 12
+    },
+    "sensor_robust": {
+      "topic": "sensing",
+      "kind": "novel",
+      "sensing": "robust",
+      "adverse": true,
+      "trials": 12
+    }
+  },
+  "pairs": [
+    [
+      "crowding_single",
+      "crowding_active"
+    ],
+    [
+      "soft_fixed",
+      "soft_adaptive"
+    ],
+    [
+      "novel_prior",
+      "novel_points"
+    ],
+    [
+      "force_fixed",
+      "force_adaptive"
+    ],
+    [
+      "recovery_single",
+      "recovery_retry"
+    ],
+    [
+      "sensor_single",
+      "sensor_raw_fusion"
+    ],
+    [
+      "sensor_raw_fusion",
+      "sensor_robust"
+    ]
+  ],
+  "gates": {
+    "lift_m": 0.08,
+    "hold_s": 1.0,
+    "bilateral_fraction": 0.95,
+    "place_m": 0.055,
+    "speed_m_s": 0.02,
+    "actuator_force_n": 40.0,
+    "soft_edge_strain": 0.4,
+    "neighbor_displacement_m": 0.02,
+    "target_penetration_m": 0.001,
+    "unsafe_contact_steps": 0
+  },
+  "workers": 3,
+  "completed": true,
+  "scope": "bounded_independent_topic_screening_not_arbitrary_real_world_manipulation"
+}

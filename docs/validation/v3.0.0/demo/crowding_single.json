@@ -1,0 +1,3082 @@
+{
+  "trial_id": 1,
+  "object_id": "gelatin_box",
+  "task": "place",
+  "success": true,
+  "lift_success": true,
+  "place_success": true,
+  "failure_stage": "SUCCESS",
+  "planning_time_s": 4.209936799998104,
+  "execution_time_s": 41.24311000001035,
+  "executed_stages": [
+    "PRE_GRASP",
+    "APPROACH",
+    "LIFT",
+    "TRANSFER",
+    "LOWER",
+    "RETREAT"
+  ],
+  "spawn_pose": [
+    [
+      -0.9780390186773203,
+      0.057476292916830304,
+      -0.20034009508144646,
+      0.4336490327777309
+    ],
+    [
+      -0.20340696132959857,
+      -0.05363279075241434,
+      0.9776242283407091,
+      -0.0730344098861913
+    ],
+    [
+      0.045445418111878785,
+      0.9969052108945196,
+      0.06414604012711977,
+      0.04454587227512172
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "estimated_pose": [
+    [
+      0.9825472073568525,
+      -1.1390035800677473e-17,
+      0.18601340090232807,
+      0.43445625311398306
+    ],
+    [
+      0.18601340090232807,
+      6.016366462503701e-17,
+      -0.9825472073568525,
+      -0.07392570820996393
+    ],
+    [
+      0.0,
+      1.0,
+      6.123233995736766e-17,
+      0.04427493895106729
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "dimensions_m": [
+    0.0727248,
+    0.089404675,
+    0.029782349
+  ],
+  "mass_kg": 0.097,
+  "candidate_count": 40,
+  "candidate_rejections": [
+    {
+      "index": 0,
+      "phase": "approach",
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds rejected: 9 static collisions, 0 nonconvergent",
+      "pose": [
+        [
+          6.016366462503701e-17,
+          0.18601340090232807,
+          0.9825472073568525,
+          0.408462809546594
+        ],
+        [
+          1.1390035800677473e-17,
+          -0.9825472073568525,
+          0.18601340090232807,
+          -0.07855385785305387
+        ],
+        [
+          1.0,
+          0.0,
+          -6.123233995736766e-17,
+          0.054024169951067284
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "width_m": 0.035782349
+    },
+    {
+      "index": 1,
+      "phase": "approach",
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds rejected: 9 static collisions, 0 nonconvergent",
+      "pose": [
+        [
+          -6.016366462503701e-17,
+          -0.18601340090232807,
+          0.9825472073568525,
+          0.408462809546594
+        ],
+        [
+          -1.1390035800677473e-17,
+          0.9825472073568525,
+          0.18601340090232807,
+          -0.07855385785305387
+        ],
+        [
+          -1.0,
+          0.0,
+          -6.123233995736766e-17,
+          0.054024169951067284
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "width_m": 0.035782349
+    },
+    {
+      "index": 2,
+      "phase": "pregrasp",
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds rejected: 0 static collisions, 9 nonconvergent",
+      "pose": [
+        [
+          6.016366462503701e-17,
+          0.18601340090232807,
+          -0.9825472073568525,
+          0.4602674145450426
+        ],
+        [
+          1.1390035800677473e-17,
+          -0.9825472073568525,
+          -0.18601340090232807,
+          -0.0687463384931588
+        ],
+        [
+          -1.0,
+          0.0,
+          -6.123233995736766e-17,
+          0.054024169951067284
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "width_m": 0.035782349
+    },
+    {
+      "index": 3,
+      "phase": "pregrasp",
+      "stage": "IK_FAIL",
+      "reason": "All nine IK seeds rejected: 0 static collisions, 9 nonconvergent",
+      "pose": [
+        [
+          -6.016366462503701e-17,
+          -0.18601340090232807,
+          -0.9825472073568525,
+          0.4602674145450426
+        ],
+        [
+          -1.1390035800677473e-17,
+          0.9825472073568525,
+          -0.18601340090232807,
+          -0.0687463384931588
+        ],
+        [
+          1.0,
+          0.0,
+          -6.123233995736766e-17,
+          0.054024169951067284
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "width_m": 0.035782349
+    }
+  ],
+  "selected_candidate": 4,
+  "grasp_pose": [
+    [
+      0.9825472073568525,
+      0.18601340090232807,
+      0.0,
+      0.4343651120458183
+    ],
+    [
+      0.18601340090232807,
+      -0.9825472073568525,
+      0.0,
+      -0.07365009817310633
+    ],
+    [
+      0.0,
+      0.0,
+      -1.0,
+      0.06342884495106729
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "gripper_width_m": 0.035782349,
+  "grasp_contacts": 2,
+  "actual_grasp_aperture_m": 0.029212192699216197,
+  "bilateral_contact_fraction": 1.0,
+  "initial_height_m": 0.04454587227512172,
+  "final_height_m": 0.20396967186960757,
+  "min_hold_height_m": 0.20396967186960757,
+  "planned_place_xy": [
+    0.48,
+    0.27499999999999997
+  ],
+  "placement_rejections": [],
+  "place_distance_m": 0.029598194809536113,
+  "place_table_contact": true,
+  "place_linear_speed_m_s": 2.9966347413014725e-05,
+  "released": true,
+  "placed_pose": [
+    [
+      -0.9815324950811217,
+      0.05650435496644572,
+      -0.1827600037471397,
+      0.477840173468633
+    ],
+    [
+      -0.18581893079577927,
+      -0.05465582013962922,
+      0.9810627229095898,
+      0.27048071333284535
+    ],
+    [
+      0.045445418446109595,
+      0.9969052107370546,
+      0.06414604233752541,
+      0.04454587228022975
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "total_time_s": 51.784674800001085,
+  "peak_gripper_force_n": 14.897526913484665,
+  "sensing": {
+    "policy": "fixed",
+    "segmentation": "ideal_simulation_instance_mask",
+    "checks": [
+      {
+        "frames": 8,
+        "accepted": false,
+        "reason": "Only 2 foreground returns; need 24"
+      },
+      {
+        "frames": 16,
+        "accepted": false,
+        "reason": "Only 4 foreground returns; need 24"
+      },
+      {
+        "frames": 24,
+        "accepted": false,
+        "reason": "Only 14 foreground returns; need 24"
+      },
+      {
+        "frames": 32,
+        "accepted": false,
+        "reason": "Only 19 foreground returns; need 24"
+      },
+      {
+        "accepted": false,
+        "unique_points": 18,
+        "extent_error_m": 0.000524281730047458,
+        "position_change_m": null,
+        "yaw_change_rad": 0.0,
+        "frames": 40
+      },
+      {
+        "accepted": false,
+        "unique_points": 18,
+        "extent_error_m": 0.0005242817300474545,
+        "position_change_m": 0.00018966565872617636,
+        "yaw_change_rad": 0.0,
+        "frames": 48
+      },
+      {
+        "accepted": false,
+        "unique_points": 19,
+        "extent_error_m": 0.0006815276162951411,
+        "position_change_m": 0.0004392065016291827,
+        "yaw_change_rad": 0.008702472724625654,
+        "frames": 56
+      },
+      {
+        "accepted": false,
+        "unique_points": 21,
+        "extent_error_m": 0.0013472597879455595,
+        "position_change_m": 0.0003500659039159519,
+        "yaw_change_rad": 0.0,
+        "frames": 64
+      }
+    ],
+    "used_frames": 64,
+    "used_views": 1,
+    "nominal_acquisition_s": 2.1333333333333333,
+    "estimated_pose": [
+      [
+        0.9825472073568525,
+        -1.1390035800677473e-17,
+        0.18601340090232807,
+        0.43445625311398306
+      ],
+      [
+        0.18601340090232807,
+        6.016366462503701e-17,
+        -0.9825472073568525,
+        -0.07392570820996393
+      ],
+      [
+        0.0,
+        1.0,
+        6.123233995736766e-17,
+        0.04427493895106729
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "accepted": true
+  },
+  "scene_metrics": {
+    "distractor_count": 5,
+    "active_objects": [
+      "gelatin_box",
+      "tomato_soup_can",
+      "lemon",
+      "strawberry",
+      "pudding_box",
+      "foam_brick"
+    ],
+    "initial_scene": {
+      "gelatin_box": [
+        [
+          -0.9780390186773203,
+          0.057476292916830304,
+          -0.20034009508144646,
+          0.4336490327777309
+        ],
+        [
+          -0.20340696132959857,
+          -0.05363279075241434,
+          0.9776242283407091,
+          -0.0730344098861913
+        ],
+        [
+          0.045445418111878785,
+          0.9969052108945196,
+          0.06414604012711977,
+          0.04454587227512172
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "tomato_soup_can": [
+        [
+          -0.271193275070927,
+          -0.9625204034004207,
+          0.002946284812438046,
+          0.35403501317680325
+        ],
+        [
+          0.9625156276783995,
+          -0.27120283354740166,
+          -0.003562239564813814,
+          -0.07293293950296015
+        ],
+        [
+          0.004227769052504405,
+          0.0018697897613940493,
+          0.9999893148704575,
+          0.05002448971480289
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "lemon": [
+        [
+          0.584218982579953,
+          -0.7802129337809091,
+          0.22350829594050936,
+          0.5222967344910598
+        ],
+        [
+          0.7518520792150994,
+          0.41657934550899467,
+          -0.5110578243948803,
+          -0.09605266686167364
+        ],
+        [
+          0.3056249848640904,
+          0.4666148592321972,
+          0.8299782778907773,
+          0.025392649004745672
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "strawberry": [
+        [
+          0.9862129750653942,
+          0.14947180931425108,
+          -0.07100807019621241,
+          0.43626878365923044
+        ],
+        [
+          -0.1524474781648143,
+          0.9875618286549107,
+          -0.038488972251271306,
+          0.011825264559888709
+        ],
+        [
+          0.0643718433311842,
+          0.04878332506189832,
+          0.9967328894854691,
+          0.020607792185584995
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "pudding_box": [
+        [
+          0.6879937670046948,
+          0.02030889079122461,
+          -0.7254323714292877,
+          0.34304742743889516
+        ],
+        [
+          0.7257162101768138,
+          -0.020282920932182827,
+          0.6876951253317577,
+          0.011051431658101326
+        ],
+        [
+          -0.0007475622333259491,
+          -0.9995879911610029,
+          -0.028693014435893158,
+          0.05607367568881716
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "foam_brick": [
+        [
+          0.5961336355555921,
+          -0.8028818895774863,
+          0.002315156098258765,
+          0.5279841850677642
+        ],
+        [
+          0.8028746303386856,
+          0.5961381041586501,
+          0.0034188782737890697,
+          0.017614729998991836
+        ],
+        [
+          -0.004125108215942497,
+          -0.00017932823831004583,
+          0.9999914756254632,
+          0.025320165798257414
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "distractor_max_displacement_m": 0.00045952706441370684,
+    "unsafe_contact_steps": 0,
+    "max_target_penetration_m": 0.0,
+    "scene_resets": 1
+  },
+  "first_attempt_success": true,
+  "attempts": [
+    {
+      "trial_id": 1,
+      "object_id": "gelatin_box",
+      "task": "place",
+      "success": true,
+      "lift_success": true,
+      "place_success": true,
+      "failure_stage": "SUCCESS",
+      "planning_time_s": 4.209936799998104,
+      "execution_time_s": 41.24311000001035,
+      "executed_stages": [
+        "PRE_GRASP",
+        "APPROACH",
+        "LIFT",
+        "TRANSFER",
+        "LOWER",
+        "RETREAT"
+      ],
+      "spawn_pose": [
+        [
+          -0.9780390186773203,
+          0.057476292916830304,
+          -0.20034009508144646,
+          0.4336490327777309
+        ],
+        [
+          -0.20340696132959857,
+          -0.05363279075241434,
+          0.9776242283407091,
+          -0.0730344098861913
+        ],
+        [
+          0.045445418111878785,
+          0.9969052108945196,
+          0.06414604012711977,
+          0.04454587227512172
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "estimated_pose": [
+        [
+          0.9825472073568525,
+          -1.1390035800677473e-17,
+          0.18601340090232807,
+          0.43445625311398306
+        ],
+        [
+          0.18601340090232807,
+          6.016366462503701e-17,
+          -0.9825472073568525,
+          -0.07392570820996393
+        ],
+        [
+          0.0,
+          1.0,
+          6.123233995736766e-17,
+          0.04427493895106729
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "dimensions_m": [
+        0.0727248,
+        0.089404675,
+        0.029782349
+      ],
+      "mass_kg": 0.097,
+      "candidate_count": 40,
+      "candidate_rejections": [
+        {
+          "index": 0,
+          "phase": "approach",
+          "stage": "IK_FAIL",
+          "reason": "All nine IK seeds rejected: 9 static collisions, 0 nonconvergent",
+          "pose": [
+            [
+              6.016366462503701e-17,
+              0.18601340090232807,
+              0.9825472073568525,
+              0.408462809546594
+            ],
+            [
+              1.1390035800677473e-17,
+              -0.9825472073568525,
+              0.18601340090232807,
+              -0.07855385785305387
+            ],
+            [
+              1.0,
+              0.0,
+              -6.123233995736766e-17,
+              0.054024169951067284
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "width_m": 0.035782349
+        },
+        {
+          "index": 1,
+          "phase": "approach",
+          "stage": "IK_FAIL",
+          "reason": "All nine IK seeds rejected: 9 static collisions, 0 nonconvergent",
+          "pose": [
+            [
+              -6.016366462503701e-17,
+              -0.18601340090232807,
+              0.9825472073568525,
+              0.408462809546594
+            ],
+            [
+              -1.1390035800677473e-17,
+              0.9825472073568525,
+              0.18601340090232807,
+              -0.07855385785305387
+            ],
+            [
+              -1.0,
+              0.0,
+              -6.123233995736766e-17,
+              0.054024169951067284
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "width_m": 0.035782349
+        },
+        {
+          "index": 2,
+          "phase": "pregrasp",
+          "stage": "IK_FAIL",
+          "reason": "All nine IK seeds rejected: 0 static collisions, 9 nonconvergent",
+          "pose": [
+            [
+              6.016366462503701e-17,
+              0.18601340090232807,
+              -0.9825472073568525,
+              0.4602674145450426
+            ],
+            [
+              1.1390035800677473e-17,
+              -0.9825472073568525,
+              -0.18601340090232807,
+              -0.0687463384931588
+            ],
+            [
+              -1.0,
+              0.0,
+              -6.123233995736766e-17,
+              0.054024169951067284
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "width_m": 0.035782349
+        },
+        {
+          "index": 3,
+          "phase": "pregrasp",
+          "stage": "IK_FAIL",
+          "reason": "All nine IK seeds rejected: 0 static collisions, 9 nonconvergent",
+          "pose": [
+            [
+              -6.016366462503701e-17,
+              -0.18601340090232807,
+              -0.9825472073568525,
+              0.4602674145450426
+            ],
+            [
+              -1.1390035800677473e-17,
+              0.9825472073568525,
+              -0.18601340090232807,
+              -0.0687463384931588
+            ],
+            [
+              1.0,
+              0.0,
+              -6.123233995736766e-17,
+              0.054024169951067284
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "width_m": 0.035782349
+        }
+      ],
+      "selected_candidate": 4,
+      "grasp_pose": [
+        [
+          0.9825472073568525,
+          0.18601340090232807,
+          0.0,
+          0.4343651120458183
+        ],
+        [
+          0.18601340090232807,
+          -0.9825472073568525,
+          0.0,
+          -0.07365009817310633
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          0.06342884495106729
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "gripper_width_m": 0.035782349,
+      "grasp_contacts": 2,
+      "actual_grasp_aperture_m": 0.029212192699216197,
+      "bilateral_contact_fraction": 1.0,
+      "initial_height_m": 0.04454587227512172,
+      "final_height_m": 0.20396967186960757,
+      "min_hold_height_m": 0.20396967186960757,
+      "planned_place_xy": [
+        0.48,
+        0.27499999999999997
+      ],
+      "placement_rejections": [],
+      "place_distance_m": 0.029598194809536113,
+      "place_table_contact": true,
+      "place_linear_speed_m_s": 2.9966347413014725e-05,
+      "released": true,
+      "placed_pose": [
+        [
+          -0.9815324950811217,
+          0.05650435496644572,
+          -0.1827600037471397,
+          0.477840173468633
+        ],
+        [
+          -0.18581893079577927,
+          -0.05465582013962922,
+          0.9810627229095898,
+          0.27048071333284535
+        ],
+        [
+          0.045445418446109595,
+          0.9969052107370546,
+          0.06414604233752541,
+          0.04454587228022975
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "total_time_s": 51.78460030000133,
+      "peak_gripper_force_n": 14.897526913484665,
+      "sensing": {
+        "policy": "fixed",
+        "segmentation": "ideal_simulation_instance_mask",
+        "checks": [
+          {
+            "frames": 8,
+            "accepted": false,
+            "reason": "Only 2 foreground returns; need 24"
+          },
+          {
+            "frames": 16,
+            "accepted": false,
+            "reason": "Only 4 foreground returns; need 24"
+          },
+          {
+            "frames": 24,
+            "accepted": false,
+            "reason": "Only 14 foreground returns; need 24"
+          },
+          {
+            "frames": 32,
+            "accepted": false,
+            "reason": "Only 19 foreground returns; need 24"
+          },
+          {
+            "accepted": false,
+            "unique_points": 18,
+            "extent_error_m": 0.000524281730047458,
+            "position_change_m": null,
+            "yaw_change_rad": 0.0,
+            "frames": 40
+          },
+          {
+            "accepted": false,
+            "unique_points": 18,
+            "extent_error_m": 0.0005242817300474545,
+            "position_change_m": 0.00018966565872617636,
+            "yaw_change_rad": 0.0,
+            "frames": 48
+          },
+          {
+            "accepted": false,
+            "unique_points": 19,
+            "extent_error_m": 0.0006815276162951411,
+            "position_change_m": 0.0004392065016291827,
+            "yaw_change_rad": 0.008702472724625654,
+            "frames": 56
+          },
+          {
+            "accepted": false,
+            "unique_points": 21,
+            "extent_error_m": 0.0013472597879455595,
+            "position_change_m": 0.0003500659039159519,
+            "yaw_change_rad": 0.0,
+            "frames": 64
+          }
+        ],
+        "used_frames": 64,
+        "used_views": 1,
+        "nominal_acquisition_s": 2.1333333333333333,
+        "estimated_pose": [
+          [
+            0.9825472073568525,
+            -1.1390035800677473e-17,
+            0.18601340090232807,
+            0.43445625311398306
+          ],
+          [
+            0.18601340090232807,
+            6.016366462503701e-17,
+            -0.9825472073568525,
+            -0.07392570820996393
+          ],
+          [
+            0.0,
+            1.0,
+            6.123233995736766e-17,
+            0.04427493895106729
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "accepted": true
+      },
+      "scene_metrics": {
+        "distractor_count": 5,
+        "active_objects": [
+          "gelatin_box",
+          "tomato_soup_can",
+          "lemon",
+          "strawberry",
+          "pudding_box",
+          "foam_brick"
+        ],
+        "initial_scene": {
+          "gelatin_box": [
+            [
+              -0.9780390186773203,
+              0.057476292916830304,
+              -0.20034009508144646,
+              0.4336490327777309
+            ],
+            [
+              -0.20340696132959857,
+              -0.05363279075241434,
+              0.9776242283407091,
+              -0.0730344098861913
+            ],
+            [
+              0.045445418111878785,
+              0.9969052108945196,
+              0.06414604012711977,
+              0.04454587227512172
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "tomato_soup_can": [
+            [
+              -0.271193275070927,
+              -0.9625204034004207,
+              0.002946284812438046,
+              0.35403501317680325
+            ],
+            [
+              0.9625156276783995,
+              -0.27120283354740166,
+              -0.003562239564813814,
+              -0.07293293950296015
+            ],
+            [
+              0.004227769052504405,
+              0.0018697897613940493,
+              0.9999893148704575,
+              0.05002448971480289
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "lemon": [
+            [
+              0.584218982579953,
+              -0.7802129337809091,
+              0.22350829594050936,
+              0.5222967344910598
+            ],
+            [
+              0.7518520792150994,
+              0.41657934550899467,
+              -0.5110578243948803,
+              -0.09605266686167364
+            ],
+            [
+              0.3056249848640904,
+              0.4666148592321972,
+              0.8299782778907773,
+              0.025392649004745672
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "strawberry": [
+            [
+              0.9862129750653942,
+              0.14947180931425108,
+              -0.07100807019621241,
+              0.43626878365923044
+            ],
+            [
+              -0.1524474781648143,
+              0.9875618286549107,
+              -0.038488972251271306,
+              0.011825264559888709
+            ],
+            [
+              0.0643718433311842,
+              0.04878332506189832,
+              0.9967328894854691,
+              0.020607792185584995
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pudding_box": [
+            [
+              0.6879937670046948,
+              0.02030889079122461,
+              -0.7254323714292877,
+              0.34304742743889516
+            ],
+            [
+              0.7257162101768138,
+              -0.020282920932182827,
+              0.6876951253317577,
+              0.011051431658101326
+            ],
+            [
+              -0.0007475622333259491,
+              -0.9995879911610029,
+              -0.028693014435893158,
+              0.05607367568881716
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "foam_brick": [
+            [
+              0.5961336355555921,
+              -0.8028818895774863,
+              0.002315156098258765,
+              0.5279841850677642
+            ],
+            [
+              0.8028746303386856,
+              0.5961381041586501,
+              0.0034188782737890697,
+              0.017614729998991836
+            ],
+            [
+              -0.004125108215942497,
+              -0.00017932823831004583,
+              0.9999914756254632,
+              0.025320165798257414
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        "distractor_max_displacement_m": 0.00045952706441370684,
+        "unsafe_contact_steps": 0,
+        "max_target_penetration_m": 0.0,
+        "scene_resets": 1
+      }
+    }
+  ],
+  "recovery_actions": [],
+  "attempt_count": 1,
+  "observed_frames": 64,
+  "episode_initial_height_m": 0.04454587227512172,
+  "visibility": {
+    "visible_returns": [
+      12,
+      28,
+      148
+    ],
+    "unoccluded_reference_returns": [
+      77,
+      105,
+      148
+    ],
+    "visible_fraction_per_view": [
+      0.15584415584415584,
+      0.26666666666666666,
+      1.0
+    ],
+    "evaluation_only_instance_labels": true,
+    "layout_scale": 0.76,
+    "opaque_physical_occluder": true,
+    "reference_removes_all_non_target_geometry_including_robot": true
+  },
+  "planner_stats": [
+    {
+      "method": "ik_reseed",
+      "success": true,
+      "seed_index": 7,
+      "scope": "execution_plan"
+    },
+    {
+      "method": "ik_reseed",
+      "success": false,
+      "seeds": 9,
+      "target_pose": [
+        [
+          6.016366462503701e-17,
+          0.18601340090232807,
+          0.9825472073568525,
+          0.33381633766276775
+        ],
+        [
+          1.1390035800677473e-17,
+          -0.9825472073568525,
+          0.18601340090232807,
+          -0.09243765049911225
+        ],
+        [
+          1.0,
+          0.0,
+          -6.123233995736766e-17,
+          0.05392983039429872
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed_diagnostics": [
+        {
+          "seed_index": 0,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0005765964121571867
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0006771942260680638
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017962655044189478
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001831770615211046
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001861358207537731
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.00189686331832983
+            }
+          ]
+        },
+        {
+          "seed_index": 1,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0006367251759975552
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0007361245365899152
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018563351200952378
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018914172473631326
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0019206523534197081
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0019557344806876028
+            }
+          ]
+        },
+        {
+          "seed_index": 2,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001537121580257303
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001572042698460187
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0016011436302958636
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0016360647484987487
+            }
+          ]
+        },
+        {
+          "seed_index": 3,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0006090132748779037
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.000707784537759191
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018286310995477523
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018634915452705385
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018925419167062447
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001927402362429035
+            }
+          ]
+        },
+        {
+          "seed_index": 4,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001537121580257303
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001572042698460187
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0016011436302958636
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0016360647484987487
+            }
+          ]
+        },
+        {
+          "seed_index": 5,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0005911415922045305
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.000690999145553591
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001810802083130022
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018460459254885369
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018754157941206146
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0019106596364791284
+            }
+          ]
+        },
+        {
+          "seed_index": 6,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.000556496471298105
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0008581137798972099
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017758961423590524
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018823493100999064
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001971060283217298
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.002077513450958152
+            }
+          ]
+        },
+        {
+          "seed_index": 7,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0015647777293364307
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0016021860781091663
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0016333597020864548
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0016707680508591903
+            }
+          ]
+        },
+        {
+          "seed_index": 8,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0005773952631144507
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0016066062388517897
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001674010117948699
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001730180017196096
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017975838962930053
+            }
+          ]
+        }
+      ],
+      "scope": "execution_plan"
+    },
+    {
+      "iterations": 10,
+      "edge_checks": 31,
+      "nodes": 17,
+      "method": "rrt_connect",
+      "attached": false,
+      "success": true,
+      "scope": "execution_plan"
+    },
+    {
+      "method": "ik_reseed",
+      "success": false,
+      "seeds": 9,
+      "target_pose": [
+        [
+          -6.016366462503701e-17,
+          -0.18601340090232807,
+          0.9825472073568525,
+          0.33384421397601016
+        ],
+        [
+          -1.1390035800677473e-17,
+          0.9825472073568525,
+          0.18601340090232807,
+          -0.09236394425612107
+        ],
+        [
+          -1.0,
+          0.0,
+          -6.123233995736766e-17,
+          0.05425684850444386
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed_diagnostics": [
+        {
+          "seed_index": 0,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0005510730635199749
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0006499064475554935
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017706827115779391
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018055650824140043
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018346337247773883
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018695160956134535
+            }
+          ]
+        },
+        {
+          "seed_index": 1,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0005700002119929013
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0006702110629045808
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017896157909954868
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018249843266113829
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001854458106291231
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018898266419071661
+            }
+          ]
+        },
+        {
+          "seed_index": 2,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0005675842243790864
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0016852417664395844
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017211802556698682
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.00175112899669505
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017870674859253332
+            }
+          ]
+        },
+        {
+          "seed_index": 3,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0005024645802204913
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0006043826226083251
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017219742303451091
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017579453041290378
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017879211989490162
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018238922727329438
+            }
+          ]
+        },
+        {
+          "seed_index": 4,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0005911440592468679
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0006912153003661008
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018107246613348555
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018460439229063567
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018754766408825918
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001910795902454092
+            }
+          ]
+        },
+        {
+          "seed_index": 5,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0005002971900927768
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0006052032963082486
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017558933665180897
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001722587568875091
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017867481036402929
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0018237737881869297
+            }
+          ]
+        },
+        {
+          "seed_index": 6,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0005454094369101775
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0016681178337049204
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017021057775334374
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001730429064057184
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017644170078857
+            }
+          ]
+        },
+        {
+          "seed_index": 7,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0013033591473557396
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0013434162586166087
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0013767971846673215
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0014168542959281907
+            }
+          ]
+        },
+        {
+          "seed_index": 8,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0005258699714403533
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0016389192438654716
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001676562137263873
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.001707931215095843
+            },
+            {
+              "robot_body": "left_finger",
+              "other_body": "object_tomato_soup_can",
+              "other_geom": "tomato_soup_can_collision_geom_0",
+              "penetration_m": 0.0017455741084942437
+            }
+          ]
+        }
+      ],
+      "scope": "execution_plan"
+    },
+    {
+      "method": "ik_reseed",
+      "success": false,
+      "seeds": 9,
+      "target_pose": [
+        [
+          6.016366462503701e-17,
+          0.18601340090232807,
+          -0.9825472073568525,
+          0.597824023575002
+        ],
+        [
+          1.1390035800677473e-17,
+          -0.9825472073568525,
+          -0.18601340090232807,
+          -0.04270446236683287
+        ],
+        [
+          -1.0,
+          0.0,
+          -6.123233995736766e-17,
+          0.05402416995106729
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed_diagnostics": [
+        {
+          "seed_index": 0,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0918 m",
+          "position_error_m": 0.09177635207525223
+        },
+        {
+          "seed_index": 1,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0920 m",
+          "position_error_m": 0.0919926036132164
+        },
+        {
+          "seed_index": 2,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0918 m",
+          "position_error_m": 0.09182259975632326
+        },
+        {
+          "seed_index": 3,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0916 m",
+          "position_error_m": 0.09159528822213156
+        },
+        {
+          "seed_index": 4,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0920 m",
+          "position_error_m": 0.09203479303319494
+        },
+        {
+          "seed_index": 5,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0918 m",
+          "position_error_m": 0.0917987509000485
+        },
+        {
+          "seed_index": 6,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0920 m",
+          "position_error_m": 0.09203469523383681
+        },
+        {
+          "seed_index": 7,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0917 m",
+          "position_error_m": 0.09167258930893299
+        },
+        {
+          "seed_index": 8,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0910 m",
+          "position_error_m": 0.09104029418761415
+        }
+      ],
+      "scope": "execution_plan"
+    },
+    {
+      "method": "ik_reseed",
+      "success": false,
+      "seeds": 9,
+      "target_pose": [
+        [
+          -6.016366462503701e-17,
+          -0.18601340090232807,
+          -0.9825472073568525,
+          0.597824023575002
+        ],
+        [
+          -1.1390035800677473e-17,
+          0.9825472073568525,
+          -0.18601340090232807,
+          -0.04270446236683287
+        ],
+        [
+          1.0,
+          0.0,
+          -6.123233995736766e-17,
+          0.05402416995106729
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed_diagnostics": [
+        {
+          "seed_index": 0,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0924 m",
+          "position_error_m": 0.09240647838143642
+        },
+        {
+          "seed_index": 1,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0916 m",
+          "position_error_m": 0.09155451783967347
+        },
+        {
+          "seed_index": 2,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0923 m",
+          "position_error_m": 0.09226050183025729
+        },
+        {
+          "seed_index": 3,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0919 m",
+          "position_error_m": 0.09187689193459012
+        },
+        {
+          "seed_index": 4,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0922 m",
+          "position_error_m": 0.0921865069522665
+        },
+        {
+          "seed_index": 5,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0918 m",
+          "position_error_m": 0.0918254921756705
+        },
+        {
+          "seed_index": 6,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0924 m",
+          "position_error_m": 0.09241915214414369
+        },
+        {
+          "seed_index": 7,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0919 m",
+          "position_error_m": 0.09186611364414256
+        },
+        {
+          "seed_index": 8,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0925 m",
+          "position_error_m": 0.09250778724948146
+        }
+      ],
+      "scope": "execution_plan"
+    },
+    {
+      "method": "ik_reseed",
+      "success": false,
+      "seeds": 9,
+      "target_pose": [
+        [
+          0.9825489503904157,
+          0.18600417555987128,
+          8.222520152778883e-05,
+          0.45865515551591873
+        ],
+        [
+          0.1860041779577302,
+          -0.9825489531198801,
+          -2.247877746532743e-05,
+          0.10923689617182714
+        ],
+        [
+          7.66091392111681e-05,
+          3.738073022220228e-05,
+          -0.9999999963668598,
+          0.2233886316588666
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed_diagnostics": [
+        {
+          "seed_index": 0,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0021428917993770733
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0020444899057274228
+            }
+          ]
+        },
+        {
+          "seed_index": 1,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.002143023771294281
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.002044550417759986
+            }
+          ]
+        },
+        {
+          "seed_index": 2,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0021467434110918103
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0020482302433564446
+            }
+          ]
+        },
+        {
+          "seed_index": 3,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.002131590441091191
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.002033100552080929
+            }
+          ]
+        },
+        {
+          "seed_index": 4,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.003520554298937915
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0034235941316466336
+            }
+          ]
+        },
+        {
+          "seed_index": 5,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.002184524206788324
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0020872835709430633
+            }
+          ]
+        },
+        {
+          "seed_index": 6,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0026999831397257956
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0025990182200026227
+            }
+          ]
+        },
+        {
+          "seed_index": 7,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.002176444952026767
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0020776713717324674
+            }
+          ]
+        },
+        {
+          "seed_index": 8,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.00201186880101292
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0019116800114503873
+            }
+          ]
+        }
+      ],
+      "scope": "preview"
+    },
+    {
+      "method": "ik_reseed",
+      "success": false,
+      "seeds": 9,
+      "target_pose": [
+        [
+          0.9825489503904157,
+          0.18600417555987128,
+          8.222520152778883e-05,
+          0.4640180640435484
+        ],
+        [
+          0.1860041779577302,
+          -0.9825489531198801,
+          -2.247877746532743e-05,
+          0.15058069586197065
+        ],
+        [
+          7.66091392111681e-05,
+          3.738073022220228e-05,
+          -0.9999999963668598,
+          0.723566795671091
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed_diagnostics": [
+        {
+          "seed_index": 0,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0020 m",
+          "position_error_m": 0.002005943414900089
+        },
+        {
+          "seed_index": 1,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0020 m",
+          "position_error_m": 0.0020157927533475373
+        },
+        {
+          "seed_index": 2,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0020 m",
+          "position_error_m": 0.002010679484274049
+        },
+        {
+          "seed_index": 3,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0020 m",
+          "position_error_m": 0.0020329704406351003
+        },
+        {
+          "seed_index": 4,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0020 m",
+          "position_error_m": 0.0020273908412805773
+        },
+        {
+          "seed_index": 5,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0020 m",
+          "position_error_m": 0.0020078774571266455
+        },
+        {
+          "seed_index": 6,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0020 m",
+          "position_error_m": 0.0020123444427804474
+        },
+        {
+          "seed_index": 7,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0020 m",
+          "position_error_m": 0.002006034210773529
+        },
+        {
+          "seed_index": 8,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0020 m",
+          "position_error_m": 0.0020087474495820417
+        }
+      ],
+      "scope": "preview"
+    },
+    {
+      "method": "ik_reseed",
+      "success": false,
+      "seeds": 9,
+      "target_pose": [
+        [
+          0.9825489503904157,
+          0.18600417555987128,
+          8.222520152778883e-05,
+          0.4806325870938477
+        ],
+        [
+          0.1860041779577302,
+          -0.9825489531198801,
+          -2.247877746532743e-05,
+          0.2744316032980814
+        ],
+        [
+          7.66091392111681e-05,
+          3.738073022220228e-05,
+          -0.9999999963668598,
+          0.7237937035320839
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed_diagnostics": [
+        {
+          "seed_index": 0,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0336 m",
+          "position_error_m": 0.03360231460982865
+        },
+        {
+          "seed_index": 1,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0338 m",
+          "position_error_m": 0.033779600914872115
+        },
+        {
+          "seed_index": 2,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0337 m",
+          "position_error_m": 0.03373685172458517
+        },
+        {
+          "seed_index": 3,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0337 m",
+          "position_error_m": 0.03371696106313206
+        },
+        {
+          "seed_index": 4,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0336 m",
+          "position_error_m": 0.03357136598963654
+        },
+        {
+          "seed_index": 5,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0337 m",
+          "position_error_m": 0.03369468405906948
+        },
+        {
+          "seed_index": 6,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0338 m",
+          "position_error_m": 0.03377894696322483
+        },
+        {
+          "seed_index": 7,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0336 m",
+          "position_error_m": 0.03363381302139689
+        },
+        {
+          "seed_index": 8,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0336 m",
+          "position_error_m": 0.03357843604350914
+        }
+      ],
+      "scope": "preview"
+    },
+    {
+      "method": "compound_clearance",
+      "success": false,
+      "reason": "All nine IK seeds rejected: 0 static collisions, 9 nonconvergent"
+    },
+    {
+      "iterations": 0,
+      "edge_checks": 3,
+      "nodes": 2,
+      "method": "rrt_connect",
+      "attached": true,
+      "success": true,
+      "scope": "preview"
+    },
+    {
+      "method": "compound_side",
+      "success": true,
+      "height_m": 0.7237937035320839
+    },
+    {
+      "method": "placement_orientation",
+      "yaw_delta_rad": 0.0,
+      "success": true,
+      "scope": "preview"
+    },
+    {
+      "method": "ik_reseed",
+      "success": false,
+      "seeds": 9,
+      "target_pose": [
+        [
+          0.9825489796877337,
+          0.18600396941363634,
+          -0.0001608631757947047,
+          0.4585343370809949
+        ],
+        [
+          0.18600397265171403,
+          -0.9825489922288512,
+          5.276983756780244e-06,
+          0.1095860372529461
+        ],
+        [
+          -0.00015707441133852744,
+          -3.5106084757239346e-05,
+          -0.9999999870475945,
+          0.22329905284348575
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed_diagnostics": [
+        {
+          "seed_index": 0,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.003472293981850679
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.003372938651292824
+            }
+          ]
+        },
+        {
+          "seed_index": 1,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0034724098703030957
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.003372981968802498
+            }
+          ]
+        },
+        {
+          "seed_index": 2,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0034761777590676395
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.003376709543619886
+            }
+          ]
+        },
+        {
+          "seed_index": 3,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0034609366389882984
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.003361491994691913
+            }
+          ]
+        },
+        {
+          "seed_index": 4,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.004846923102571898
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.004749028910662251
+            }
+          ]
+        },
+        {
+          "seed_index": 5,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0035149166722297873
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0034167223805634216
+            }
+          ]
+        },
+        {
+          "seed_index": 6,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.004027525120883489
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.00392557733797009
+            }
+          ]
+        },
+        {
+          "seed_index": 7,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0035058893195025766
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0034061718234601086
+            }
+          ]
+        },
+        {
+          "seed_index": 8,
+          "outcome": "static_collision",
+          "contacts": [
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.0033415600153587
+            },
+            {
+              "robot_body": "right_finger",
+              "other_body": "world",
+              "other_geom": "obstacle_0",
+              "penetration_m": 0.003240404146216465
+            }
+          ]
+        }
+      ],
+      "scope": "execution_plan"
+    },
+    {
+      "method": "ik_reseed",
+      "success": false,
+      "seeds": 9,
+      "target_pose": [
+        [
+          0.9825489796877337,
+          0.18600396941363634,
+          -0.0001608631757947047,
+          0.4638805464117072
+        ],
+        [
+          0.18600397265171403,
+          -0.9825489922288512,
+          5.276983756780244e-06,
+          0.1510081916013952
+        ],
+        [
+          -0.00015707441133852744,
+          -3.5106084757239346e-05,
+          -0.9999999870475945,
+          0.7246286223190395
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed_diagnostics": [
+        {
+          "seed_index": 0,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0028 m",
+          "position_error_m": 0.0027626004702310434
+        },
+        {
+          "seed_index": 1,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0028 m",
+          "position_error_m": 0.0027663714850359442
+        },
+        {
+          "seed_index": 2,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0028 m",
+          "position_error_m": 0.002764477648355963
+        },
+        {
+          "seed_index": 3,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0028 m",
+          "position_error_m": 0.002772986803610672
+        },
+        {
+          "seed_index": 4,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0028 m",
+          "position_error_m": 0.0027707352930092626
+        },
+        {
+          "seed_index": 5,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0028 m",
+          "position_error_m": 0.002763209367142706
+        },
+        {
+          "seed_index": 6,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0028 m",
+          "position_error_m": 0.0027647684456778353
+        },
+        {
+          "seed_index": 7,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0028 m",
+          "position_error_m": 0.0027626924791312652
+        },
+        {
+          "seed_index": 8,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0028 m",
+          "position_error_m": 0.0027637516008785076
+        }
+      ],
+      "scope": "execution_plan"
+    },
+    {
+      "method": "ik_reseed",
+      "success": false,
+      "seeds": 9,
+      "target_pose": [
+        [
+          0.9825489796877337,
+          0.18600396941363634,
+          -0.0001608631757947047,
+          0.4804627661418334
+        ],
+        [
+          0.18600397265171403,
+          -0.9825489922288512,
+          5.276983756780244e-06,
+          0.2750874466791632
+        ],
+        [
+          -0.00015707441133852744,
+          -3.5106084757239346e-05,
+          -0.9999999870475945,
+          0.7248639924621119
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed_diagnostics": [
+        {
+          "seed_index": 0,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0345 m",
+          "position_error_m": 0.034496179937925135
+        },
+        {
+          "seed_index": 1,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0346 m",
+          "position_error_m": 0.03457713765622354
+        },
+        {
+          "seed_index": 2,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0346 m",
+          "position_error_m": 0.034589286940692354
+        },
+        {
+          "seed_index": 3,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0345 m",
+          "position_error_m": 0.03447303301332094
+        },
+        {
+          "seed_index": 4,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0341 m",
+          "position_error_m": 0.03412730320935563
+        },
+        {
+          "seed_index": 5,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0344 m",
+          "position_error_m": 0.034415996050754925
+        },
+        {
+          "seed_index": 6,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0346 m",
+          "position_error_m": 0.03459139598959741
+        },
+        {
+          "seed_index": 7,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0345 m",
+          "position_error_m": 0.03451592570718831
+        },
+        {
+          "seed_index": 8,
+          "outcome": "nonconvergence",
+          "reason": "IK did not converge; position error 0.0342 m",
+          "position_error_m": 0.034212235339789565
+        }
+      ],
+      "scope": "execution_plan"
+    },
+    {
+      "method": "compound_clearance",
+      "success": false,
+      "reason": "All nine IK seeds rejected: 0 static collisions, 9 nonconvergent"
+    },
+    {
+      "iterations": 0,
+      "edge_checks": 3,
+      "nodes": 2,
+      "method": "rrt_connect",
+      "attached": true,
+      "success": true,
+      "scope": "execution_plan"
+    },
+    {
+      "method": "compound_side",
+      "success": true,
+      "height_m": 0.7248639924621119
+    },
+    {
+      "method": "placement_orientation",
+      "yaw_delta_rad": 0.0,
+      "success": true,
+      "scope": "execution_plan"
+    }
+  ],
+  "reset_count": 1,
+  "object_kind": "crowding",
+  "asset_seed": null,
+  "initial_qpos": null,
+  "initial_center": [
+    0.4336490327777309,
+    -0.0730344098861913,
+    0.04454587227512172
+  ],
+  "material": {
+    "all_distractors_dynamic": true
+  },
+  "max_edge_strain": 0.0,
+  "hinge_excursion_rad": 0.0,
+  "peak_actuator_force_n": 14.897526913484665,
+  "physical_model": "six_YCB_free_bodies_four_obstacles",
+  "pairing_state": {
+    "gelatin_box": [
+      [
+        -0.9780390186773203,
+        0.057476292916830304,
+        -0.20034009508144646,
+        0.4336490327777309
+      ],
+      [
+        -0.20340696132959857,
+        -0.05363279075241434,
+        0.9776242283407091,
+        -0.0730344098861913
+      ],
+      [
+        0.045445418111878785,
+        0.9969052108945196,
+        0.06414604012711977,
+        0.04454587227512172
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "tomato_soup_can": [
+      [
+        -0.271193275070927,
+        -0.9625204034004207,
+        0.002946284812438046,
+        0.35403501317680325
+      ],
+      [
+        0.9625156276783995,
+        -0.27120283354740166,
+        -0.003562239564813814,
+        -0.07293293950296015
+      ],
+      [
+        0.004227769052504405,
+        0.0018697897613940493,
+        0.9999893148704575,
+        0.05002448971480289
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "lemon": [
+      [
+        0.584218982579953,
+        -0.7802129337809091,
+        0.22350829594050936,
+        0.5222967344910598
+      ],
+      [
+        0.7518520792150994,
+        0.41657934550899467,
+        -0.5110578243948803,
+        -0.09605266686167364
+      ],
+      [
+        0.3056249848640904,
+        0.4666148592321972,
+        0.8299782778907773,
+        0.025392649004745672
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "strawberry": [
+      [
+        0.9862129750653942,
+        0.14947180931425108,
+        -0.07100807019621241,
+        0.43626878365923044
+      ],
+      [
+        -0.1524474781648143,
+        0.9875618286549107,
+        -0.038488972251271306,
+        0.011825264559888709
+      ],
+      [
+        0.0643718433311842,
+        0.04878332506189832,
+        0.9967328894854691,
+        0.020607792185584995
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "pudding_box": [
+      [
+        0.6879937670046948,
+        0.02030889079122461,
+        -0.7254323714292877,
+        0.34304742743889516
+      ],
+      [
+        0.7257162101768138,
+        -0.020282920932182827,
+        0.6876951253317577,
+        0.011051431658101326
+      ],
+      [
+        -0.0007475622333259491,
+        -0.9995879911610029,
+        -0.028693014435893158,
+        0.05607367568881716
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "foam_brick": [
+      [
+        0.5961336355555921,
+        -0.8028818895774863,
+        0.002315156098258765,
+        0.5279841850677642
+      ],
+      [
+        0.8028746303386856,
+        0.5961381041586501,
+        0.0034188782737890697,
+        0.017614729998991836
+      ],
+      [
+        -0.004125108215942497,
+        -0.00017932823831004583,
+        0.9999914756254632,
+        0.025320165798257414
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "scene_seed": 1044,
+  "sensor_seed": 100044,
+  "object_robot_welds": 0,
+  "observation_scope": "ideal_mask_known_YCB",
+  "collision_map_scope": "simulator_geometry",
+  "config": {
+    "timestep": 0.002,
+    "table_top": 0.0,
+    "object_size": 0.04,
+    "object_mass": 0.05,
+    "spawn_x": [
+      0.4,
+      0.55
+    ],
+    "spawn_y": [
+      -0.12,
+      0.12
+    ],
+    "pregrasp_clearance": 0.14,
+    "lift_distance": 0.16,
+    "success_height": 0.08,
+    "hold_seconds": 1.0,
+    "position_tolerance": 0.002,
+    "rotation_tolerance": 0.025,
+    "tracking_tolerance": 0.012,
+    "tracking_rotation_tolerance": 0.1,
+    "max_joint_speed": 0.5,
+    "max_joint_acceleration": 2.0,
+    "place_xy": [
+      0.48,
+      0.3
+    ],
+    "place_tolerance": 0.055,
+    "place_clearance": 0.008,
+    "gripper_stiffness": 1000.0,
+    "gripper_force_limit": 40.0,
+    "contact_impratio": 10.0,
+    "grip_preload": 16.0,
+    "grip_load_margin": 4.0,
+    "gravity_compensation": true,
+    "home": [
+      0.0,
+      -0.4,
+      0.0,
+      -2.2,
+      0.0,
+      1.8,
+      0.785398
+    ]
+  },
+  "case": "crowding_single",
+  "source_sha256": "9f59c29b6dc0a62c15d10249788590491010c02d32f9ed1baf884d871e08c418",
+  "excluded_from_frozen_evaluation": true
+}

@@ -65,3 +65,9 @@ jobs:
         run: |
           python scripts/check_completion_evidence.py
           python tests/test_completion_evidence.py
+      - name: Check genuine deformation, articulation, force and physical retry
+        run: python tests/test_exploration.py
+      - name: Audit all exploratory conditions and reject corrupted mechanisms
+        run: |
+          python scripts/check_exploration_evidence.py
+          python tests/test_exploration_evidence.py
