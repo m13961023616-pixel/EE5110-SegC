@@ -58,4 +58,10 @@ jobs:
       - name: Check simultaneous clutter and transparent target transport
         run: python tests/test_clutter.py
       - name: Audit frozen clutter episodes and physical scene gates
-        run: python scripts/check_v2_evidence.py
+        run: python scripts/check_v2_evidence.py --source-ref v2.0.0
+      - name: Check local grasp alternatives and physical recovery
+        run: python tests/test_local_grasps.py
+      - name: Audit new paired evidence and reject corrupted outcomes
+        run: |
+          python scripts/check_completion_evidence.py
+          python tests/test_completion_evidence.py

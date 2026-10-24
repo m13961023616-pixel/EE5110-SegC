@@ -32,12 +32,13 @@ class RobustObstaclePlanner(ObstaclePlanner):
             alternative = np.asarray(seed).copy()
             alternative[joint] += delta
             seeds.append(np.clip(alternative, self.limits[:, 0] + .005, self.limits[:, 1] - .005))
+        diagnostics = []
         for index, alternative in enumerate(seeds):
             try:
                 q = super().ik(target, alternative)
                 # Reject a converged end pose whose elbow/wrist intersects the workcell.
                 # Held-object geometry is checked by validate(), not this IK filter.
-                blocked = False
+                collisions = []
                 for c in self.scratch.contact[:self.scratch.ncon]:
                     if c.dist >= -.0005 or c.geom1 in self.env.object_geoms or c.geom2 in self.env.object_geoms:
                         continue
@@ -47,18 +48,26 @@ class RobustObstaclePlanner(ObstaclePlanner):
                         other = c.geom2 if b1 in self.env.robot_bodies else c.geom1
                         if other == self.env.floor_geom and robot == self.env.model.body('link0').id:
                             continue
-                        blocked = True
-                        break
-                if not blocked:
+                        collisions.append({
+                            'robot_body': self.env.model.body(int(robot)).name,
+                            'other_body': self.env.model.body(int(self.env.model.geom_bodyid[other])).name,
+                            'other_geom': self.env.model.geom(int(other)).name or f'geom_{int(other)}',
+                            'penetration_m': float(-c.dist),
+                        })
+                if not collisions:
                     if index:
                         self.stats.append({'method': 'ik_reseed', 'success': True, 'seed_index': index,
                                            'scope': 'preview' if self._state is not None else 'execution_plan'})
                     return q
-            except StageFailure:
-                pass
+                diagnostics.append({'seed_index': index, 'outcome': 'static_collision', 'contacts': collisions})
+            except StageFailure as error:
+                diagnostics.append({'seed_index': index, 'outcome': 'nonconvergence', 'reason': str(error),
+                                    'position_error_m': float(np.linalg.norm(target[:3, 3] - self.env.site_pose(self.scratch)[:3, 3]))})
         self.stats.append({'method': 'ik_reseed', 'success': False, 'seeds': len(seeds),
+                           'target_pose': target.tolist(), 'seed_diagnostics': diagnostics,
                            'scope': 'preview' if self._state is not None else 'execution_plan'})
-        raise StageFailure('IK_FAIL', 'All nine IK seeds fail convergence or static collision checks')
+        collisions = sum(d['outcome'] == 'static_collision' for d in diagnostics)
+        raise StageFailure('IK_FAIL', f'All nine IK seeds rejected: {collisions} static collisions, {len(seeds)-collisions} nonconvergent')
 
     def plan_transfer(self, target):
         try:

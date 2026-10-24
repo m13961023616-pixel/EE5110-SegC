@@ -1,10 +1,38 @@
-# EE5110 Segment C：自主机器人抓取 baseline
+# EE5110 Segment C：自主机器人抓取与杂乱场景
 
 [GitHub 项目](https://github.com/m13961023616-pixel/EE5110-SegC) · [持续集成](https://github.com/m13961023616-pixel/EE5110-SegC/actions/workflows/baseline.yml)
 
-小组接手请先阅读[详细交接文档](docs/HANDOVER_v2.0.0.md)：环境安装、模块职责、正式结果、判据、已知问题、失败复现、优化顺序和组内协作约定。后续功能优化由接手组员开展；交接基线固定为v2.0.0。
+当前续作请先阅读[最终运行与交付说明](docs/FINAL_HANDOVER.md)。原有接口和历史基线说明保留在[交接文档](docs/HANDOVER_v2.0.0.md)，对应 v2.0.0；以下历史结果均保留原版本范围。
 
-## v2.0.0：透明目标、物理 clutter 与复杂障碍
+## v2.1.0：碰撞诊断、局部抓取候选与最终交付
+
+接手后建立 Python 3.12 独立环境，复现 foam_brick 的手掌-邻物碰撞拒绝，保留原候选顺序并增加最多 16 个倾斜/偏移候选。生成只使用估计姿态与已知网格，全部候选仍经过原有碰撞和完整任务预检；物理执行与成功门槛不变。默认 `--grasps local`，对照使用 `--grasps baseline`。
+
+```powershell
+.\.venv\Scripts\python.exe clutter_main.py --scene clutter --trials 3
+.\.venv\Scripts\python.exe clutter_main.py --scene dense --trials 3
+.\.venv\Scripts\python.exe scripts/check_completion_evidence.py
+```
+
+冻结新种子 20261025、同引擎候选策略消融，共 180 次物理 episode；相同场景、观测与种子完全配对，均为 active、普通控制、一次尝试。
+
+| 场景 | 原候选 | 新候选 | 恢复 / 退化 |
+|---|---:|---:|---:|
+| 三干扰物 | 54/60（90.0%） | 58/60（96.7%） | 4 / 0 |
+| 五干扰物 | 26/30（86.7%） | 29/30（96.7%） | 3 / 0 |
+
+foam_brick 分别由 14/20、6/10 提升至 18/20、9/10，另两种目标均成功；全部失败仍是规划拒绝。配对精确 p=0.125 / 0.25，样本不足以宣称总体统计显著改善；成功率是此范围内的点估计。
+
+39 项测试、五套历史证据审计和新 180 次逐条审计通过。绿色目标标记现由 Config 生成。报告、介绍字幕视频、源码、完整证据、锁定模型/许可证与 SHA-256 清单组成最终 ZIP，独立解压后另做审计和实际物理放置验证。
+
+- [六页英文报告](output/pdf/final_report_v2.1.0.pdf)
+- [完整新证据与实验范围](docs/validation/v2.1.0/README.md)
+- 本地视频：`deliverables/demo_v2.1.0.mp4`，约 2 分 20 秒，包含失败、同场景恢复和五干扰物放置。
+- 本地交付包：`deliverables/EE5110SegC_submission_v2.1.0.zip`。
+
+仍为已知盒形透明外观代理、理想实例掩码与仿真地图，不声称解决真实玻璃、未知物体或堆叠杂乱。演示使用开发种子，排除于正式分母；有限恢复是继承机制，新消融不把候选改善归于重试。姓名、学号及实际个人贡献由小组按实补充。
+
+## 历史 v2.0.0：透明目标、物理 clutter 与复杂障碍
 
 已完成主动观测、接触反馈、有限恢复和联合环境。三个或五个 YCB 干扰物同时保持重力与碰撞，障碍由挡板和两根立柱组成；透明外观目标通过实际接触夹取、搬运与释放。每次物理场景仅初始化一次，恢复不重置场景。
 

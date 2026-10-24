@@ -20,7 +20,8 @@ def safe_withdraw(env, planner, controller):
     env.step_for(.4)
 
 
-def episode(env, planner, controller, rng, trial_id, object_id, observer_factory, maximum_attempts=2):
+def episode(env, planner, controller, rng, trial_id, object_id, observer_factory, maximum_attempts=2,
+            candidate_generator=symmetric_candidates):
     if not 1 <= maximum_attempts <= 3:
         raise ValueError('Recovery must have a finite 1..3 attempt budget')
     started = time.perf_counter()
@@ -28,7 +29,7 @@ def episode(env, planner, controller, rng, trial_id, object_id, observer_factory
     for index in range(maximum_attempts):
         observer = observer_factory(index)
         result = trial(env, planner, controller, rng, trial_id, object_id=object_id, task='place',
-                       candidate_generator=symmetric_candidates, observer=observer,
+                       candidate_generator=candidate_generator, observer=observer,
                        reset_scene=index == 0, candidate_start=skip)
         result['sensing'] = observer.metrics
         if hasattr(env, 'scene_metrics'):

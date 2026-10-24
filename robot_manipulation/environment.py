@@ -39,8 +39,9 @@ class Environment:
                       pos=f'.5 0 {config.table_top - .04}', rgba='.55 .42 .30 1')
         ET.SubElement(world, 'camera', name='overview', pos='1.3 -1.3 1.1',
                       xyaxes='.707 .707 0 -.35 .35 .87')
-        ET.SubElement(world, 'site', name='place_target', pos='.48 .22 .002',
-                      type='box', size='.085 .075 .001', rgba='.2 .7 .3 .35')
+        ET.SubElement(world, 'site', name='place_target',
+                      pos=f'{config.place_xy[0]} {config.place_xy[1]} {config.table_top + .002}',
+                      type='cylinder', size=f'{config.place_tolerance} .001', rgba='.2 .7 .3 .35')
         for name, object_model in self.objects.items():
             if name == 'primitive_cube':
                 body = ET.SubElement(world, 'body', name='object', pos='.48 0 .022')

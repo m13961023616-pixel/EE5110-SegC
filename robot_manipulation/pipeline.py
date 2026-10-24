@@ -37,15 +37,20 @@ def trial(env, planner, controller, rng, trial_id, fixed=False, object_id=None, 
             if index < candidate_start:
                 continue
             try:
+                phase = 'pregrasp'
                 pregrasp = planner.plan(candidate.pregrasp)
                 # Check approach from predicted pregrasp before making any motion.
+                phase = 'approach'
                 approach = planner.plan(candidate.pose, cartesian=True, start_q=pregrasp.joints[-1])
+                phase = 'task_preview'
                 planner.preview_task(candidate, approach, task)
                 chosen = (candidate, pregrasp)
                 result['selected_candidate'] = index
                 break
             except StageFailure as exc:
-                result['candidate_rejections'].append({'index': index, 'stage': exc.stage, 'reason': str(exc)})
+                result['candidate_rejections'].append({'index': index, 'phase': phase, 'stage': exc.stage,
+                                                       'reason': str(exc), 'pose': candidate.pose.tolist(),
+                                                       'width_m': candidate.width})
         result['planning_time_s'] += time.perf_counter() - tick
         if chosen is None:
             raise StageFailure('PLANNING_FAIL', 'All candidate approaches rejected')

@@ -15,6 +15,8 @@ from robot_manipulation.clutter_planning import ClutterPlanner
 from robot_manipulation.feedback import FeedbackController
 from robot_manipulation.control import Controller
 from robot_manipulation.recovery import episode
+from robot_manipulation.local_grasps import local_candidates
+from robot_manipulation.robust_obstacles import symmetric_candidates
 from robot_manipulation.evaluation import Logger
 
 TARGETS = ('foam_brick','gelatin_box','pudding_box')
@@ -33,6 +35,8 @@ def main():
     p.add_argument('--headless',action='store_true')
     p.add_argument('--scene',choices=SCENES,default='clutter')
     p.add_argument('--mode',choices=['fixed','active','recovery'],default='recovery')
+    p.add_argument('--grasps',choices=['baseline','local'],default='local',
+                   help='Baseline prefix, optionally followed by at most 16 inclined/offset alternatives')
     p.add_argument('--object',choices=TARGETS)
     p.add_argument('--trials',type=int,default=3)
     p.add_argument('--seed',type=int,default=43)
@@ -51,7 +55,8 @@ def main():
     roster=[a.object] if a.object else list(TARGETS)
     rng=np.random.default_rng(a.seed);scenes=[]
     while len(scenes)<a.trials:scenes.extend(str(n) for n in rng.permutation(roster))
-    meta={'code_version':'2.0.0','scope':'known_box_transparent_proxy_ideal_instance_mask_physical_clutter',
+    meta={'code_version':'2.1.0','scope':'known_box_transparent_proxy_ideal_instance_mask_physical_clutter',
+          'grasp_strategy':a.grasps,'maximum_additional_candidates':16 if a.grasps=='local' else 0,
           'source_sha256':source_hash(),'seed':a.seed,'mode':a.mode,'scene':a.scene,'obstacles':obstacles,
           'sensor':asdict(sensor),'object_pool':roster,'distractor_count':SCENES[a.scene],
           'config':{k:str(v) if isinstance(v,Path) else v for k,v in asdict(config).items()},
@@ -64,7 +69,7 @@ def main():
     if a.video:
         from robot_manipulation.video import Recorder
         env.recorder=Recorder(env,a.video)
-        env.recorder.title='EE5110 v2.0 | Transparent proxy + physical clutter'
+        env.recorder.title='EE5110 v2.1 | Transparent proxy + physical clutter'
     try:
         for i,name in enumerate(scenes[:a.trials],1):
             scene_seed=a.seed+1000+i; sensor_seed=a.seed+100000+i; planner_seed=a.seed+200000+i
@@ -75,7 +80,8 @@ def main():
                 return ActiveObserver(settings,seed=sensor_seed+index*1000000,
                                       policy='fixed' if a.mode=='fixed' else 'active',instance_mask=True)
             before_resets=env.scene_resets
-            row=episode(env,planner,controller,np.random.default_rng(scene_seed),i,name,factory,meta['maximum_attempts'])
+            row=episode(env,planner,controller,np.random.default_rng(scene_seed),i,name,factory,meta['maximum_attempts'],
+                        candidate_generator=local_candidates if a.grasps=='local' else symmetric_candidates)
             row.update(scene_seed=scene_seed,sensor_seed=sensor_seed,planner_seed=planner_seed,
                        scene_metrics=env.scene_metrics(),reset_count=env.scene_resets-before_resets,
                        planner_stats=planner.stats,feedback=getattr(controller,'metrics',{}))
